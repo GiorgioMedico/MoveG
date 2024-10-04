@@ -20,11 +20,11 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Classes",
-  2: "Namespaces",
-  3: "Files",
-  4: "Functions",
-  5: "Friends"
+  0: "Tutto",
+  1: "Classi",
+  2: "Namespace",
+  3: "File",
+  4: "Funzioni",
+  5: "Friend"
 };
 
