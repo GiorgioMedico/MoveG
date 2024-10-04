@@ -1,8 +1,15 @@
 var searchData=
 [
-  ['matrixr_5fdot_7',['matrixR_dot',['../classMoveG_1_1Rotation.html#ae90fc72811cff827a428e1c341b63d9f',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Matrix3d &amp;S)'],['../classMoveG_1_1Rotation.html#a15d04ac831005bfb67949d0273569e47',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Vector3d &amp;omega)']]],
-  ['matrixs_8',['matrixS',['../classMoveG_1_1Rotation.html#abac1a3adbd1f8cb06b1a53ac36392f93',1,'MoveG::Rotation']]],
-  ['matrixt_9',['matrixT',['../classMoveG_1_1Rotation.html#a3d74b60edb2125c87a00caa931e9b79f',1,'MoveG::Rotation']]],
-  ['moveg_10',['MoveG',['../namespaceMoveG.html',1,'']]],
-  ['my_5fslerp_11',['my_slerp',['../appoggio_8cpp.html#a1648c09a5962a61709c62176207efec4',1,'appoggio.cpp']]]
+  ['getaffinetransformation_7',['getAffineTransformation',['../classMoveG_1_1Pose.html#a48760c189e18845d0caf3f16fdd84813',1,'MoveG::Pose']]],
+  ['gethomogeneoust_8',['getHomogeneousT',['../classMoveG_1_1Pose.html#af2ba69510e7114bc38e858a6db94f90a',1,'MoveG::Pose']]],
+  ['getposition_9',['getPosition',['../classMoveG_1_1Pose.html#a3eeff7cb17faae494cf4f214d18e0609',1,'MoveG::Pose']]],
+  ['getqaternion_10',['getQaternion',['../classMoveG_1_1Pose.html#a3b65d5fa556d66efd2d51d3faaab84c9',1,'MoveG::Pose']]],
+  ['getqw_11',['getQw',['../classMoveG_1_1Pose.html#a128a8a054737251dd8bcea430d2ef46b',1,'MoveG::Pose']]],
+  ['getqx_12',['getQx',['../classMoveG_1_1Pose.html#a7bb41d491494b7e23b5a1c31a2494500',1,'MoveG::Pose']]],
+  ['getqy_13',['getQy',['../classMoveG_1_1Pose.html#a29706dbd3cba072d01dfc46f7e939262',1,'MoveG::Pose']]],
+  ['getqz_14',['getQz',['../classMoveG_1_1Pose.html#a14cc9d650b261109f730ac62d2c4780b',1,'MoveG::Pose']]],
+  ['getrotationmatrix_15',['getRotationMatrix',['../classMoveG_1_1Pose.html#aca00349e97c662bbdd47a04fb9285f26',1,'MoveG::Pose']]],
+  ['getx_16',['getX',['../classMoveG_1_1Pose.html#a3a9e69ef5281cafd148528cbb0d48bd0',1,'MoveG::Pose']]],
+  ['gety_17',['getY',['../classMoveG_1_1Pose.html#a259fd204fe731b062ce19c571b8888e7',1,'MoveG::Pose']]],
+  ['getz_18',['getZ',['../classMoveG_1_1Pose.html#abc819e13d35ed00d0c7f6670b3fadd30',1,'MoveG::Pose']]]
 ];

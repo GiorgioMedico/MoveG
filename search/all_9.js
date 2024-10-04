@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['toangleaxis_26',['toAngleAxis',['../classMoveG_1_1Rotation.html#a635fc24f512f43bfbbfe0b3b7c808733',1,'MoveG::Rotation']]],
-  ['toeulerangles_27',['toEulerAngles',['../classMoveG_1_1Rotation.html#af38c67dba00c1b866a04c7f9db24d847',1,'MoveG::Rotation']]],
-  ['toquaternion_28',['toQuaternion',['../classMoveG_1_1Rotation.html#a4dbe94fded1102f52300898ef0c1a830',1,'MoveG::Rotation']]],
-  ['torotationmatrix_29',['toRotationMatrix',['../classMoveG_1_1Rotation.html#a4ed8b8d3a9635f1f47e3abf5f8ebb002',1,'MoveG::Rotation']]]
+  ['quaternion_5fdifference_31',['quaternion_difference',['../classMoveG_1_1Rotation.html#a97f8c7ebc347f2ab6e60c90eaac50720',1,'MoveG::Rotation']]],
+  ['quaternion_5fminus_32',['quaternion_minus',['../classMoveG_1_1Rotation.html#ac0e8639b6d9885a2566a65ddbe6ec778',1,'MoveG::Rotation']]],
+  ['quaternion_5fnegation_33',['quaternion_negation',['../classMoveG_1_1Rotation.html#ab4dbe5a4535c6d268648aef46d3254c8',1,'MoveG::Rotation']]],
+  ['quaternion_5fplus_34',['quaternion_plus',['../classMoveG_1_1Rotation.html#ad11edc123ddf2b5f913aa070f655104f',1,'MoveG::Rotation']]]
 ];

@@ -85,6 +85,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2cba1837ccd8df9b134ab37a9395f84a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a2cba1837ccd8df9b134ab37a9395f84a">Rotation</a> ()</td></tr>
 <tr class="memdesc:a2cba1837ccd8df9b134ab37a9395f84a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore di default.  <a href="classMoveG_1_1Rotation.html#a2cba1837ccd8df9b134ab37a9395f84a">More...</a><br /></td></tr>
 <tr class="separator:a2cba1837ccd8df9b134ab37a9395f84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d52e70ccb02eaa47c883e3adbf27cd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a9d52e70ccb02eaa47c883e3adbf27cd3">Rotation</a> (const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;other)</td></tr>
+<tr class="memdesc:a9d52e70ccb02eaa47c883e3adbf27cd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classMoveG_1_1Rotation.html#a9d52e70ccb02eaa47c883e3adbf27cd3">More...</a><br /></td></tr>
+<tr class="separator:a9d52e70ccb02eaa47c883e3adbf27cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b93425896ab7b04dd44c2fedc181137"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a1b93425896ab7b04dd44c2fedc181137">Rotation</a> (const Eigen::Matrix3d &amp;rotation_matrix)</td></tr>
 <tr class="memdesc:a1b93425896ab7b04dd44c2fedc181137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore da matrice di rotazione.  <a href="classMoveG_1_1Rotation.html#a1b93425896ab7b04dd44c2fedc181137">More...</a><br /></td></tr>
 <tr class="separator:a1b93425896ab7b04dd44c2fedc181137"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a061a42aa21dd629d85d4a406f11fbde1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMoveG_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a061a42aa21dd629d85d4a406f11fbde1">operator*</a> (const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;other) const</td></tr>
 <tr class="memdesc:a061a42aa21dd629d85d4a406f11fbde1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Composizione di due rotazioni.  <a href="classMoveG_1_1Rotation.html#a061a42aa21dd629d85d4a406f11fbde1">More...</a><br /></td></tr>
 <tr class="separator:a061a42aa21dd629d85d4a406f11fbde1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98c968c68b01b721d6657f1ad683bc0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a98c968c68b01b721d6657f1ad683bc0a">operator=</a> (const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;other)</td></tr>
+<tr class="memdesc:a98c968c68b01b721d6657f1ad683bc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operatore di assegnamento.  <a href="classMoveG_1_1Rotation.html#a98c968c68b01b721d6657f1ad683bc0a">More...</a><br /></td></tr>
+<tr class="separator:a98c968c68b01b721d6657f1ad683bc0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -178,7 +184,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Questa classe supporta diverse rappresentazioni di rotazioni, inclusi matrici di rotazione, quaternioni, asse-angolo e angoli di Eulero. Permette inoltre la composizione di rotazioni. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2cba1837ccd8df9b134ab37a9395f84a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cba1837ccd8df9b134ab37a9395f84a">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cba1837ccd8df9b134ab37a9395f84a">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,8 +203,34 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9d52e70ccb02eaa47c883e3adbf27cd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d52e70ccb02eaa47c883e3adbf27cd3">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MoveG::Rotation::Rotation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Altra rotazione da copiare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1b93425896ab7b04dd44c2fedc181137"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b93425896ab7b04dd44c2fedc181137">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b93425896ab7b04dd44c2fedc181137">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +256,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9fb4c3ae460a447365aaefa3a423d2ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fb4c3ae460a447365aaefa3a423d2ac">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fb4c3ae460a447365aaefa3a423d2ac">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,7 +282,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9534fbf7b5ade7cfc4fc74c909854c40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9534fbf7b5ade7cfc4fc74c909854c40">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9534fbf7b5ade7cfc4fc74c909854c40">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,7 +308,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="af269b72b8f156271622742371e81f1aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af269b72b8f156271622742371e81f1aa">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af269b72b8f156271622742371e81f1aa">&#9670;&nbsp;</a></span>Rotation() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -781,6 +813,33 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nuova rotazione risultante dalla composizione. </dd></dl>
+
+</div>
+</div>
+<a id="a98c968c68b01b721d6657f1ad683bc0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98c968c68b01b721d6657f1ad683bc0a">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp; MoveG::Rotation::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operatore di assegnamento. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Rotazione da assegnare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Riferimento all'oggetto corrente. </dd></dl>
 
 </div>
 </div>

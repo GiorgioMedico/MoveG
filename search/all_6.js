@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['quaternion_5fdifference_13',['quaternion_difference',['../classMoveG_1_1Rotation.html#a97f8c7ebc347f2ab6e60c90eaac50720',1,'MoveG::Rotation']]],
-  ['quaternion_5fminus_14',['quaternion_minus',['../classMoveG_1_1Rotation.html#ac0e8639b6d9885a2566a65ddbe6ec778',1,'MoveG::Rotation']]],
-  ['quaternion_5fnegation_15',['quaternion_negation',['../classMoveG_1_1Rotation.html#ab4dbe5a4535c6d268648aef46d3254c8',1,'MoveG::Rotation']]],
-  ['quaternion_5fplus_16',['quaternion_plus',['../classMoveG_1_1Rotation.html#ad11edc123ddf2b5f913aa070f655104f',1,'MoveG::Rotation']]]
+  ['matrixr_5fdot_20',['matrixR_dot',['../classMoveG_1_1Rotation.html#ae90fc72811cff827a428e1c341b63d9f',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Matrix3d &amp;S)'],['../classMoveG_1_1Rotation.html#a15d04ac831005bfb67949d0273569e47',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Vector3d &amp;omega)']]],
+  ['matrixs_21',['matrixS',['../classMoveG_1_1Rotation.html#abac1a3adbd1f8cb06b1a53ac36392f93',1,'MoveG::Rotation']]],
+  ['matrixt_22',['matrixT',['../classMoveG_1_1Rotation.html#a3d74b60edb2125c87a00caa931e9b79f',1,'MoveG::Rotation']]],
+  ['moveg_23',['MoveG',['../namespaceMoveG.html',1,'']]],
+  ['my_5fslerp_24',['my_slerp',['../appoggio_8cpp.html#a1648c09a5962a61709c62176207efec4',1,'appoggio.cpp']]]
 ];
