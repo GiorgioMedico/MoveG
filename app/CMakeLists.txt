@@ -1,15 +1,13 @@
-set(APP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cc")
+set(APP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
 add_executable(${EXECUTABLE_NAME} ${APP_SOURCES})
 
 target_link_libraries(
     ${EXECUTABLE_NAME}
-    PRIVATE "LibFoo"
-            "LibBar"
-            # nlohmann_json::nlohmann_json
+    PRIVATE ${LIBRARY_NAME}
+            ${LIBRARY_NAME}
             fmt::fmt
-            spdlog::spdlog
-            cxxopts::cxxopts)
+            Eigen3::Eigen)
 
 if(${ENABLE_WARNINGS})
     target_set_warnings(

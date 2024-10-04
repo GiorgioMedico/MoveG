@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 project(
-    "CppTemplate 2.0"
+    "MoveG"
     VERSION 1.0.0
     LANGUAGES C CXX)
 
@@ -11,10 +11,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# # build type is set to Release by default
-# if(NOT CMAKE_BUILD_TYPE)
-#     set(CMAKE_BUILD_TYPE "Release")
-# endif()
+# Set the build type
+set(CMAKE_BUILD_TYPE "Debug")
+
 
 # Options
 option(USE_CPM "Whether to use CPM." ON)
@@ -35,10 +34,11 @@ option(ENABLE_SANITIZE_THREAD "Enable thread sanitize (Gcc/Clang only)." OFF)
 option(ENABLE_CLANG_FORMAT "Enable to add clang-format." ON)
 option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 
-option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
+option(ENABLE_LTO "Enable to add Link Time Optimization." OFF)
 
 # Project/Library Names
 set(EXECUTABLE_NAME "main")
+set(LIBRARY_NAME "MoveG_Lib")
 
 # CMAKE MODULES
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
@@ -80,10 +80,19 @@ if(USE_CPM)
         CACHE STRING "CPM source cache directory")
 
     include(CPM)
-    # cpmaddpackage("gh:nlohmann/json#v3.11.3")
     cpmaddpackage("gh:fmtlib/fmt#9.1.0")
-    cpmaddpackage("gh:gabime/spdlog#v1.13.0")
-    cpmaddpackage("gh:jarro2783/cxxopts#v3.1.1")
+    CPMAddPackage(
+        NAME Eigen
+        GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+        GIT_TAG 3.4.0
+        EXCLUDE_FROM_ALL YES
+        SYSTEM YES
+        OPTIONS
+            "EIGEN_BUILD_DOC OFF"         # Disabilita la generazione della documentazione
+            "EIGEN_BUILD_TESTS OFF"       # Disabilita i test di Eigen
+            "EIGEN_BUILD_PKGCONFIG OFF"   # Disabilita la generazione del file pkg-config
+            "BUILD_TESTING OFF"
+    )
     if(ENABLE_TESTING)
         cpmaddpackage("gh:catchorg/Catch2#v3.5.3")
         list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras
@@ -110,6 +119,6 @@ install(
     RUNTIME DESTINATION bin)
 
 install(
-    TARGETS "LibFoo" "LibBar"
+    TARGETS ${LIBRARY_NAME}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib)
