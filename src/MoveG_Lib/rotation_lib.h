@@ -6,9 +6,12 @@
 */
 #pragma once
 
-#include "eigen3/Eigen/Dense"
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Geometry>
+
 #include <cmath>
 #include <iostream>
+#include <random>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -51,6 +54,12 @@ public:
      * Inizializza la rotazione come l'identità.
      */
     Rotation();
+
+    /**
+     * @brief Copy constructor.
+     * @param other Altra rotazione da copiare.
+     */
+    Rotation(const Rotation &other);
 
     /**
      * @brief Costruttore da matrice di rotazione.
@@ -169,7 +178,7 @@ public:
      */
     Eigen::Vector3d toEulerAngles(bool intrinsic = true, const std::string &sequence = "ZYX") const;
 
-    // Sovraccarico dell'operatore *
+    // Sovraccarico dell'operatore * e =
 
     /**
      * @brief Composizione di due rotazioni.
@@ -177,6 +186,13 @@ public:
      * @return Nuova rotazione risultante dalla composizione.
      */
     Rotation operator*(const Rotation &other) const;
+
+    /**
+     * @brief Operatore di assegnamento.
+     * @param other Rotazione da assegnare.
+     * @return Riferimento all'oggetto corrente.
+     */
+    Rotation &operator=(const Rotation &other);
 
     // Metodi statici per le operazioni sui quaternioni
     /**

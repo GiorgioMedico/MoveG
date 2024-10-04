@@ -9,7 +9,12 @@ prepare:
 
 coverage:
 	sudo apt-get install lcov
-	sudo pip3 install gcovr
+	sudo pip install gcovr
 
 dependency:
 	cd build && cmake .. --graphviz=graph.dot && dot -Tpng graph.dot -o graphImage.png
+
+pre-commit:
+	pip3 install pre-commit
+	pre-commit install
+	pre-commit install-hooks

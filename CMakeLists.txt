@@ -95,7 +95,8 @@ if(USE_CPM)
         "EIGEN_BUILD_DOC OFF" # Disabilita la generazione della documentazione
         "EIGEN_BUILD_TESTS OFF" # Disabilita i test di Eigen
         "EIGEN_BUILD_PKGCONFIG OFF" # Disabilita la generazione del file pkg-config
-        "BUILD_TESTING OFF")
+        "BUILD_TESTING OFF" # Disabilita la generazione dei test
+        )
     if(ENABLE_TESTING)
         cpmaddpackage("gh:catchorg/Catch2#v3.5.3")
         list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras

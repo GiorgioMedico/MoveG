@@ -17,6 +17,11 @@ Rotation::Rotation() : q(Eigen::Quaterniond::Identity())
 {
 }
 
+// Copy constructor
+Rotation::Rotation(const Rotation &other) : q(other.q)
+{
+}
+
 // Costruttore da matrice di rotazione
 Rotation::Rotation(const Eigen::Matrix3d &rotation_matrix) : q(Eigen::Quaterniond(rotation_matrix))
 {
@@ -141,6 +146,15 @@ Eigen::Vector3d Rotation::toEulerAngles(bool intrinsic, const std::string &seque
 Rotation Rotation::operator*(const Rotation &other) const
 {
     return Rotation(q * other.q);
+}
+
+Rotation &Rotation::operator=(const Rotation &other)
+{
+    if (this != &other)
+    {
+        q = other.q;
+    }
+    return *this;
 }
 
 // Funzione ausiliaria per creare una rappresentazione asse-angolo

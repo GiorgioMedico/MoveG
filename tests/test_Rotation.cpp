@@ -2,10 +2,17 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-#include "eigen3/Eigen/Dense"
-#include "rotation_lib.h"
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Geometry>
+
+#include <cmath>
+#include <iostream>
 #include <random>
+#include <stdexcept>
 #include <string>
+#include <vector>
+
+#include "rotation_lib.h"
 
 using namespace MoveG;
 
