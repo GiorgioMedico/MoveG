@@ -3,11 +3,11 @@ digraph "/home/runner/work/MoveG/MoveG/src/MoveG_Lib/rotation_lib.h"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation_lib.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation_lib.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Classe per la rappresentazione e manipolazione di rotazioni in 3D."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/pose_lib.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pose__lib_8h.html",tooltip=" "];
+  Node2 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/pose_lib.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pose__lib_8h.html",tooltip="Classe per la rappresentazione di Pose."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/pose\l_lib.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pose__lib_8cpp.html",tooltip=" "];
+  Node3 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/pose\l_lib.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pose__lib_8cpp.html",tooltip="Classe per la rappresentazione di Pose."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation\l_lib.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rotation__lib_8cpp.html",tooltip=" "];
+  Node4 [label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation\l_lib.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rotation__lib_8cpp.html",tooltip="Classe per la rappresentazione e manipolazione di rotazioni in 3D."];
 }
