@@ -1,9 +1,10 @@
-/*
-    Author: Giorgio Medico
-    Date: 24/09/2024
-    Description: Classe per la rappresentazione e manipolazione di rotazioni in 3D
-    File : rotation_lib.cpp
-*/
+/**
+ * @file rotation_lib.cpp
+ * @brief Classe per la rappresentazione e manipolazione di rotazioni in 3D
+ *
+ * @author Giorgio Medico
+ * @date 24/09/2024
+ */
 
 #include "rotation_lib.h"
 

@@ -30,13 +30,13 @@ if(${ENABLE_WARNINGS})
         AS_ERRORS
         ${ENABLE_WARNINGS_AS_ERRORS})
 
-        target_set_warnings(
-            TARGET
-            "UnitTestPose"
-            ENABLE
-            ${ENABLE_WARNINGS}
-            AS_ERRORS
-            ${ENABLE_WARNINGS_AS_ERRORS})
+    target_set_warnings(
+        TARGET
+        "UnitTestPose"
+        ENABLE
+        ${ENABLE_WARNINGS}
+        AS_ERRORS
+        ${ENABLE_WARNINGS_AS_ERRORS})
 endif()
 
 # Gives to CTest the ability to see the tests that are in the executable

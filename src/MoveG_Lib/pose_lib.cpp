@@ -1,9 +1,10 @@
-/*
-    Author: Giorgio Medico
-    Date: 4/10/2024
-    Description: Implementazione della classe Pose
-    File: pose_lib.cpp
-*/
+/**
+ * @file pose_lib.cpp
+ * @brief Classe per la rappresentazione di Pose
+ *
+ * @author Giorgio Medico
+ * @date 4/10/2024
+ */
 
 #include "pose_lib.h"
 
