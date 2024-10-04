@@ -121,7 +121,7 @@ Eigen::Vector3d Rotation::toEulerAngles(bool intrinsic, const std::string &seque
     int a1 = axisToIndex(sequence[1]);
     int a2 = axisToIndex(sequence[2]);
 
-    Eigen::Vector3d angles;
+    Eigen::Vector3d angles = Eigen::Vector3d::Zero();
 
     if (intrinsic)
     {
@@ -235,21 +235,21 @@ Eigen::Quaterniond Rotation::quaternion_plus(const Eigen::Quaterniond &v1,
 // Matrici di rotazione elementari
 Eigen::Matrix3d Rotation::rotationX(double angle)
 {
-    Eigen::Matrix3d rot;
+    Eigen::Matrix3d rot = Eigen::Matrix3d::Identity();
     rot << 1, 0, 0, 0, cos(angle), -sin(angle), 0, sin(angle), cos(angle);
     return rot;
 }
 
 Eigen::Matrix3d Rotation::rotationY(double angle)
 {
-    Eigen::Matrix3d rot;
+    Eigen::Matrix3d rot = Eigen::Matrix3d::Identity();
     rot << cos(angle), 0, sin(angle), 0, 1, 0, -sin(angle), 0, cos(angle);
     return rot;
 }
 
 Eigen::Matrix3d Rotation::rotationZ(double angle)
 {
-    Eigen::Matrix3d rot;
+    Eigen::Matrix3d rot = Eigen::Matrix3d::Identity();
     rot << cos(angle), -sin(angle), 0, sin(angle), cos(angle), 0, 0, 0, 1;
     return rot;
 }
@@ -257,7 +257,7 @@ Eigen::Matrix3d Rotation::rotationZ(double angle)
 // Matrice S
 Eigen::Matrix3d Rotation::matrixS(const Eigen::Vector3d &omega)
 {
-    Eigen::Matrix3d S;
+    Eigen::Matrix3d S = Eigen::Matrix3d::Zero();
     S << 0, -omega.z(), omega.y(), omega.z(), 0, -omega.x(), -omega.y(), omega.x(), 0;
     return S;
 }
@@ -278,8 +278,7 @@ Eigen::Matrix3d Rotation::matrixT(const Eigen::Vector3d &angles, const std::stri
 {
     checkSequence(sequence);
 
-    Eigen::Matrix3d T;
-    T.setZero();
+    Eigen::Matrix3d T = Eigen::Matrix3d::Zero();
 
     Eigen::Vector3d theta[3];
 

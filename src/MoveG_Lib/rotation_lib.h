@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 // Commenti aggiuntivi per chiarire il comportamento delle rotazioni intrinseche ed estrinseche
 
