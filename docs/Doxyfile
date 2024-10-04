@@ -6,12 +6,12 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING       = UTF-8
-PROJECT_NAME            = "C++ Project Template"
+PROJECT_NAME            = "MoveG"
 PROJECT_NUMBER          = 1.0.0
-PROJECT_BRIEF           =
-PROJECT_LOGO            =
+PROJECT_BRIEF           = "A library for Robotics Applications"
+PROJECT_LOGO            = ../docs/MovG.svg
 OUTPUT_DIRECTORY        = ./
-OUTPUT_LANGUAGE         = English
+OUTPUT_LANGUAGE         = Italian
 MARKDOWN_SUPPORT        = YES
 
 #---------------------------------------------------------------------------
