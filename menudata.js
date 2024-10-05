@@ -24,6 +24,7 @@
 */
 var menudata={children:[
 {text:"Pagina Principale",url:"index.html"},
+{text:"Pagine collegate",url:"pages.html"},
 {text:"Namespace",url:"namespaces.html",children:[
 {text:"Lista dei namespace",url:"namespaces.html"},
 {text:"Membri dei namespace",url:"namespacemembers.html",children:[
@@ -45,6 +46,7 @@ var menudata={children:[
 {text:"r",url:"functions.html#index_r"},
 {text:"s",url:"functions.html#index_s"},
 {text:"t",url:"functions.html#index_t"},
+{text:"w",url:"functions.html#index_w"},
 {text:"~",url:"functions.html#index__7E"}]},
 {text:"Funzioni",url:"functions_func.html",children:[
 {text:"d",url:"functions_func.html#index_d"},
@@ -58,6 +60,7 @@ var menudata={children:[
 {text:"r",url:"functions_func.html#index_r"},
 {text:"s",url:"functions_func.html#index_s"},
 {text:"t",url:"functions_func.html#index_t"},
+{text:"w",url:"functions_func.html#index_w"},
 {text:"~",url:"functions_func.html#index__7E"}]},
 {text:"Funzioni collegate",url:"functions_rela.html"}]}]},
 {text:"File",url:"files.html",children:[
