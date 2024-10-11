@@ -23,7 +23,7 @@ option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 option(ENABLE_TESTING "Enable a Unit Testing build." ON)
 option(ENABLE_COVERAGE "Enable a Code Coverage build." ON)
 
-option(ENABLE_CLANG_TIDY "Enable to add clang tidy." ON)
+option(ENABLE_CLANG_TIDY "Enable to add clang tidy." OFF)
 
 option(ENABLE_SANITIZE_ADDR "Enable address sanitize." ON)
 option(ENABLE_SANITIZE_UNDEF "Enable undefined sanitize." ON)
@@ -98,7 +98,7 @@ if(USE_CPM)
         "BUILD_TESTING OFF" # Disabilita la generazione dei test
     )
     if(ENABLE_TESTING)
-        cpmaddpackage("gh:catchorg/Catch2#v3.5.3")
+        cpmaddpackage("gh:catchorg/Catch2#v3.7.1")
         list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras
         )# append path to CMake modules path
     endif()

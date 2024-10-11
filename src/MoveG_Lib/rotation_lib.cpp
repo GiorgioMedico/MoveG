@@ -19,7 +19,14 @@ Rotation::Rotation() : q(Eigen::Quaterniond::Identity())
 }
 
 // Copy constructor
-Rotation::Rotation(const Rotation &other) = default;
+Rotation::Rotation(const Rotation &other) : q(other.q)
+{
+}
+
+// Costruttore di movimento
+Rotation::Rotation(Rotation &&other) noexcept : q(std::move(other.q))
+{
+}
 
 // Costruttore da matrice di rotazione
 Rotation::Rotation(const Eigen::Matrix3d &rotation_matrix) : q(Eigen::Quaterniond(rotation_matrix))
@@ -147,12 +154,18 @@ Rotation Rotation::operator*(const Rotation &other) const
     return Rotation(q * other.q);
 }
 
-Rotation &Rotation::operator=(const Rotation &other)
+Rotation &Rotation::operator=(const Rotation& other)
 {
     if (this != &other)
     {
         q = other.q;
     }
+    return *this;
+}
+
+Rotation &Rotation::operator=(Rotation &&other) noexcept
+{
+    q = std::move(other.q);
     return *this;
 }
 

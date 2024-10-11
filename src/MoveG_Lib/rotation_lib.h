@@ -64,6 +64,17 @@ public:
     Rotation(const Rotation &other);
 
     /**
+     * @brief Move constructor for the Rotation class.
+     * 
+     * This constructor allows the creation of a Rotation object by transferring
+     * the resources from another Rotation object. It is marked as noexcept to 
+     * indicate that it does not throw exceptions.
+     * 
+     * @param other The Rotation object to be moved.
+     */
+    Rotation(Rotation&& other) noexcept;
+
+    /**
      * @brief Costruttore da matrice di rotazione.
      * @param rotation_matrix Matrice di rotazione 3x3.
      */
@@ -194,7 +205,14 @@ public:
      * @param other Rotazione da assegnare.
      * @return Riferimento all'oggetto corrente.
      */
-    Rotation &operator=(const Rotation &other);
+    Rotation& operator=(const Rotation& other);
+
+    /**
+     * @brief Operatore di assegnamento per il movimento.
+     * @param other Rotazione da assegnare.
+     * @return Riferimento all'oggetto corrente.
+     */
+    Rotation& operator=(Rotation&& other) noexcept;
 
     // Metodi statici per le operazioni sui quaternioni
     /**

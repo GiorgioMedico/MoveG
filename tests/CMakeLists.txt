@@ -41,6 +41,7 @@ endif()
 
 # Gives to CTest the ability to see the tests that are in the executable
 # catch_discover_tests("UnitTestFoo")
+
 catch_discover_tests("UnitTestRotation")
 catch_discover_tests("UnitTestPose")
 
