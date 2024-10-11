@@ -9,7 +9,7 @@ prepare:
 
 coverage:
 	sudo apt-get install lcov
-	sudo pip install gcovr
+	sudo pip3 install gcovr
 
 dependency:
 	cd build && cmake .. --graphviz=graph.dot && dot -Tpng graph.dot -o graphImage.png
