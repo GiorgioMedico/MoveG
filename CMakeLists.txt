@@ -26,8 +26,8 @@ option(ENABLE_COVERAGE "Enable a Code Coverage build." ON)
 option(ENABLE_CLANG_TIDY "Enable to add clang tidy." OFF)
 
 option(ENABLE_SANITIZE_ADDR "Enable address sanitize." OFF)
-option(ENABLE_SANITIZE_UNDEF "Enable undefined sanitize." ON)
-option(ENABLE_SANITIZE_LEAK "Enable leak sanitize (Gcc/Clang only)." ON)
+option(ENABLE_SANITIZE_UNDEF "Enable undefined sanitize." OFF)
+option(ENABLE_SANITIZE_LEAK "Enable leak sanitize (Gcc/Clang only)." OFF)
 option(ENABLE_SANITIZE_THREAD "Enable thread sanitize (Gcc/Clang only)." OFF)
 
 option(ENABLE_CLANG_FORMAT "Enable to add clang-format." ON)

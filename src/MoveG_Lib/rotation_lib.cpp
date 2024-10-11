@@ -154,7 +154,7 @@ Rotation Rotation::operator*(const Rotation &other) const
     return Rotation(q * other.q);
 }
 
-Rotation &Rotation::operator=(const Rotation& other)
+Rotation &Rotation::operator=(const Rotation &other)
 {
     if (this != &other)
     {
