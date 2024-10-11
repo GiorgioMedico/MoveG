@@ -19,9 +19,7 @@ Rotation::Rotation() : q(Eigen::Quaterniond::Identity())
 }
 
 // Copy constructor
-Rotation::Rotation(const Rotation &other) : q(other.q)
-{
-}
+Rotation::Rotation(const Rotation &other) = default;
 
 // Costruttore da matrice di rotazione
 Rotation::Rotation(const Eigen::Matrix3d &rotation_matrix) : q(Eigen::Quaterniond(rotation_matrix))
@@ -56,9 +54,9 @@ Rotation::Rotation(double angle1,
         angle3 = deg2rad(angle3);
     }
 
-    Eigen::AngleAxisd aa1 = angleAxis(sequence[0], angle1);
-    Eigen::AngleAxisd aa2 = angleAxis(sequence[1], angle2);
-    Eigen::AngleAxisd aa3 = angleAxis(sequence[2], angle3);
+    const Eigen::AngleAxisd aa1 = angleAxis(sequence[0], angle1);
+    const Eigen::AngleAxisd aa2 = angleAxis(sequence[1], angle2);
+    const Eigen::AngleAxisd aa3 = angleAxis(sequence[2], angle3);
 
     if (intrinsic)
     {
@@ -123,9 +121,9 @@ Eigen::Vector3d Rotation::toEulerAngles(bool intrinsic, const std::string &seque
 {
     checkSequence(sequence);
 
-    int a0 = axisToIndex(sequence[0]);
-    int a1 = axisToIndex(sequence[1]);
-    int a2 = axisToIndex(sequence[2]);
+    const int a0 = axisToIndex(sequence[0]);
+    const int a1 = axisToIndex(sequence[1]);
+    const int a2 = axisToIndex(sequence[2]);
 
     Eigen::Vector3d angles = Eigen::Vector3d::Zero();
 
@@ -285,7 +283,7 @@ Eigen::Matrix3d Rotation::matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Mat
 
 Eigen::Matrix3d Rotation::matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Vector3d &omega)
 {
-    Eigen::Matrix3d S = matrixS(omega);
+    const Eigen::Matrix3d S = matrixS(omega);
     return matrixR_dot(R, S);
 }
 
@@ -295,11 +293,11 @@ Eigen::Matrix3d Rotation::matrixT(const Eigen::Vector3d &angles, const std::stri
 
     Eigen::Matrix3d T = Eigen::Matrix3d::Zero();
 
-    Eigen::Vector3d theta[3];
+    std::array<Eigen::Vector3d, 3> theta;
 
-    for (int i = 0; i < 3; ++i)
+    for (std::size_t i = 0; i < 3; ++i)
     {
-        char c = sequence[std::string::size_type(i)];
+        const char c = sequence[i];
         switch (c)
         {
         case 'X':
@@ -323,23 +321,24 @@ Eigen::Matrix3d Rotation::matrixT(const Eigen::Vector3d &angles, const std::stri
 
     Eigen::Matrix3d R = Eigen::Matrix3d::Identity();
 
-    for (int i = 0; i < 2; ++i)
+    for (std::size_t i = 0; i < 2; ++i)
     {
         Eigen::Matrix3d Ri;
 
-        switch (sequence[std::string::size_type(i)])
+        const char c = sequence[i];
+        switch (c)
         {
         case 'X':
         case 'x':
-            Ri = Rotation::rotationX(angles[i]);
+            Ri = Rotation::rotationX(angles[static_cast<Eigen::Index>(i)]);
             break;
         case 'Y':
         case 'y':
-            Ri = Rotation::rotationY(angles[i]);
+            Ri = Rotation::rotationY(angles[static_cast<Eigen::Index>(i)]);
             break;
         case 'Z':
         case 'z':
-            Ri = Rotation::rotationZ(angles[i]);
+            Ri = Rotation::rotationZ(angles[static_cast<Eigen::Index>(i)]);
             break;
         default:
             Ri = Eigen::Matrix3d::Identity();
@@ -347,13 +346,13 @@ Eigen::Matrix3d Rotation::matrixT(const Eigen::Vector3d &angles, const std::stri
         }
 
         R *= Ri;
-        T.col(i + 1) = R * theta[i + 1];
+        T.col(static_cast<Eigen::Index>(i + 1)) = R * theta[i + 1];
     }
 
-    // Check if it is singular and so the determinant is near to zero
+    // Check if it is singular and so the determinant is near zero
     if (std::abs(T.determinant()) < 1e-6)
     {
-        std::cerr << "WARNING: The matrix is singular" << std::endl;
+        std::cerr << "WARNING: The matrix is singular\n";
     }
 
     return T;

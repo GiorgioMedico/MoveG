@@ -59,7 +59,7 @@ Pose::Pose(const Eigen::Matrix4d &homogeneousT)
     position_ = homogeneousT.block<3, 1>(0, 3);
 
     // Extract rotation matrix
-    Eigen::Matrix3d rotation_matrix = homogeneousT.block<3, 3>(0, 0);
+    const Eigen::Matrix3d rotation_matrix = homogeneousT.block<3, 3>(0, 0);
     orientation_ = Eigen::Quaterniond(rotation_matrix).normalized(); // Ensure normalization
 }
 
@@ -187,16 +187,16 @@ void Pose::setHomogeneousT(const Eigen::Matrix4d &homogeneousT)
 // Compose two poses
 Pose Pose::operator*(const Pose &other) const
 {
-    Eigen::Quaterniond combined_orientation = orientation_ * other.orientation_;
-    Eigen::Vector3d combined_position = position_ + orientation_ * other.position_;
+    const Eigen::Quaterniond combined_orientation = orientation_ * other.orientation_;
+    const Eigen::Vector3d combined_position = position_ + orientation_ * other.position_;
     return Pose(combined_position, combined_orientation);
 }
 
 // Inverse of the pose
 Pose Pose::inverse() const
 {
-    Eigen::Quaterniond inv_orientation = orientation_.conjugate();
-    Eigen::Vector3d inv_position = -(inv_orientation * position_);
+    const Eigen::Quaterniond inv_orientation = orientation_.conjugate();
+    const Eigen::Vector3d inv_position = -(inv_orientation * position_);
     return Pose(inv_position, inv_orientation);
 }
 

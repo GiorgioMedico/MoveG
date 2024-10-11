@@ -1,10 +1,10 @@
 # Template For C++ Projects
 
 ![C++](https://img.shields.io/badge/C%2B%2B-20-blue)
-[![Ubuntu CI Test](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml)
-[![Documentation](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml)
-[![CodeQL](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml)
-[![Pre-Commit](https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml)
+[![Ubuntu CI Test](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml)
+[![Documentation](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml/badge.svg)](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml)
+[![CodeQL](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml/badge.svg)](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml)
+[![pre-commit](https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml)
 
 This is a template for modern C++ projects.
 What you get is:
