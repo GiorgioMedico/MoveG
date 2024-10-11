@@ -1,9 +1,9 @@
 # Template For C++ Projects
 
 ![C++](https://img.shields.io/badge/C%2B%2B-11%2F14%2F17%2F20%2F23-blue)
-[![Ubuntu CI Test](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/ubuntu.yml)
-[![Documentation](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/documentation.yml/badge.svg)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/documentation.yml)
-[![CodeQL](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/codeql.yml/badge.svg)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/codeql.yml)
+[![Ubuntu CI Test](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/ubuntu.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/ubuntu.yml)
+[![Documentation](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/documentation.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/documentation.yml)
+[![CodeQL](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/CppTemplate2.0/actions/workflows/codeql.yml)
 
 This is a template for modern C++ projects.
 What you get is:
