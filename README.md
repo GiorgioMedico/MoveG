@@ -1,6 +1,6 @@
 # Template For C++ Projects
 
-![C++](https://img.shields.io/badge/C%2B%2B-11%2F14%2F17%2F20%2F23-blue)
+![C++](https://img.shields.io/badge/C%2B%2B-20-blue)
 [![Ubuntu CI Test](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml)
 [![Documentation](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml)
 [![CodeQL](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/GiorgioMedico/MoveG/actions/workflows/codeql.yml)
