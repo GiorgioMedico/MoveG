@@ -14,8 +14,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libeigen3-dev python3-pip
-        pip3 install --user -U gcovr
+        sudo apt-get install -y libeigen3-dev
+        apt install python3-gcovr
     - name: prepare
       run: |
         make prepare
