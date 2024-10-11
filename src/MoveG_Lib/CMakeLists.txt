@@ -3,7 +3,7 @@ set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/rotation_lib.cpp"
 
 set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/rotation_lib.h"
                     "${CMAKE_CURRENT_SOURCE_DIR}/pose_lib.h")
-                    
+
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
