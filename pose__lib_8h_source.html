@@ -20,6 +20,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="MoveG.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MoveG
    &#160;<span id="projectnumber">1.0.0</span>
@@ -79,101 +80,100 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;random&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rotation__lib_8h.html">rotation_lib.h</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMoveG.html">MoveG</a></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classMoveG_1_1Pose.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMoveG_1_1Pose.html">Pose</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// Constructors</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> Eigen::Quaterniond &amp;orientation);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> Eigen::Matrix3d &amp;rotation_matrix);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Affine3d &amp;transformation);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;orientation);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Matrix4d &amp;homogeneousT);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Destructor</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a994895934ba9d77bc707bc5d4b46aca0">~Pose</a>();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Copy constructor and assignment operator</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;<a class="code" href="classMoveG_1_1Pose.html#a5145e83febc33105d0801af6c5f8703c">operator=</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// &lt;&lt; operator overload to define the output stream</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">friend</span> std::ostream &amp;<a class="code" href="classMoveG_1_1Pose.html#a4cce36480a3cc647a721b8e727459156">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;pose);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Getters</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    Eigen::Vector3d <a class="code" href="classMoveG_1_1Pose.html#a3eeff7cb17faae494cf4f214d18e0609">getPosition</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    Eigen::Quaterniond <a class="code" href="classMoveG_1_1Pose.html#a3b65d5fa556d66efd2d51d3faaab84c9">getQaternion</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    Eigen::Matrix3d <a class="code" href="classMoveG_1_1Pose.html#aca00349e97c662bbdd47a04fb9285f26">getRotationMatrix</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    Eigen::Affine3d <a class="code" href="classMoveG_1_1Pose.html#a48760c189e18845d0caf3f16fdd84813">getAffineTransformation</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    Eigen::Matrix4d <a class="code" href="classMoveG_1_1Pose.html#af2ba69510e7114bc38e858a6db94f90a">getHomogeneousT</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a3a9e69ef5281cafd148528cbb0d48bd0">getX</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a259fd204fe731b062ce19c571b8888e7">getY</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#abc819e13d35ed00d0c7f6670b3fadd30">getZ</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a7bb41d491494b7e23b5a1c31a2494500">getQx</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a29706dbd3cba072d01dfc46f7e939262">getQy</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a14cc9d650b261109f730ac62d2c4780b">getQz</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a128a8a054737251dd8bcea430d2ef46b">getQw</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// Setters</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a56f1ba02596849211ab1165cdfb13e3b">setPosition</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a36ee71436b5ece0ddd1ccafb4296bb4f">setOrientation</a>(<span class="keyword">const</span> Eigen::Quaterniond &amp;orientation);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a44b8846c198555f8fc68198af5f25af7">setRotationMatrix</a>(<span class="keyword">const</span> Eigen::Matrix3d &amp;rotation_matrix);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a40042937c4a551cf61e777a284de14a9">setAffineTransformation</a>(<span class="keyword">const</span> Eigen::Affine3d &amp;transformation);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a7f088d32bb567d8b895fb89d96f1fdef">setHomogeneousT</a>(<span class="keyword">const</span> Eigen::Matrix4d &amp;homogeneousT);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="comment">// Operations</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> <a class="code" href="classMoveG_1_1Pose.html#ac2d8d8d34943baf3b80d83d8e4e17a6d">operator*</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other) <span class="keyword">const</span>; <span class="comment">// Compose poses</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> <a class="code" href="classMoveG_1_1Pose.html#aa6c28023ca14d834ba653f92f647c3ab">inverse</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="comment">// Friend functions for input/output</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keyword">friend</span> std::ostream &amp;<a class="code" href="classMoveG_1_1Pose.html#a4cce36480a3cc647a721b8e727459156">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;pose);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    Eigen::Vector3d position_;       </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    Eigen::Quaterniond orientation_; </div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;};</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;} <span class="comment">// namespace MoveG</span></div>
-<div class="ttc" id="aclassMoveG_1_1Pose_html"><div class="ttname"><a href="classMoveG_1_1Pose.html">MoveG::Pose</a></div><div class="ttdoc">Classe per rappresentare una posa nello spazio 3D.</div><div class="ttdef"><b>Definition:</b> pose_lib.h:36</div></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rotation__lib_8h.html">rotation_lib.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMoveG.html">MoveG</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classMoveG_1_1Pose.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMoveG_1_1Pose.html">Pose</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Constructors</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> Eigen::Quaterniond &amp;orientation);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> Eigen::Matrix3d &amp;rotation_matrix);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Affine3d &amp;transformation);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;orientation);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> Eigen::Matrix4d &amp;homogeneousT);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Destructor</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a994895934ba9d77bc707bc5d4b46aca0">~Pose</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Copy constructor and assignment operator</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">Pose</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;<a class="code" href="classMoveG_1_1Pose.html#a5145e83febc33105d0801af6c5f8703c">operator=</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// &lt;&lt; operator overload to define the output stream</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">friend</span> std::ostream &amp;<a class="code" href="classMoveG_1_1Pose.html#a4cce36480a3cc647a721b8e727459156">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;pose);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// Getters</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    Eigen::Vector3d <a class="code" href="classMoveG_1_1Pose.html#a3eeff7cb17faae494cf4f214d18e0609">getPosition</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    Eigen::Quaterniond <a class="code" href="classMoveG_1_1Pose.html#a3b65d5fa556d66efd2d51d3faaab84c9">getQaternion</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    Eigen::Matrix3d <a class="code" href="classMoveG_1_1Pose.html#aca00349e97c662bbdd47a04fb9285f26">getRotationMatrix</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    Eigen::Affine3d <a class="code" href="classMoveG_1_1Pose.html#a48760c189e18845d0caf3f16fdd84813">getAffineTransformation</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    Eigen::Matrix4d <a class="code" href="classMoveG_1_1Pose.html#af2ba69510e7114bc38e858a6db94f90a">getHomogeneousT</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a3a9e69ef5281cafd148528cbb0d48bd0">getX</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a259fd204fe731b062ce19c571b8888e7">getY</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#abc819e13d35ed00d0c7f6670b3fadd30">getZ</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a7bb41d491494b7e23b5a1c31a2494500">getQx</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a29706dbd3cba072d01dfc46f7e939262">getQy</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a14cc9d650b261109f730ac62d2c4780b">getQz</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMoveG_1_1Pose.html#a128a8a054737251dd8bcea430d2ef46b">getQw</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="comment">// Setters</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a56f1ba02596849211ab1165cdfb13e3b">setPosition</a>(<span class="keyword">const</span> Eigen::Vector3d &amp;position);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a36ee71436b5ece0ddd1ccafb4296bb4f">setOrientation</a>(<span class="keyword">const</span> Eigen::Quaterniond &amp;orientation);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a44b8846c198555f8fc68198af5f25af7">setRotationMatrix</a>(<span class="keyword">const</span> Eigen::Matrix3d &amp;rotation_matrix);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a40042937c4a551cf61e777a284de14a9">setAffineTransformation</a>(<span class="keyword">const</span> Eigen::Affine3d &amp;transformation);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMoveG_1_1Pose.html#a7f088d32bb567d8b895fb89d96f1fdef">setHomogeneousT</a>(<span class="keyword">const</span> Eigen::Matrix4d &amp;homogeneousT);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="comment">// Operations</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> <a class="code" href="classMoveG_1_1Pose.html#ac2d8d8d34943baf3b80d83d8e4e17a6d">operator*</a>(<span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;other) <span class="keyword">const</span>; <span class="comment">// Compose poses</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <a class="code" href="classMoveG_1_1Pose.html">Pose</a> <a class="code" href="classMoveG_1_1Pose.html#aa6c28023ca14d834ba653f92f647c3ab">inverse</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="comment">// Friend functions for input/output</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keyword">friend</span> std::ostream &amp;<a class="code" href="classMoveG_1_1Pose.html#a4cce36480a3cc647a721b8e727459156">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMoveG_1_1Pose.html">Pose</a> &amp;pose);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    Eigen::Vector3d position_;       </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    Eigen::Quaterniond orientation_; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;};</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;} <span class="comment">// namespace MoveG</span></div>
+<div class="ttc" id="aclassMoveG_1_1Pose_html"><div class="ttname"><a href="classMoveG_1_1Pose.html">MoveG::Pose</a></div><div class="ttdoc">Classe per rappresentare una posa nello spazio 3D.</div><div class="ttdef"><b>Definition:</b> pose_lib.h:35</div></div>
 <div class="ttc" id="aclassMoveG_1_1Pose_html_a128a8a054737251dd8bcea430d2ef46b"><div class="ttname"><a href="classMoveG_1_1Pose.html#a128a8a054737251dd8bcea430d2ef46b">MoveG::Pose::getQw</a></div><div class="ttdeci">double getQw() const</div><div class="ttdoc">Ottiene la componente W del quaternion.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:153</div></div>
 <div class="ttc" id="aclassMoveG_1_1Pose_html_a14cc9d650b261109f730ac62d2c4780b"><div class="ttname"><a href="classMoveG_1_1Pose.html#a14cc9d650b261109f730ac62d2c4780b">MoveG::Pose::getQz</a></div><div class="ttdeci">double getQz() const</div><div class="ttdoc">Ottiene la componente Z del quaternion.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:148</div></div>
 <div class="ttc" id="aclassMoveG_1_1Pose_html_a1b407ac5845774426a1327798ef7fe34"><div class="ttname"><a href="classMoveG_1_1Pose.html#a1b407ac5845774426a1327798ef7fe34">MoveG::Pose::Pose</a></div><div class="ttdeci">Pose()</div><div class="ttdoc">Costruttore di default.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:14</div></div>
@@ -197,7 +197,7 @@ $(function() {
 <div class="ttc" id="aclassMoveG_1_1Pose_html_ac2d8d8d34943baf3b80d83d8e4e17a6d"><div class="ttname"><a href="classMoveG_1_1Pose.html#ac2d8d8d34943baf3b80d83d8e4e17a6d">MoveG::Pose::operator*</a></div><div class="ttdeci">Pose operator*(const Pose &amp;other) const</div><div class="ttdoc">Composizione di due pose.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:188</div></div>
 <div class="ttc" id="aclassMoveG_1_1Pose_html_aca00349e97c662bbdd47a04fb9285f26"><div class="ttname"><a href="classMoveG_1_1Pose.html#aca00349e97c662bbdd47a04fb9285f26">MoveG::Pose::getRotationMatrix</a></div><div class="ttdeci">Eigen::Matrix3d getRotationMatrix() const</div><div class="ttdoc">Ottiene la matrice di rotazione.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:100</div></div>
 <div class="ttc" id="aclassMoveG_1_1Pose_html_af2ba69510e7114bc38e858a6db94f90a"><div class="ttname"><a href="classMoveG_1_1Pose.html#af2ba69510e7114bc38e858a6db94f90a">MoveG::Pose::getHomogeneousT</a></div><div class="ttdeci">Eigen::Matrix4d getHomogeneousT() const</div><div class="ttdoc">Ottiene la matrice di trasformazione omogenea.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:113</div></div>
-<div class="ttc" id="aclassMoveG_1_1Rotation_html"><div class="ttname"><a href="classMoveG_1_1Rotation.html">MoveG::Rotation</a></div><div class="ttdoc">Classe per rappresentare e gestire rotazioni nello spazio tridimensionale.</div><div class="ttdef"><b>Definition:</b> rotation_lib.h:51</div></div>
+<div class="ttc" id="aclassMoveG_1_1Rotation_html"><div class="ttname"><a href="classMoveG_1_1Rotation.html">MoveG::Rotation</a></div><div class="ttdoc">Classe per rappresentare e gestire rotazioni nello spazio tridimensionale.</div><div class="ttdef"><b>Definition:</b> rotation_lib.h:50</div></div>
 <div class="ttc" id="anamespaceMoveG_html"><div class="ttname"><a href="namespaceMoveG.html">MoveG</a></div><div class="ttdoc">Namespace per il movimento e la manipolazione delle pose.</div><div class="ttdef"><b>Definition:</b> pose_lib.cpp:12</div></div>
 <div class="ttc" id="arotation__lib_8h_html"><div class="ttname"><a href="rotation__lib_8h.html">rotation_lib.h</a></div><div class="ttdoc">Classe per la rappresentazione e manipolazione di rotazioni in 3D.</div></div>
 </div><!-- fragment --></div><!-- contents -->
