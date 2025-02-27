@@ -1,47 +1,33 @@
 include(Catch)
 
+# Unit Test for Rotation
 add_executable("UnitTestRotation" "test_Rotation.cpp")
-target_link_libraries("UnitTestRotation" PUBLIC ${LIBRARY_NAME})
-target_link_libraries("UnitTestRotation" PRIVATE Catch2::Catch2WithMain)
+target_link_libraries("UnitTestRotation"
+    PRIVATE
+        ${LIBRARY_NAME}
+        Catch2::Catch2WithMain
+        project_options  # Base options without warnings, or use project_options_with_warnings
+)
 
+# Unit Test for Pose
 add_executable("UnitTestPose" "test_Pose.cpp")
-target_link_libraries("UnitTestPose" PUBLIC ${LIBRARY_NAME})
-target_link_libraries("UnitTestPose" PRIVATE Catch2::Catch2WithMain)
+target_link_libraries("UnitTestPose"
+    PRIVATE
+        ${LIBRARY_NAME}
+        Catch2::Catch2WithMain
+        project_options  # Base options without warnings, or use project_options_with_warnings
+)
 
+# Example executable
 add_executable("Example" "pose_example.cpp")
-target_link_libraries("Example" PUBLIC ${LIBRARY_NAME})
-target_link_libraries("Example" PRIVATE Catch2::Catch2WithMain)
-
-if(${ENABLE_WARNINGS})
-
-    target_set_warnings(
-        TARGET
-        "Example"
-        ENABLE
-        ${ENABLE_WARNINGS}
-        AS_ERRORS
-        ${ENABLE_WARNINGS_AS_ERRORS})
-
-    target_set_warnings(
-        TARGET
-        "UnitTestRotation"
-        ENABLE
-        ${ENABLE_WARNINGS}
-        AS_ERRORS
-        ${ENABLE_WARNINGS_AS_ERRORS})
-
-    target_set_warnings(
-        TARGET
-        "UnitTestPose"
-        ENABLE
-        ${ENABLE_WARNINGS}
-        AS_ERRORS
-        ${ENABLE_WARNINGS_AS_ERRORS})
-endif()
+target_link_libraries("Example"
+    PRIVATE
+        ${LIBRARY_NAME}
+        Catch2::Catch2WithMain
+        project_options  # Base options without warnings, or use project_options_with_warnings
+)
 
 # Gives to CTest the ability to see the tests that are in the executable
-# catch_discover_tests("UnitTestFoo")
-
 catch_discover_tests("UnitTestRotation")
 catch_discover_tests("UnitTestPose")
 

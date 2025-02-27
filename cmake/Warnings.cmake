@@ -1,19 +1,8 @@
-function(target_set_warnings)
-    set(oneValueArgs TARGET ENABLE AS_ERRORS)
-    cmake_parse_arguments(
-        TARGET_SET_WARNINGS
-        "${options}"
-        "${oneValueArgs}"
-        "${multiValueArgs}"
-        ${ARGN})
+# Warnings.cmake
+# Definisce warning flags da usare per i target CMake
 
-    if(NOT ${TARGET_SET_WARNINGS_ENABLE})
-        message(STATUS "Warnings Disabled for: ${TARGET_SET_WARNINGS_TARGET}")
-        return()
-    endif()
-    message(STATUS "Warnings Active for: ${TARGET_SET_WARNINGS_TARGET}")
-    message(STATUS "Warnings as Errors: ${TARGET_SET_WARNINGS_AS_ERRORS}")
-
+# Imposta le warning flags per i vari compilatori
+function(set_warning_flags)
     set(MSVC_WARNINGS
         # Baseline
         /W4 # Baseline reasonable warnings
@@ -55,7 +44,7 @@ function(target_set_warnings)
         -Wnon-virtual-dtor # if a class with virtual func has a non-virtual dest
         -Wold-style-cast # warn for c-style casts
         -Woverloaded-virtual # if you overload (not override) a virtual function
-        -Weffc++ # violations from Scott Meyers’ Effective C++
+        -Weffc++ # violations from Scott Meyers' Effective C++
     )
 
     set(GCC_WARNINGS
@@ -65,20 +54,71 @@ function(target_set_warnings)
         -Wlogical-op # warn about logical operations being used where bitwise were probably wanted
     )
 
-    if(${TARGET_SET_WARNINGS_AS_ERRORS})
-        set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
-        set(GCC_WARNINGS ${GCC_WARNINGS} -Werror)
-        set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
-    endif()
+    # Esporta le variabili come variabili globali
+    set(MSVC_WARNINGS ${MSVC_WARNINGS} PARENT_SCOPE)
+    set(CLANG_WARNINGS ${CLANG_WARNINGS} PARENT_SCOPE)
+    set(GCC_WARNINGS ${GCC_WARNINGS} PARENT_SCOPE)
+endfunction()
 
-    if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-        set(WARNINGS ${MSVC_WARNINGS})
+# Imposta le warning flags appropriate per il compilatore corrente
+function(configure_warning_flags)
+    # Configura warning flags in base al compilatore
+    if(MSVC)
+        set(WARNING_FLAGS ${MSVC_WARNINGS} PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS /WX PARENT_SCOPE)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        set(WARNINGS ${CLANG_WARNINGS})
-    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-        set(WARNINGS ${GCC_WARNINGS})
+        set(WARNING_FLAGS ${CLANG_WARNINGS} PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS -Werror PARENT_SCOPE)
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        set(WARNING_FLAGS ${GCC_WARNINGS} PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS -Werror PARENT_SCOPE)
+    else()
+        message(WARNING "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set")
+        set(WARNING_FLAGS "" PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS "" PARENT_SCOPE)
     endif()
+endfunction()
 
-    target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${WARNINGS})
+# Funzione per applicare warnings a un target
+function(target_set_warnings)
+    set(oneValueArgs TARGET ENABLE AS_ERRORS)
+    cmake_parse_arguments(
+        TARGET_SET_WARNINGS
+        ""
+        "${oneValueArgs}"
+        ""
+        ${ARGN})
 
-endfunction(target_set_warnings)
+    # Prima chiamiamo le funzioni per impostare le warning flags
+    set_warning_flags()
+
+    if(TARGET_SET_WARNINGS_ENABLE)
+        # Seleziona i warnings in base al compilatore
+        if(MSVC)
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${MSVC_WARNINGS})
+            if(TARGET_SET_WARNINGS_AS_ERRORS)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE /WX)
+            endif()
+        elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${CLANG_WARNINGS})
+            if(TARGET_SET_WARNINGS_AS_ERRORS)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE -Werror)
+            endif()
+        elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${GCC_WARNINGS})
+            if(TARGET_SET_WARNINGS_AS_ERRORS)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE -Werror)
+            endif()
+        else()
+            message(WARNING "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set for ${TARGET_SET_WARNINGS_TARGET}")
+        endif()
+    endif()
+endfunction()
+
+# Configurazione iniziale per impostare le variabili globali WARNING_FLAGS e WARNINGS_AS_ERRORS_FLAGS
+set_warning_flags()
+configure_warning_flags()
+
+# # Stampa le warning flags configurate per debug
+# message(STATUS "Warning flags: ${WARNING_FLAGS}")
+# message(STATUS "Warnings as errors flags: ${WARNINGS_AS_ERRORS_FLAGS}")

@@ -2,22 +2,16 @@ set(APP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
 add_executable(${EXECUTABLE_NAME} ${APP_SOURCES})
 
+
 target_link_libraries(
     ${EXECUTABLE_NAME}
-    PRIVATE ${LIBRARY_NAME}
-            ${LIBRARY_NAME}
-            fmt::fmt
-            Eigen3::Eigen)
-
-if(${ENABLE_WARNINGS})
-    target_set_warnings(
-        TARGET
-        ${EXECUTABLE_NAME}
-        ENABLE
-        ${ENABLE_WARNINGS}
-        AS_ERRORS
-        ${ENABLE_WARNINGS_AS_ERRORS})
-endif()
+    PRIVATE
+        ${LIBRARY_NAME}
+        fmt::fmt
+        Eigen3::Eigen
+        project_options_with_warnings  # Include warnings
+        project_precompiled_headers
+)
 
 if(${ENABLE_LTO})
     target_enable_lto(

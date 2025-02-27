@@ -8,17 +8,16 @@ set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
-target_link_libraries(${LIBRARY_NAME} PRIVATE fmt::fmt Eigen3::Eigen)
 
-if(${ENABLE_WARNINGS})
-    target_set_warnings(
-        TARGET
-        ${LIBRARY_NAME}
-        ENABLE
-        ${ENABLE_WARNINGS}
-        AS_ERRORS
-        ${ENABLE_WARNINGS_AS_ERRORS})
-endif()
+# Link to project_options_with_warnings instead of using target_set_warnings
+# This applies all the warnings to your library code only
+target_link_libraries(${LIBRARY_NAME}
+    PRIVATE
+        fmt::fmt
+        Eigen3::Eigen
+        project_options_with_warnings  # Add warnings only to your library
+        project_precompiled_headers    # Also link precompiled headers
+)
 
 if(${ENABLE_LTO})
     target_enable_lto(
