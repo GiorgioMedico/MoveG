@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['scalar_5fproduct_43',['scalar_product',['../classMoveG_1_1Rotation.html#ac6f73f11a13da71762e1e37f86a27cf5',1,'MoveG::Rotation']]],
-  ['set_44',['set',['../MoveG__Lib_2CMakeLists_8txt.html#a671ddf82428dcefa3b93fd217458cfef',1,'CMakeLists.txt']]],
-  ['setaffinetransformation_45',['setAffineTransformation',['../classMoveG_1_1Pose.html#a40042937c4a551cf61e777a284de14a9',1,'MoveG::Pose']]],
-  ['sethomogeneoust_46',['setHomogeneousT',['../classMoveG_1_1Pose.html#a7f088d32bb567d8b895fb89d96f1fdef',1,'MoveG::Pose']]],
-  ['setorientation_47',['setOrientation',['../classMoveG_1_1Pose.html#a36ee71436b5ece0ddd1ccafb4296bb4f',1,'MoveG::Pose']]],
-  ['setposition_48',['setPosition',['../classMoveG_1_1Pose.html#a56f1ba02596849211ab1165cdfb13e3b',1,'MoveG::Pose']]],
-  ['setrotationmatrix_49',['setRotationMatrix',['../classMoveG_1_1Pose.html#a44b8846c198555f8fc68198af5f25af7',1,'MoveG::Pose']]],
-  ['struttura_20dipendenze_20libreria_50',['Struttura Dipendenze Libreria',['../md__home_runner_work_MoveG_MoveG_src_MoveG_Lib_README.html',1,'']]]
+  ['rad2deg_0',['rad2deg',['../classMoveG_1_1Rotation.html#aa856276f7f00503eca7d31e0a89aa064',1,'MoveG::Rotation']]],
+  ['readme_2emd_1',['README.md',['../README_8md.html',1,'']]],
+  ['rotation_2',['rotation',['../classMoveG_1_1Rotation.html',1,'MoveG::Rotation'],['../classMoveG_1_1Rotation.html#a2cba1837ccd8df9b134ab37a9395f84a',1,'MoveG::Rotation::Rotation()'],['../classMoveG_1_1Rotation.html#a9d52e70ccb02eaa47c883e3adbf27cd3',1,'MoveG::Rotation::Rotation(const Rotation &amp;other)'],['../classMoveG_1_1Rotation.html#a74a7072657e0dbf4d0dbfc86eb418cf4',1,'MoveG::Rotation::Rotation(Rotation &amp;&amp;other) noexcept'],['../classMoveG_1_1Rotation.html#a1b93425896ab7b04dd44c2fedc181137',1,'MoveG::Rotation::Rotation(const Eigen::Matrix3d &amp;rotation_matrix)'],['../classMoveG_1_1Rotation.html#a9fb4c3ae460a447365aaefa3a423d2ac',1,'MoveG::Rotation::Rotation(const Eigen::Quaterniond &amp;quaternion)'],['../classMoveG_1_1Rotation.html#a9534fbf7b5ade7cfc4fc74c909854c40',1,'MoveG::Rotation::Rotation(const Eigen::AngleAxisd &amp;angle_axis)'],['../classMoveG_1_1Rotation.html#af269b72b8f156271622742371e81f1aa',1,'MoveG::Rotation::Rotation(double angle1, double angle2, double angle3, bool intrinsic=true, const std::string &amp;sequence=&quot;ZYX&quot;, bool degree=false)']]],
+  ['rotation_5flib_2ecpp_3',['rotation_lib.cpp',['../rotation__lib_8cpp.html',1,'']]],
+  ['rotation_5flib_2eh_4',['rotation_lib.h',['../rotation__lib_8h.html',1,'']]],
+  ['rotationx_5',['rotationX',['../classMoveG_1_1Rotation.html#add3a37e880b1490f7dd2294cedde0ea3',1,'MoveG::Rotation']]],
+  ['rotationy_6',['rotationY',['../classMoveG_1_1Rotation.html#a94ce3139f26dea69e85994a3408ed27b',1,'MoveG::Rotation']]],
+  ['rotationz_7',['rotationZ',['../classMoveG_1_1Rotation.html#ad469365d1d9d600381abc9a24019a379',1,'MoveG::Rotation']]]
 ];
