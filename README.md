@@ -15,7 +15,7 @@ What you get is:
 - Unit testing using [Catch2](https://github.com/catchorg/Catch2) v2
 - General purpose libraries: [spdlog](https://github.com/gabime/spdlog), [cxxopts](https://github.com/jarro2783/cxxopts) and [fmt](https://github.com/fmtlib/fmt)
 - Continuous integration testing with Github Actions and [pre-commit](https://pre-commit.com/)
-- Code documentation with [Doxygen](https://doxygen.nl/) and [Github Pages](https://franneck94.github.io/CppProjectTemplate/)
+- Code documentation with [Doxygen](https://doxygen.nl/) and Github Pages
 - Tooling: Clang-Format, Cmake-Format, Clang-tidy, Sanitizers
 
 ## Structure
