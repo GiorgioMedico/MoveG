@@ -3,7 +3,7 @@
  * @brief Class for representing and manipulating 3D rotations
  *
  * @author Giorgio Medico
- * @date 24/09/2024
+ * @date 28/02/2025
  */
 
 #include "rotation_lib.h"
@@ -87,7 +87,7 @@ Rotation Rotation::fromRotationMatrix(const Eigen::Matrix3d &rotation_matrix)
 
 Rotation Rotation::fromQuaternion(const Eigen::Quaterniond &quaternion)
 {
-    return Rotation(quaternion);
+    return Rotation(quaternion.normalized());
 }
 
 Rotation Rotation::fromAngleAxis(const Eigen::AngleAxisd &angle_axis)
@@ -167,6 +167,67 @@ Rotation &Rotation::operator=(Rotation &&other) noexcept
 {
     q = std::move(other.q);
     return *this;
+}
+
+// Implementation of the output stream operator
+std::ostream &operator<<(std::ostream &os, const Rotation &rotation)
+{
+    Eigen::Quaterniond quat = rotation.toQuaternion();
+    os << "Rotation (quaternion x,y,z,w): [" << quat.x() << ", " << quat.y() << ", " << quat.z()
+       << ", " << quat.w() << "]";
+    return os;
+}
+
+// Angle normalization methods
+double Rotation::normalizeAngle(double angle)
+{
+    // Use fmod to get the remainder of division by 2π
+    angle = std::fmod(angle, 2 * M_PI);
+
+    // Adjust to the range [-π, π]
+    if (angle > M_PI)
+    {
+        angle -= 2 * M_PI;
+    }
+    else if (angle < -M_PI)
+    {
+        angle += 2 * M_PI;
+    }
+
+    return angle;
+}
+
+// Normalize angle to a specified range [minVal, maxVal]
+double Rotation::normalizeAngleRange(double angle, double minVal, double maxVal)
+{
+    const double width = maxVal - minVal;
+
+    // Validate range width
+    if (width <= 0)
+    {
+        throw std::invalid_argument("Invalid range: maxVal must be greater than minVal");
+    }
+
+    // Get a value in range [0, width) using modulo
+    const double offsetAngle = std::fmod(angle - minVal, width);
+
+    // Handle negative angles
+    if (offsetAngle < 0)
+    {
+        return offsetAngle + maxVal;
+    }
+    else
+    {
+        return offsetAngle + minVal;
+    }
+}
+
+// Normalize Euler angles
+Eigen::Vector3d Rotation::normalizeEulerAngles(const Eigen::Vector3d &angles)
+{
+    return Eigen::Vector3d(normalizeAngle(angles.x()),
+                           normalizeAngle(angles.y()),
+                           normalizeAngle(angles.z()));
 }
 
 // Auxiliary function to create an axis-angle representation
@@ -366,6 +427,7 @@ Eigen::Matrix3d Rotation::matrixT(const Eigen::Vector3d &angles, const std::stri
     if (std::abs(T.determinant()) < 1e-6)
     {
         std::cerr << "WARNING: The matrix is singular\n";
+        throw std::runtime_error("Matrix T is singular, which may cause numerical instability.");
     }
 
     return T;

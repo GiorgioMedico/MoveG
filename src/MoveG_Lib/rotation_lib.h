@@ -3,7 +3,7 @@
  * @brief Class for representing and manipulating 3D rotations
  *
  * @author Giorgio Medico
- * @date 24/09/2024
+ * @date 28/02/2025
  */
 
 #pragma once
@@ -11,6 +11,7 @@
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Geometry>
 
+#include <array>
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
@@ -213,6 +214,30 @@ public:
       */
     Rotation &operator=(Rotation &&other) noexcept;
 
+    // Angle normalization methods
+    /**
+      * @brief Normalizes an angle to the range [-π, π]
+      * @param angle Angle in radians
+      * @return Normalized angle in radians within the range [-π, π]
+      */
+    static double normalizeAngle(double angle);
+
+    /**
+      * @brief Normalizes an angle to a specified range
+      * @param angle Angle in radians
+      * @param minVal Lower bound of the range
+      * @param maxVal Upper bound of the range
+      * @return Normalized angle in radians within the specified range
+      */
+    static double normalizeAngleRange(double angle, double minVal, double maxVal);
+
+    /**
+      * @brief Normalizes Euler angles to the range [-π, π]
+      * @param angles Vector of Euler angles in radians
+      * @return Vector of normalized Euler angles in radians
+      */
+    static Eigen::Vector3d normalizeEulerAngles(const Eigen::Vector3d &angles);
+
     // Static methods for quaternion operations
     /**
       * @brief Calculates the difference between two quaternions.
@@ -284,7 +309,6 @@ public:
       * @param angle Rotation angle in radians.
       * @return 3x3 rotation matrix.
       */
-
     static Eigen::Matrix3d rotationY(double angle);
 
     /**
@@ -300,7 +324,6 @@ public:
       * @brief Calculates the S matrix
       * @param omega Angular velocity vector. (Different from Euler angle velocities)
       * @return S matrix
-      *
       */
     static Eigen::Matrix3d matrixS(const Eigen::Vector3d &omega);
 
@@ -309,16 +332,14 @@ public:
       * @param R Rotation matrix.
       * @param S S matrix.
       * @return R_dot matrix
-      *
       */
     static Eigen::Matrix3d matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Matrix3d &S);
 
     /**
       * @brief Calculates the R_dot matrix from an angular velocity vector.
-      * @param omega Angular velocity vector.
       * @param R Rotation matrix.
-      * @return R matrix
-      *
+      * @param omega Angular velocity vector.
+      * @return R_dot matrix
       */
     static Eigen::Matrix3d matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Vector3d &omega);
 
@@ -329,9 +350,18 @@ public:
       * @param angles Euler angles vector.
       * @param sequence Sequence of axes (e.g., "ZYX", "ZYZ").
       * @return T matrix
-      *
+      * @throws std::runtime_error If the matrix is singular (determinant near zero)
       */
     static Eigen::Matrix3d matrixT(const Eigen::Vector3d &angles, const std::string &sequence);
+
+    // Output stream operator
+    /**
+      * @brief Outputs the rotation to a stream in quaternion format.
+      * @param os Stream to output to.
+      * @param rotation Rotation to output.
+      * @return Reference to the output stream.
+      */
+    friend std::ostream &operator<<(std::ostream &os, const Rotation &rotation);
 
 private:
     /**

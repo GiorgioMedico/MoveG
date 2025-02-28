@@ -5,9 +5,11 @@
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Geometry>
 
+#include <chrono>
 #include <cmath>
 #include <iostream>
 #include <random>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -607,4 +609,179 @@ TEST_CASE("Rotation: Quaternion Addition and Subtraction with Non-Unit Quaternio
     Eigen::Quaterniond q_sub = Rotation::quaternion_minus(q1, q2);
     Eigen::Quaterniond expected_sub(1.0, 2.0, 0.0, 0.0);
     REQUIRE(q_sub.coeffs().isApprox(expected_sub.coeffs(), 1e-6));
+}
+
+TEST_CASE("Rotation: Move Constructor", "[rotation][move]")
+{
+    Rotation rot1(Eigen::AngleAxisd(M_PI / 3, Eigen::Vector3d::UnitX()));
+    Eigen::Matrix3d original_matrix = rot1.toRotationMatrix();
+
+    // Use move constructor
+    Rotation rot2(std::move(rot1));
+
+    // Verify that the moved-to object contains the correct rotation
+    REQUIRE(rot2.toRotationMatrix().isApprox(original_matrix));
+}
+
+TEST_CASE("Rotation: Move Assignment Operator", "[rotation][move]")
+{
+    Rotation rot1(Eigen::AngleAxisd(M_PI / 4, Eigen::Vector3d::UnitY()));
+    Eigen::Matrix3d original_matrix = rot1.toRotationMatrix();
+
+    Rotation rot2;
+    rot2 = std::move(rot1); // Use move assignment operator
+
+    // Verify that the moved-to object contains the correct rotation
+    REQUIRE(rot2.toRotationMatrix().isApprox(original_matrix));
+}
+
+TEST_CASE("Rotation: Numerical Stability Near Gimbal Lock", "[rotation][numerical_stability]")
+{
+    // Test with pitch very close to ±90 degrees (gimbal lock)
+    double gimbal_pitch = M_PI / 2 - 1e-10;
+
+    // Create rotation with angles close to gimbal lock
+    Rotation rot(0.0, gimbal_pitch, 0.0, true, "ZYX", false);
+
+    // Convert to matrix and back to check stability
+    Eigen::Matrix3d mat = rot.toRotationMatrix();
+    Rotation rot_reconstructed(mat);
+
+    // The matrices should be nearly identical despite numerical challenges
+    REQUIRE(rot_reconstructed.toRotationMatrix().isApprox(mat, 1e-6));
+
+    // Test euler angle extraction with values that could cause numerical issues
+    Eigen::Vector3d euler = rot.toEulerAngles(true, "ZYX");
+
+    // The middle angle should be close to our gimbal_pitch value
+    REQUIRE(std::abs(euler[1]) == Catch::Approx(std::abs(gimbal_pitch)).margin(1e-5));
+}
+
+TEST_CASE("Rotation: Stream Output Operator", "[rotation][output]")
+{
+    // Create a rotation with known values
+    Eigen::Quaterniond q(1.0, 0.0, 0.0, 0.0); // Identity
+    Rotation rot(q);
+
+    // Capture output to stringstream
+    std::stringstream ss;
+    ss << rot;
+
+    // Verify the output contains expected information
+    std::string output = ss.str();
+    REQUIRE(output.find("quaternion") != std::string::npos);
+    REQUIRE(output.find("1") != std::string::npos); // Should contain the value 1
+}
+
+TEST_CASE("Rotation: Alternative Euler Angle Sequences", "[rotation][euler_sequences]")
+{
+    // Test with different Euler angle sequences
+    std::vector<std::string> sequences =
+        {"XYZ", "XZY", "YXZ", "YZX", "ZXY", "ZYX", "XYX", "XZX", "YXY", "YZY", "ZXZ", "ZYZ"};
+
+    std::mt19937 gen(42);
+    std::uniform_real_distribution<double> dist(-M_PI / 3, M_PI / 3);
+
+    for (const auto &seq : sequences)
+    {
+        double angle1 = dist(gen);
+        double angle2 = dist(gen);
+        double angle3 = dist(gen);
+
+        Rotation rot(angle1, angle2, angle3, true, seq, false);
+
+        // Extract angles
+        Eigen::Vector3d euler = rot.toEulerAngles(true, seq);
+
+        // Reconstruct rotation
+        Rotation rot_reconstructed(euler[0], euler[1], euler[2], true, seq, false);
+
+        // Compare matrices
+        REQUIRE(rot.toRotationMatrix().isApprox(rot_reconstructed.toRotationMatrix(), 1e-6));
+    }
+}
+
+TEST_CASE("Rotation: Angle Normalization Functions", "[rotation][normalization]")
+{
+    // Test normalizeAngle
+    REQUIRE(Rotation::normalizeAngle(3 * M_PI) == Catch::Approx(M_PI).margin(1e-6));
+    REQUIRE(Rotation::normalizeAngle(-3 * M_PI) == Catch::Approx(-M_PI).margin(1e-6));
+    REQUIRE(Rotation::normalizeAngle(M_PI / 2) == Catch::Approx(M_PI / 2).margin(1e-6));
+
+    // Test normalizeAngleRange
+    REQUIRE(Rotation::normalizeAngleRange(400.0, 0.0, 360.0) == Catch::Approx(40.0).margin(1e-6));
+    REQUIRE(Rotation::normalizeAngleRange(-30.0, 0.0, 360.0) == Catch::Approx(330.0).margin(1e-6));
+
+    // Test normalizeEulerAngles
+    Eigen::Vector3d angles(3 * M_PI, -3 * M_PI, 2 * M_PI);
+    Eigen::Vector3d normalized = Rotation::normalizeEulerAngles(angles);
+
+    REQUIRE(normalized[0] == Catch::Approx(M_PI).margin(1e-6));
+    REQUIRE(normalized[1] == Catch::Approx(-M_PI).margin(1e-6));
+    REQUIRE(normalized[2] == Catch::Approx(0.0).margin(1e-6));
+}
+
+TEST_CASE("Rotation: Performance Benchmarks", "[rotation][benchmark]")
+{
+    const int iterations = 10000;
+
+    // Measure quaternion operations performance
+    auto start_time = std::chrono::high_resolution_clock::now();
+
+    Eigen::Quaterniond q1(Eigen::AngleAxisd(M_PI / 4, Eigen::Vector3d::UnitZ()));
+    Eigen::Quaterniond q2(Eigen::AngleAxisd(M_PI / 6, Eigen::Vector3d::UnitY()));
+
+    for (int i = 0; i < iterations; ++i)
+    {
+        Eigen::Quaterniond q_result = q1 * q2;
+        q_result.normalize();
+    }
+
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration =
+        std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+
+    std::cout << "Quaternion multiplication performance: " << iterations << " iterations in "
+              << duration << " microseconds" << std::endl;
+}
+
+TEST_CASE("Rotation: Matrix T Singularity", "[rotation][matrixT][singularity]")
+{
+    // Define angles that would make T matrix singular or near-singular
+    Eigen::Vector3d near_singular(0.0, M_PI / 2 - 1e-4, 0.0); // For ZYX, Y = 90° causes singularity
+    std::string sequence = "ZYX";
+
+    // Test with near-singular angles - this should not throw an exception
+    // but the resulting matrix should have elements close to the expected values
+    Eigen::Matrix3d T;
+    REQUIRE_NOTHROW(T = Rotation::matrixT(near_singular, sequence));
+
+    // Check that the determinant is small but not exactly zero
+    double det = T.determinant();
+    std::cout << "Determinant of near-singular matrix T: " << det << std::endl;
+    REQUIRE(std::abs(det) > 1e-10); // Should be small but non-zero
+}
+
+TEST_CASE("Rotation: Boundary Values", "[rotation][boundary]")
+{
+    // Test with extreme values
+    std::vector<double> extreme_angles =
+        {0.0, M_PI / 2, M_PI, 3 * M_PI / 2, 2 * M_PI, -M_PI / 2, -M_PI, -3 * M_PI / 2, -2 * M_PI};
+
+    for (double angle : extreme_angles)
+    {
+        // Test rotation around each axis
+        Rotation rotX(Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitX()));
+        Rotation rotY(Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitY()));
+        Rotation rotZ(Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitZ()));
+
+        // Basic sanity check: rotation matrices should be orthogonal
+        Eigen::Matrix3d RX = rotX.toRotationMatrix();
+        Eigen::Matrix3d RY = rotY.toRotationMatrix();
+        Eigen::Matrix3d RZ = rotZ.toRotationMatrix();
+
+        REQUIRE((RX * RX.transpose()).isApprox(Eigen::Matrix3d::Identity(), 1e-6));
+        REQUIRE((RY * RY.transpose()).isApprox(Eigen::Matrix3d::Identity(), 1e-6));
+        REQUIRE((RZ * RZ.transpose()).isApprox(Eigen::Matrix3d::Identity(), 1e-6));
+    }
 }
