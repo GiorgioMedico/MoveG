@@ -96,6 +96,8 @@ Composti</h2></td></tr>
 Funzioni</h2></td></tr>
 <tr class="memitem:a1cce2eeb5baffaa30e883191e330cfb9" id="r_a1cce2eeb5baffaa30e883191e330cfb9"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMoveG.html#a1cce2eeb5baffaa30e883191e330cfb9">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classMoveG_1_1Pose.html">Pose</a> &amp;pose)</td></tr>
 <tr class="separator:a1cce2eeb5baffaa30e883191e330cfb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf328a235d26bca46275c1173f9e409d" id="r_adf328a235d26bca46275c1173f9e409d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMoveG.html#adf328a235d26bca46275c1173f9e409d">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;rotation)</td></tr>
+<tr class="separator:adf328a235d26bca46275c1173f9e409d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Namespace per il movimento e la manipolazione delle pose. </p>
@@ -107,7 +109,7 @@ Funzioni</h2></td></tr>
 <p>Matrix multiplication occurs in order of application (the matrices are the same for both types): Intrinsic: R = R3 * R2 * R1 Extrinsic: R = R1 * R2 * R3 </p>
 </div><h2 class="groupheader">Documentazione delle funzioni</h2>
 <a id="a1cce2eeb5baffaa30e883191e330cfb9" name="a1cce2eeb5baffaa30e883191e330cfb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cce2eeb5baffaa30e883191e330cfb9">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cce2eeb5baffaa30e883191e330cfb9">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,6 +141,42 @@ Funzioni</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>Riferimento al flusso di output. </dd></dl>
+
+</div>
+</div>
+<a id="adf328a235d26bca46275c1173f9e409d" name="adf328a235d26bca46275c1173f9e409d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf328a235d26bca46275c1173f9e409d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; MoveG::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Stream to output to. </td></tr>
+    <tr><td class="paramname">rotation</td><td><a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> to output. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Reference to the output stream. </dd></dl>
 
 </div>
 </div>

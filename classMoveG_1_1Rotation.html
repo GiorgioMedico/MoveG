@@ -78,6 +78,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Membri pubblici</a> &#124;
 <a href="#pub-static-methods">Membri pubblici statici</a> &#124;
+<a href="#friends">Friend</a> &#124;
 <a href="classMoveG_1_1Rotation-members.html">Elenco di tutti i membri</a>  </div>
   <div class="headertitle"><div class="title">Riferimenti per la classe MoveG::Rotation</div></div>
 </div><!--header-->
@@ -150,6 +151,15 @@ Membri pubblici statici</h2></td></tr>
 <tr class="memitem:a5722eae6cda2bc6f5fe5d6bb7370edb0" id="r_a5722eae6cda2bc6f5fe5d6bb7370edb0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a5722eae6cda2bc6f5fe5d6bb7370edb0">fromEulerAngles</a> (double angle1, double angle2, double angle3, bool intrinsic=true, const std::string &amp;sequence=&quot;XYZ&quot;, bool degree=false)</td></tr>
 <tr class="memdesc:a5722eae6cda2bc6f5fe5d6bb7370edb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a rotation from Euler angles.  <br /></td></tr>
 <tr class="separator:a5722eae6cda2bc6f5fe5d6bb7370edb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3799c230f5792e797df704e7703e0a61" id="r_a3799c230f5792e797df704e7703e0a61"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a3799c230f5792e797df704e7703e0a61">normalizeAngle</a> (double angle)</td></tr>
+<tr class="memdesc:a3799c230f5792e797df704e7703e0a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes an angle to the range [-π, π].  <br /></td></tr>
+<tr class="separator:a3799c230f5792e797df704e7703e0a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3df1ab4e2078e2ef24b069f4c3c0d25" id="r_ac3df1ab4e2078e2ef24b069f4c3c0d25"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#ac3df1ab4e2078e2ef24b069f4c3c0d25">normalizeAngleRange</a> (double angle, double minVal, double maxVal)</td></tr>
+<tr class="memdesc:ac3df1ab4e2078e2ef24b069f4c3c0d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes an angle to a specified range.  <br /></td></tr>
+<tr class="separator:ac3df1ab4e2078e2ef24b069f4c3c0d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffc745bcf558ba6db09ba94dd1481af" id="r_a1ffc745bcf558ba6db09ba94dd1481af"><td class="memItemLeft" align="right" valign="top">static Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a1ffc745bcf558ba6db09ba94dd1481af">normalizeEulerAngles</a> (const Eigen::Vector3d &amp;angles)</td></tr>
+<tr class="memdesc:a1ffc745bcf558ba6db09ba94dd1481af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes Euler angles to the range [-π, π].  <br /></td></tr>
+<tr class="separator:a1ffc745bcf558ba6db09ba94dd1481af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97f8c7ebc347f2ab6e60c90eaac50720" id="r_a97f8c7ebc347f2ab6e60c90eaac50720"><td class="memItemLeft" align="right" valign="top">static Eigen::Quaterniond&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a97f8c7ebc347f2ab6e60c90eaac50720">quaternion_difference</a> (const Eigen::Quaterniond &amp;a, const Eigen::Quaterniond &amp;b)</td></tr>
 <tr class="memdesc:a97f8c7ebc347f2ab6e60c90eaac50720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the difference between two quaternions.  <br /></td></tr>
 <tr class="separator:a97f8c7ebc347f2ab6e60c90eaac50720"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,6 +202,12 @@ Membri pubblici statici</h2></td></tr>
 <tr class="memitem:a3d74b60edb2125c87a00caa931e9b79f" id="r_a3d74b60edb2125c87a00caa931e9b79f"><td class="memItemLeft" align="right" valign="top">static Eigen::Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a3d74b60edb2125c87a00caa931e9b79f">matrixT</a> (const Eigen::Vector3d &amp;angles, const std::string &amp;sequence)</td></tr>
 <tr class="memdesc:a3d74b60edb2125c87a00caa931e9b79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the T matrix.  <br /></td></tr>
 <tr class="separator:a3d74b60edb2125c87a00caa931e9b79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friend</h2></td></tr>
+<tr class="memitem:a847bf5f019fcfa8849baaab8aa831e22" id="r_a847bf5f019fcfa8849baaab8aa831e22"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html#a847bf5f019fcfa8849baaab8aa831e22">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;rotation)</td></tr>
+<tr class="memdesc:a847bf5f019fcfa8849baaab8aa831e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the rotation to a stream in quaternion format.  <br /></td></tr>
+<tr class="separator:a847bf5f019fcfa8849baaab8aa831e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Class for representing and managing rotations in three-dimensional space. </p>
@@ -748,12 +764,12 @@ Membri pubblici statici</h2></td></tr>
 <p>Calculates the R_dot matrix from an angular velocity vector. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">omega</td><td>Angular velocity vector. </td></tr>
     <tr><td class="paramname">R</td><td><a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> matrix. </td></tr>
+    <tr><td class="paramname">omega</td><td>Angular velocity vector. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>R matrix </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>R_dot matrix </dd></dl>
 
 </div>
 </div>
@@ -835,6 +851,135 @@ Membri pubblici statici</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>T matrix </dd></dl>
+<dl class="exception"><dt>Eccezioni</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>If the matrix is singular (determinant near zero) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3799c230f5792e797df704e7703e0a61" name="a3799c230f5792e797df704e7703e0a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3799c230f5792e797df704e7703e0a61">&#9670;&#160;</a></span>normalizeAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MoveG::Rotation::normalizeAngle </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalizes an angle to the range [-π, π]. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Angle in radians </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Normalized angle in radians within the range [-π, π] </dd></dl>
+
+</div>
+</div>
+<a id="ac3df1ab4e2078e2ef24b069f4c3c0d25" name="ac3df1ab4e2078e2ef24b069f4c3c0d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3df1ab4e2078e2ef24b069f4c3c0d25">&#9670;&#160;</a></span>normalizeAngleRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MoveG::Rotation::normalizeAngleRange </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>minVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>maxVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalizes an angle to a specified range. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Angle in radians </td></tr>
+    <tr><td class="paramname">minVal</td><td>Lower bound of the range </td></tr>
+    <tr><td class="paramname">maxVal</td><td>Upper bound of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Normalized angle in radians within the specified range </dd></dl>
+
+</div>
+</div>
+<a id="a1ffc745bcf558ba6db09ba94dd1481af" name="a1ffc745bcf558ba6db09ba94dd1481af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffc745bcf558ba6db09ba94dd1481af">&#9670;&#160;</a></span>normalizeEulerAngles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Vector3d MoveG::Rotation::normalizeEulerAngles </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>angles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalizes Euler angles to the range [-π, π]. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angles</td><td>Vector of Euler angles in radians </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Vector of normalized Euler angles in radians </dd></dl>
 
 </div>
 </div>
@@ -1381,6 +1526,53 @@ Membri pubblici statici</h2></td></tr>
 
 <p>Converts the rotation to a rotation matrix. </p>
 <dl class="section return"><dt>Restituisce</dt><dd>3x3 rotation matrix. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione dei friend e delle funzioni collegate</h2>
+<a id="a847bf5f019fcfa8849baaab8aa831e22" name="a847bf5f019fcfa8849baaab8aa831e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a847bf5f019fcfa8849baaab8aa831e22">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMoveG_1_1Rotation.html">Rotation</a> &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs the rotation to a stream in quaternion format. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Stream to output to. </td></tr>
+    <tr><td class="paramname">rotation</td><td><a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> to output. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Reference to the output stream. </dd></dl>
 
 </div>
 </div>
