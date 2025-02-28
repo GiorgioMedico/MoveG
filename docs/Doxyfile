@@ -1,5 +1,4 @@
 # Configuration for Doxygen for MoveG library
-# Only options that deviate from the default are included
 
 #---------------------------------------------------------------------------
 # Project related configuration options
@@ -7,7 +6,7 @@
 DOXYFILE_ENCODING       = UTF-8
 PROJECT_NAME            = "MoveG"
 PROJECT_NUMBER          = 1.0.0
-PROJECT_BRIEF           = "A library for Robotics Applications"
+PROJECT_BRIEF           = "A modern C++ library for Robotics"
 PROJECT_LOGO            = ./MoveG.png
 OUTPUT_DIRECTORY        = ./
 OUTPUT_LANGUAGE         = English
@@ -43,8 +42,12 @@ FILE_PATTERNS           = *.c \
                           *.md
 RECURSIVE               = YES
 EXCLUDE_PATTERNS        = */build/* \
-                          */.cpmcache/* \
-                          */tests/*
+                          */.cpmcache/*
+
+# Include tests to document test cases as examples
+EXAMPLE_PATH            = ../app
+EXAMPLE_PATTERNS        = *_example.cpp
+EXAMPLE_RECURSIVE       = YES
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
