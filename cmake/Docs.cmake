@@ -6,7 +6,7 @@ if(DOXYGEN_FOUND)
     file(COPY ${EXAMPLE_FILES} DESTINATION "${CMAKE_SOURCE_DIR}/docs/examples")
 
     # Configure Doxyfile with correct paths
-    configure_file(${CMAKE_SOURCE_DIR}/docs/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
+    configure_file(${CMAKE_SOURCE_DIR}/docs/Doxyfile ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
 
     # Add custom command to generate documentation
     add_custom_command(
