@@ -70,20 +70,19 @@ jobs:
         recreate: true
         path: code-coverage-results.md
 
-    # Nuovo approccio per pubblicare il file .md del report nel repository
-    - name: Save Code Coverage Report as artifact
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
-      uses: actions/upload-artifact@v2
-      with:
-        name: code-coverage-report
-        path: code-coverage-results.md
+    - name: Commit Coverage Report to Repository
+      if: github.event_name == 'push'
+      run: |
+        # Copy the coverage report to a location in the repository
+        cp code-coverage-results.md coverage-report.md
 
-    - name: Commit coverage report using GitHub API
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "Update code coverage report [skip ci]"
-        file_pattern: code-coverage-results.md
-        commit_user_name: GitHub Action
-        commit_user_email: action@github.com
-        commit_author: GitHub Action <action@github.com>
+        # Configure Git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        # Add and commit the file
+        git add coverage-report.md
+        git commit -m "Update code coverage report [skip ci]" || echo "No changes to commit"
+
+        # Push changes
+        git push
