@@ -1,9 +1,9 @@
 /**
  * @file pose_lib.h
- * @brief Classe per la rappresentazione di Pose
+ * @brief Class for representing Poses
  *
  * @author Giorgio Medico
- * @date 4/10/2024
+ * @date 28/02/2025
  */
 
 #pragma once
@@ -20,256 +20,308 @@
 #include "rotation_lib.h"
 
 /**
- * @brief Namespace per il movimento e la manipolazione delle pose.
- */
+  * @brief Namespace for movement and manipulation of poses.
+  */
 namespace MoveG
 {
 /**
-     * @class Pose
-     * @brief Classe per rappresentare una posa nello spazio 3D.
-     *
-     * La classe Pose incapsula una posizione e un'orientazione nello spazio tridimensionale.
-     * Utilizza Eigen per le operazioni matematiche relative alla geometria.
-     */
+      * @class Pose
+      * @brief Class representing a pose in 3D space.
+      *
+      * The Pose class encapsulates a position and orientation in three-dimensional space.
+      * It uses Eigen for mathematical operations related to geometry.
+      */
 class Pose
 {
 public:
     // Constructors
 
     /**
-         * @brief Costruttore di default.
-         *
-         * Inizializza la posa alla posizione (0,0,0) con orientamento neutro (quaternion identità).
-         */
-    Pose();
+          * @brief Default constructor.
+          *
+          * Initializes the pose at position (0,0,0) with neutral orientation (identity quaternion).
+          */
+    Pose() noexcept;
 
     /**
-         * @brief Costruttore con posizione e orientamento tramite quaternion.
-         *
-         * @param position La posizione nel spazio.
-         * @param orientation Il quaternion che rappresenta l'orientamento.
-         */
+          * @brief Constructor with position and quaternion orientation.
+          *
+          * @param position The position in space.
+          * @param orientation The quaternion representing the orientation.
+          */
     Pose(const Eigen::Vector3d &position, const Eigen::Quaterniond &orientation);
 
     /**
-         * @brief Costruttore con posizione e matrice di rotazione.
-         *
-         * @param position La posizione nel spazio.
-         * @param rotation_matrix La matrice di rotazione 3x3.
-         */
+          * @brief Constructor with position and rotation matrix.
+          *
+          * @param position The position in space.
+          * @param rotation_matrix The 3x3 rotation matrix.
+          */
     Pose(const Eigen::Vector3d &position, const Eigen::Matrix3d &rotation_matrix);
 
     /**
-         * @brief Costruttore con trasformazione affine.
-         *
-         * @param transformation La trasformazione affine 3D.
-         */
-    Pose(const Eigen::Affine3d &transformation);
+          * @brief Constructor with affine transformation.
+          *
+          * @param transformation The 3D affine transformation.
+          */
+    explicit Pose(const Eigen::Affine3d &transformation);
 
     /**
-         * @brief Costruttore con posizione e oggetto Rotation.
-         *
-         * @param position La posizione nel spazio.
-         * @param orientation L'oggetto Rotation che rappresenta l'orientamento.
-         */
+          * @brief Constructor with position and Rotation object.
+          *
+          * @param position The position in space.
+          * @param orientation The Rotation object representing the orientation.
+          */
     Pose(const Eigen::Vector3d &position, const Rotation &orientation);
 
     /**
-         * @brief Costruttore con matrice omogenea 4x4.
-         *
-         * @param homogeneousT La matrice di trasformazione omogenea 4x4.
-         */
-    Pose(const Eigen::Matrix4d &homogeneousT);
-
-    // Destructor
+          * @brief Constructor with homogeneous transformation matrix 4x4.
+          *
+          * @param homogeneousT The 4x4 homogeneous transformation matrix.
+          * @throws std::invalid_argument If the matrix is not a valid homogeneous transformation matrix.
+          */
+    explicit Pose(const Eigen::Matrix4d &homogeneousT);
 
     /**
-         * @brief Distruttore.
-         */
+          * @brief Destructor.
+          */
     ~Pose();
 
-    // Copy constructor and assignment operator
-
     /**
-         * @brief Costruttore di copia.
-         *
-         * @param other L'oggetto Pose da copiare.
-         */
+          * @brief Copy constructor.
+          *
+          * @param other The Pose object to copy.
+          */
     Pose(const Pose &other);
 
     /**
-         * @brief Operatore di assegnazione.
-         *
-         * @param other L'oggetto Pose da assegnare.
-         * @return Riferimento all'oggetto assegnato.
-         */
-    Pose &operator=(const Pose &other);
-
-    // << operator overload to define the output stream
+          * @brief Move constructor.
+          *
+          * @param other The Pose object to move.
+          */
+    Pose(Pose &&other) noexcept;
 
     /**
-         * @brief Sovraccarica l'operatore di inserimento nello stream.
-         *
-         * @param os Il flusso di output.
-         * @param pose L'oggetto Pose da inserire nel flusso.
-         * @return Riferimento al flusso di output.
-         */
+          * @brief Copy assignment operator.
+          *
+          * @param other The Pose object to assign.
+          * @return Reference to the assigned object.
+          */
+    Pose &operator=(const Pose &other);
+
+    /**
+          * @brief Move assignment operator.
+          *
+          * @param other The Pose object to move and assign.
+          * @return Reference to the assigned object.
+          */
+    Pose &operator=(Pose &&other) noexcept;
+
+    /**
+          * @brief Overloads the stream insertion operator.
+          *
+          * @param os The output stream.
+          * @param pose The Pose object to insert into the stream.
+          * @return Reference to the output stream.
+          */
     friend std::ostream &operator<<(std::ostream &os, const Pose &pose);
 
     // Getters
 
     /**
-         * @brief Ottiene la posizione.
-         *
-         * @return La posizione come vettore 3D.
-         */
-    Eigen::Vector3d getPosition() const;
+          * @brief Gets the position.
+          *
+          * @return The position as a 3D vector.
+          */
+    [[nodiscard]] Eigen::Vector3d getPosition() const;
 
     /**
-         * @brief Ottiene il quaternion dell'orientamento.
-         *
-         * @return Il quaternion che rappresenta l'orientamento.
-         */
-    Eigen::Quaterniond getQaternion() const;
+          * @brief Gets the orientation quaternion.
+          *
+          * @return The quaternion representing the orientation.
+          */
+    [[nodiscard]] Eigen::Quaterniond getQuaternion() const;
 
     /**
-         * @brief Ottiene la matrice di rotazione.
-         *
-         * @return La matrice di rotazione 3x3.
-         */
-    Eigen::Matrix3d getRotationMatrix() const;
+          * @brief Gets the rotation matrix.
+          *
+          * @return The 3x3 rotation matrix.
+          */
+    [[nodiscard]] Eigen::Matrix3d getRotationMatrix() const;
 
     /**
-         * @brief Ottiene la trasformazione affine.
-         *
-         * @return La trasformazione affine 3D.
-         */
-    Eigen::Affine3d getAffineTransformation() const;
+          * @brief Gets the affine transformation.
+          *
+          * @return The 3D affine transformation.
+          */
+    [[nodiscard]] Eigen::Affine3d getAffineTransformation() const;
 
     /**
-         * @brief Ottiene la matrice di trasformazione omogenea.
-         *
-         * @return La matrice omogenea 4x4.
-         */
-    Eigen::Matrix4d getHomogeneousT() const;
+          * @brief Gets the homogeneous transformation matrix.
+          *
+          * @return The 4x4 homogeneous matrix.
+          */
+    [[nodiscard]] Eigen::Matrix4d getHomogeneousT() const;
 
     /**
-         * @brief Ottiene la coordinata X della posizione.
-         *
-         * @return La coordinata X.
-         */
-    double getX() const;
+          * @brief Gets the X coordinate of the position.
+          *
+          * @return The X coordinate.
+          */
+    [[nodiscard]] double getX() const;
 
     /**
-         * @brief Ottiene la coordinata Y della posizione.
-         *
-         * @return La coordinata Y.
-         */
-    double getY() const;
+          * @brief Gets the Y coordinate of the position.
+          *
+          * @return The Y coordinate.
+          */
+    [[nodiscard]] double getY() const;
 
     /**
-         * @brief Ottiene la coordinata Z della posizione.
-         *
-         * @return La coordinata Z.
-         */
-    double getZ() const;
+          * @brief Gets the Z coordinate of the position.
+          *
+          * @return The Z coordinate.
+          */
+    [[nodiscard]] double getZ() const;
 
     /**
-         * @brief Ottiene la componente X del quaternion.
-         *
-         * @return La componente X.
-         */
-    double getQx() const;
+          * @brief Gets the X component of the quaternion.
+          *
+          * @return The X component.
+          */
+    [[nodiscard]] double getQx() const;
 
     /**
-         * @brief Ottiene la componente Y del quaternion.
-         *
-         * @return La componente Y.
-         */
-    double getQy() const;
+          * @brief Gets the Y component of the quaternion.
+          *
+          * @return The Y component.
+          */
+    [[nodiscard]] double getQy() const;
 
     /**
-         * @brief Ottiene la componente Z del quaternion.
-         *
-         * @return La componente Z.
-         */
-    double getQz() const;
+          * @brief Gets the Z component of the quaternion.
+          *
+          * @return The Z component.
+          */
+    [[nodiscard]] double getQz() const;
 
     /**
-         * @brief Ottiene la componente W del quaternion.
-         *
-         * @return La componente W.
-         */
-    double getQw() const;
+          * @brief Gets the W component of the quaternion.
+          *
+          * @return The W component.
+          */
+    [[nodiscard]] double getQw() const;
 
     // Setters
 
     /**
-         * @brief Imposta la posizione.
-         *
-         * @param position La nuova posizione come vettore 3D.
-         */
+          * @brief Sets the position.
+          *
+          * @param position The new position as a 3D vector.
+          */
     void setPosition(const Eigen::Vector3d &position);
 
     /**
-         * @brief Imposta l'orientamento tramite quaternion.
-         *
-         * @param orientation Il nuovo quaternion che rappresenta l'orientamento.
-         */
+          * @brief Sets the orientation via quaternion.
+          *
+          * @param orientation The new quaternion representing the orientation.
+          */
     void setOrientation(const Eigen::Quaterniond &orientation);
 
     /**
-         * @brief Imposta la matrice di rotazione.
-         *
-         * @param rotation_matrix La nuova matrice di rotazione 3x3.
-         */
+          * @brief Sets the rotation matrix.
+          *
+          * @param rotation_matrix The new 3x3 rotation matrix.
+          */
     void setRotationMatrix(const Eigen::Matrix3d &rotation_matrix);
 
     /**
-         * @brief Imposta la trasformazione affine.
-         *
-         * @param transformation La nuova trasformazione affine 3D.
-         */
+          * @brief Sets the affine transformation.
+          *
+          * @param transformation The new 3D affine transformation.
+          */
     void setAffineTransformation(const Eigen::Affine3d &transformation);
 
     /**
-         * @brief Imposta la matrice di trasformazione omogenea.
-         *
-         * @param homogeneousT La nuova matrice omogenea 4x4.
-         */
+          * @brief Sets the homogeneous transformation matrix.
+          *
+          * @param homogeneousT The new 4x4 homogeneous matrix.
+          * @throws std::invalid_argument If the matrix is not a valid homogeneous transformation matrix.
+          */
     void setHomogeneousT(const Eigen::Matrix4d &homogeneousT);
+
+    // Distance metrics
+
+    /**
+          * @brief Calculates the Euclidean distance between the positions of two poses.
+          *
+          * @param other The pose to calculate the distance with.
+          * @return The Euclidean distance between the positions.
+          */
+    [[nodiscard]] double positionDistance(const Pose &other) const;
+
+    /**
+          * @brief Calculates the angular distance between the orientations of two poses.
+          *
+          * @param other The pose to calculate the angular distance with.
+          * @return The angular distance in radians.
+          */
+    [[nodiscard]] double orientationDistance(const Pose &other) const;
 
     // Operations
 
     /**
-         * @brief Composizione di due pose.
-         *
-         * @param other La seconda posa da comporre.
-         * @return Una nuova posa risultante dalla composizione.
-         */
-    Pose operator*(const Pose &other) const; // Compose poses
+          * @brief Composition of two poses.
+          *
+          * @param other The second pose to compose.
+          * @return A new pose resulting from the composition.
+          */
+    [[nodiscard]] Pose operator*(const Pose &other) const; // Compose poses
 
     /**
-         * @brief Calcola l'inverso della posa.
-         *
-         * @return La posa inversa.
-         */
-    Pose inverse() const;
-
-    // Friend functions for input/output
+          * @brief Calculates the inverse of the pose.
+          *
+          * @return The inverse pose.
+          */
+    [[nodiscard]] Pose inverse() const;
 
     /**
-         * @brief Sovraccarica l'operatore di inserimento nello stream.
-         *
-         * @param os Il flusso di output.
-         * @param pose L'oggetto Pose da inserire nel flusso.
-         * @return Riferimento al flusso di output.
-         */
-    friend std::ostream &operator<<(std::ostream &os, const Pose &pose);
+     * @brief Transforms this pose from one coordinate frame to another.
+     *
+     * @param transform The transformation between the two coordinate frames.
+     * @return A new pose expressed in the target coordinate frame.
+     */
+    [[nodiscard]] Pose transformPose(const Pose &transform) const;
+
+    /**
+     * @brief Transforms a point from the pose's local frame to the global frame.
+     *
+     * @param local_point The point in the local coordinate frame.
+     * @return The point expressed in the global coordinate frame.
+     */
+    [[nodiscard]] Eigen::Vector3d localToGlobal(const Eigen::Vector3d &local_point) const;
+
+    /**
+     * @brief Transforms a point from the global frame to the pose's local frame.
+     *
+     * @param global_point The point in the global coordinate frame.
+     * @return The point expressed in the local coordinate frame.
+     */
+    [[nodiscard]] Eigen::Vector3d globalToLocal(const Eigen::Vector3d &global_point) const;
 
 private:
-    Eigen::Vector3d position_;       ///< Posizione nello spazio 3D.
-    Eigen::Quaterniond orientation_; ///< Orientamento rappresentato come quaternion.
+    Eigen::Vector3d position_;       ///< Position in 3D space.
+    Eigen::Quaterniond orientation_; ///< Orientation represented as quaternion.
+
+    /**
+     * @brief Validates a homogeneous transformation matrix.
+     *
+     * Checks that the last row is [0,0,0,1] and that the rotation part is orthogonal.
+     *
+     * @param homogeneousT The homogeneous transformation matrix to validate.
+     * @throws std::invalid_argument If the matrix is not a valid homogeneous transformation matrix.
+     */
+    static void validateHomogeneousMatrix(const Eigen::Matrix4d &homogeneousT);
 };
 
 } // namespace MoveG

@@ -1,9 +1,9 @@
 /**
  * @file pose_lib.cpp
- * @brief Classe per la rappresentazione di Pose
+ * @brief Class for representing Poses
  *
  * @author Giorgio Medico
- * @date 4/10/2024
+ * @date 28/02/2025
  */
 
 #include "pose_lib.h"
@@ -11,7 +11,8 @@
 namespace MoveG
 {
 // Default Constructor
-Pose::Pose() : position_(Eigen::Vector3d::Zero()), orientation_(Eigen::Quaterniond::Identity())
+Pose::Pose() noexcept
+    : position_(Eigen::Vector3d::Zero()), orientation_(Eigen::Quaterniond::Identity())
 {
 }
 
@@ -39,8 +40,7 @@ Pose::Pose(const Eigen::Affine3d &transformation)
 
 // Constructor with position and custom Rotation class
 Pose::Pose(const Eigen::Vector3d &position, const Rotation &orientation)
-    : position_(position),
-      orientation_(orientation.toQuaternion()) // Assuming Rotation has toQuaternion()
+    : position_(position), orientation_(orientation.toQuaternion())
 {
     orientation_.normalize(); // Ensure the quaternion is normalized
 }
@@ -48,12 +48,7 @@ Pose::Pose(const Eigen::Vector3d &position, const Rotation &orientation)
 // Constructor with Homogeneous Transformation Matrix
 Pose::Pose(const Eigen::Matrix4d &homogeneousT)
 {
-    // Validate the homogeneous transformation matrix
-    if (!homogeneousT.block<1, 4>(3, 0).isApprox(Eigen::RowVector4d(0, 0, 0, 1), 1e-6))
-    {
-        throw std::invalid_argument(
-            "Invalid homogeneous transformation matrix. The last row must be [0, 0, 0, 1].");
-    }
+    validateHomogeneousMatrix(homogeneousT);
 
     // Extract position
     position_ = homogeneousT.block<3, 1>(0, 3);
@@ -74,6 +69,12 @@ Pose::Pose(const Pose &other) : position_(other.position_), orientation_(other.o
 {
 }
 
+// Move Constructor
+Pose::Pose(Pose &&other) noexcept
+    : position_(std::move(other.position_)), orientation_(std::move(other.orientation_))
+{
+}
+
 // Copy Assignment Operator
 Pose &Pose::operator=(const Pose &other)
 {
@@ -85,6 +86,17 @@ Pose &Pose::operator=(const Pose &other)
     return *this;
 }
 
+// Move Assignment Operator
+Pose &Pose::operator=(Pose &&other) noexcept
+{
+    if (this != &other)
+    {
+        position_ = std::move(other.position_);
+        orientation_ = std::move(other.orientation_);
+    }
+    return *this;
+}
+
 // Getters
 
 Eigen::Vector3d Pose::getPosition() const
@@ -92,7 +104,7 @@ Eigen::Vector3d Pose::getPosition() const
     return position_;
 }
 
-Eigen::Quaterniond Pose::getQaternion() const
+Eigen::Quaterniond Pose::getQuaternion() const
 {
     return orientation_;
 }
@@ -180,8 +192,29 @@ void Pose::setAffineTransformation(const Eigen::Affine3d &transformation)
 
 void Pose::setHomogeneousT(const Eigen::Matrix4d &homogeneousT)
 {
-    // Reuse the homogeneous matrix constructor for validation and extraction
-    *this = Pose(homogeneousT);
+    validateHomogeneousMatrix(homogeneousT);
+
+    // Extract position
+    position_ = homogeneousT.block<3, 1>(0, 3);
+
+    // Extract rotation matrix
+    const Eigen::Matrix3d rotation_matrix = homogeneousT.block<3, 3>(0, 0);
+    orientation_ = Eigen::Quaterniond(rotation_matrix).normalized();
+}
+
+// Distance metrics
+double Pose::positionDistance(const Pose &other) const
+{
+    return (position_ - other.position_).norm();
+}
+
+double Pose::orientationDistance(const Pose &other) const
+{
+    // Compute the angle between quaternions
+    double dot = std::abs(orientation_.dot(other.orientation_));
+    // Clamp dot to [-1, 1] to avoid numerical issues
+    dot = std::max(-1.0, std::min(1.0, dot));
+    return 2.0 * std::acos(dot);
 }
 
 // Compose two poses
@@ -200,6 +233,50 @@ Pose Pose::inverse() const
     return Pose(inv_position, inv_orientation);
 }
 
+// Validate homogeneous transformation matrix
+void Pose::validateHomogeneousMatrix(const Eigen::Matrix4d &homogeneousT)
+{
+    // Check the last row
+    Eigen::RowVector4d expected_last_row(0, 0, 0, 1);
+    Eigen::RowVector4d actual_last_row = homogeneousT.block<1, 4>(3, 0);
+
+    if (!actual_last_row.isApprox(expected_last_row, 1e-6))
+    {
+        std::stringstream error_msg;
+        error_msg << "Invalid homogeneous transformation matrix. The last row must be [0, 0, 0, "
+                     "1], but got ["
+                  << actual_last_row(0) << ", " << actual_last_row(1) << ", " << actual_last_row(2)
+                  << ", " << actual_last_row(3) << "].";
+        throw std::invalid_argument(error_msg.str());
+    }
+
+    // Extract the rotation matrix part
+    const Eigen::Matrix3d rotation_part = homogeneousT.block<3, 3>(0, 0);
+
+    // Check if the rotation matrix is orthogonal
+    // A rotation matrix multiplied by its transpose should give the identity matrix
+    Eigen::Matrix3d orthogonality_check = rotation_part * rotation_part.transpose();
+    Eigen::Matrix3d identity = Eigen::Matrix3d::Identity();
+
+    if (!orthogonality_check.isApprox(identity, 1e-6))
+    {
+        std::stringstream error_msg;
+        error_msg
+            << "Invalid homogeneous transformation matrix. The rotation part is not orthogonal.";
+        throw std::invalid_argument(error_msg.str());
+    }
+
+    // Additionally, check the determinant is approximately 1 (proper rotation)
+    double det = rotation_part.determinant();
+    if (std::abs(det - 1.0) > 1e-6)
+    {
+        std::stringstream error_msg;
+        error_msg << "Invalid homogeneous transformation matrix. The rotation part has determinant "
+                  << det << ", which differs from 1.0 (expected for a proper rotation).";
+        throw std::invalid_argument(error_msg.str());
+    }
+}
+
 // Overload the output stream operator
 std::ostream &operator<<(std::ostream &os, const Pose &pose)
 {
@@ -210,4 +287,25 @@ std::ostream &operator<<(std::ostream &os, const Pose &pose)
     return os;
 }
 
+// Implementation of coordinate transformation methods
+Pose Pose::transformPose(const Pose &transform) const
+{
+    // This method transforms this pose by the given transformation
+    // This is useful for changing coordinate frames
+    return transform * (*this);
+}
+
+Eigen::Vector3d Pose::localToGlobal(const Eigen::Vector3d &local_point) const
+{
+    // Transform a point from the local coordinate frame to the global frame
+    // This applies the rotation and then the translation
+    return position_ + orientation_ * local_point;
+}
+
+Eigen::Vector3d Pose::globalToLocal(const Eigen::Vector3d &global_point) const
+{
+    // Transform a point from the global coordinate frame to the local frame
+    // This applies the inverse transformation (first translate, then rotate)
+    return orientation_.conjugate() * (global_point - position_);
+}
 } // namespace MoveG

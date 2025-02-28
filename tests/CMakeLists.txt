@@ -18,15 +18,6 @@ target_link_libraries("UnitTestPose"
         project_options  # Base options without warnings, or use project_options_with_warnings
 )
 
-# Example executable
-add_executable("Example" "pose_example.cpp")
-target_link_libraries("Example"
-    PRIVATE
-        ${LIBRARY_NAME}
-        Catch2::Catch2WithMain
-        project_options  # Base options without warnings, or use project_options_with_warnings
-)
-
 # Gives to CTest the ability to see the tests that are in the executable
 catch_discover_tests("UnitTestRotation")
 catch_discover_tests("UnitTestPose")
