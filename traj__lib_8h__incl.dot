@@ -29,7 +29,7 @@ digraph "/home/runner/work/MoveG/MoveG/src/MoveG_Lib/traj_lib.h"
   Node9 -> Node7 [id="edge14_Node000009_Node000007",color="steelblue1",style="solid",tooltip=" "];
   Node9 -> Node8 [id="edge15_Node000009_Node000008",color="steelblue1",style="solid",tooltip=" "];
   Node9 -> Node10 [id="edge16_Node000009_Node000010",color="steelblue1",style="solid",tooltip=" "];
-  Node10 [id="Node000010",label="rotation_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$rotation__lib_8h.html",tooltip="Classe per la rappresentazione e manipolazione di rotazioni in 3D."];
+  Node10 [id="Node000010",label="rotation_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$rotation__lib_8h.html",tooltip="Class for representing and manipulating 3D rotations."];
   Node10 -> Node2 [id="edge17_Node000010_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node10 -> Node3 [id="edge18_Node000010_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node10 -> Node4 [id="edge19_Node000010_Node000004",color="steelblue1",style="solid",tooltip=" "];

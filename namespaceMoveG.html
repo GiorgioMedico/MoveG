@@ -87,7 +87,7 @@ Composti</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe per rappresentare una posa nello spazio 3D.  <a href="classMoveG_1_1Pose.html#details">Continua...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Rotation.html">Rotation</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe per rappresentare e gestire rotazioni nello spazio tridimensionale.  <a href="classMoveG_1_1Rotation.html#details">Continua...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for representing and managing rotations in three-dimensional space.  <a href="classMoveG_1_1Rotation.html#details">Continua...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveG_1_1Waypoint.html">Waypoint</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,12 +99,12 @@ Funzioni</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Namespace per il movimento e la manipolazione delle pose. </p>
-<p>Rotazioni estrinseche vs intrinseche.</p>
+<p>Extrinsic vs intrinsic rotations.</p>
 <ul>
-<li>Estrinseche: tutte le rotazioni si riferiscono a un sistema di coordinate fisso/globale xyz. Ogni rotazione si applica al sistema di coordinate globale.</li>
-<li>Intrinseche: ogni rotazione si riferisce al sistema di coordinate ruotato precedentemente. Ad esempio, una rotazione intrinseca Yaw-Pitch'-Roll'' (z-y'-x''): 1) Rotazione attorno all'asse z globale. 2) Rotazione attorno al nuovo asse y'. 3) Rotazione attorno al nuovo asse x''.</li>
+<li>Extrinsic: all rotations refer to a fixed/global coordinate system xyz. Each rotation applies to the global coordinate system.</li>
+<li>Intrinsic: each rotation refers to the previously rotated coordinate system. For example, an intrinsic Yaw-Pitch'-Roll'' (z-y'-x'') rotation: 1) <a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> around the global z-axis. 2) <a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> around the new y'-axis. 3) <a class="el" href="classMoveG_1_1Rotation.html" title="Class for representing and managing rotations in three-dimensional space.">Rotation</a> around the new x''-axis.</li>
 </ul>
-<p>La moltiplicazione delle matrici avviene in ordine di applicazione (le matrici sono le stesse per entrambi i tipi): Intrinseche: R = R3 * R2 * R1 Estrinseche: R = R1 * R2 * R3 </p>
+<p>Matrix multiplication occurs in order of application (the matrices are the same for both types): Intrinsic: R = R3 * R2 * R1 Extrinsic: R = R1 * R2 * R3 </p>
 </div><h2 class="groupheader">Documentazione delle funzioni</h2>
 <a id="a1cce2eeb5baffaa30e883191e330cfb9" name="a1cce2eeb5baffaa30e883191e330cfb9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1cce2eeb5baffaa30e883191e330cfb9">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>

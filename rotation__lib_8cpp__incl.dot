@@ -4,9 +4,9 @@ digraph "/home/runner/work/MoveG/MoveG/src/MoveG_Lib/rotation_lib.cpp"
   bgcolor="transparent";
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
-  Node1 [id="Node000001",label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation\l_lib.cpp",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Classe per la rappresentazione e manipolazione di rotazioni in 3D."];
+  Node1 [id="Node000001",label="/home/runner/work/MoveG\l/MoveG/src/MoveG_Lib/rotation\l_lib.cpp",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Class for representing and manipulating 3D rotations."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="rotation_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$rotation__lib_8h.html",tooltip="Classe per la rappresentazione e manipolazione di rotazioni in 3D."];
+  Node2 [id="Node000002",label="rotation_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$rotation__lib_8h.html",tooltip="Class for representing and manipulating 3D rotations."];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="eigen3/Eigen/Dense",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
