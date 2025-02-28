@@ -15,21 +15,21 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libeigen3-dev gcovr
+        sudo apt-get install -y libeigen3-dev gcovr ccache doxygen
 
-    - name: prepare
+    - name: Prepare build directory
       run: |
         make prepare
 
-    - name: configure
+    - name: Configure CMake
       run: |
-        cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On
+        cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On -DUSE_CPM=ON
 
-    - name: building and testing
+    - name: Build and run tests
       run: |
         cmake --build build --config Debug --target coverage -j4
         cd build
-        ctest .
+        ctest -V .
 
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
