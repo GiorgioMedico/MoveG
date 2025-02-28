@@ -20,7 +20,7 @@ digraph "/home/runner/work/MoveG/MoveG/src/MoveG_Lib/traj_lib.h"
   Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="vector",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node9 [id="edge8_Node000001_Node000009",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="pose_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$pose__lib_8h.html",tooltip="Classe per la rappresentazione di Pose."];
+  Node9 [id="Node000009",label="pose_lib.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$pose__lib_8h.html",tooltip="Class for representing Poses."];
   Node9 -> Node2 [id="edge9_Node000009_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node9 -> Node3 [id="edge10_Node000009_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node9 -> Node4 [id="edge11_Node000009_Node000004",color="steelblue1",style="solid",tooltip=" "];

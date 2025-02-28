@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['normalizeangle_0',['normalizeAngle',['../classMoveG_1_1Rotation.html#a3799c230f5792e797df704e7703e0a61',1,'MoveG::Rotation']]],
-  ['normalizeanglerange_1',['normalizeAngleRange',['../classMoveG_1_1Rotation.html#ac3df1ab4e2078e2ef24b069f4c3c0d25',1,'MoveG::Rotation']]],
-  ['normalizeeulerangles_2',['normalizeEulerAngles',['../classMoveG_1_1Rotation.html#a1ffc745bcf558ba6db09ba94dd1481af',1,'MoveG::Rotation']]]
+  ['matrixr_5fdot_0',['matrixr_dot',['../classMoveG_1_1Rotation.html#ae90fc72811cff827a428e1c341b63d9f',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Matrix3d &amp;S)'],['../classMoveG_1_1Rotation.html#a15d04ac831005bfb67949d0273569e47',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Vector3d &amp;omega)']]],
+  ['matrixs_1',['matrixS',['../classMoveG_1_1Rotation.html#abac1a3adbd1f8cb06b1a53ac36392f93',1,'MoveG::Rotation']]],
+  ['matrixt_2',['matrixT',['../classMoveG_1_1Rotation.html#a3d74b60edb2125c87a00caa931e9b79f',1,'MoveG::Rotation']]],
+  ['my_5fslerp_3',['my_slerp',['../appoggio_8cpp.html#a1648c09a5962a61709c62176207efec4',1,'appoggio.cpp']]]
 ];

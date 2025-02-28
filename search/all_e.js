@@ -5,5 +5,6 @@ var searchData=
   ['toquaternion_2',['toQuaternion',['../classMoveG_1_1Rotation.html#a4dbe94fded1102f52300898ef0c1a830',1,'MoveG::Rotation']]],
   ['torotationmatrix_3',['toRotationMatrix',['../classMoveG_1_1Rotation.html#a4ed8b8d3a9635f1f47e3abf5f8ebb002',1,'MoveG::Rotation']]],
   ['traj_5flib_2ecpp_4',['traj_lib.cpp',['../traj__lib_8cpp.html',1,'']]],
-  ['traj_5flib_2eh_5',['traj_lib.h',['../traj__lib_8h.html',1,'']]]
+  ['traj_5flib_2eh_5',['traj_lib.h',['../traj__lib_8h.html',1,'']]],
+  ['transformpose_6',['transformPose',['../classMoveG_1_1Pose.html#a3b07e1cbe4773a5b0ac176a740a56343',1,'MoveG::Pose']]]
 ];
