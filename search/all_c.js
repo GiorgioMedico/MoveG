@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['rad2deg_0',['rad2deg',['../classMoveG_1_1Rotation.html#aa856276f7f00503eca7d31e0a89aa064',1,'MoveG::Rotation']]],
-  ['readme_2emd_1',['README.md',['../README_8md.html',1,'']]],
-  ['rotation_2',['rotation',['../classMoveG_1_1Rotation.html',1,'MoveG::Rotation'],['../classMoveG_1_1Rotation.html#a2cba1837ccd8df9b134ab37a9395f84a',1,'MoveG::Rotation::Rotation()'],['../classMoveG_1_1Rotation.html#a9d52e70ccb02eaa47c883e3adbf27cd3',1,'MoveG::Rotation::Rotation(const Rotation &amp;other)'],['../classMoveG_1_1Rotation.html#a74a7072657e0dbf4d0dbfc86eb418cf4',1,'MoveG::Rotation::Rotation(Rotation &amp;&amp;other) noexcept'],['../classMoveG_1_1Rotation.html#a1b93425896ab7b04dd44c2fedc181137',1,'MoveG::Rotation::Rotation(const Eigen::Matrix3d &amp;rotation_matrix)'],['../classMoveG_1_1Rotation.html#a9fb4c3ae460a447365aaefa3a423d2ac',1,'MoveG::Rotation::Rotation(const Eigen::Quaterniond &amp;quaternion)'],['../classMoveG_1_1Rotation.html#a9534fbf7b5ade7cfc4fc74c909854c40',1,'MoveG::Rotation::Rotation(const Eigen::AngleAxisd &amp;angle_axis)'],['../classMoveG_1_1Rotation.html#af269b72b8f156271622742371e81f1aa',1,'MoveG::Rotation::Rotation(double angle1, double angle2, double angle3, bool intrinsic=true, const std::string &amp;sequence=&quot;ZYX&quot;, bool degree=false)']]],
-  ['rotation_5flib_2ecpp_3',['rotation_lib.cpp',['../rotation__lib_8cpp.html',1,'']]],
-  ['rotation_5flib_2eh_4',['rotation_lib.h',['../rotation__lib_8h.html',1,'']]],
-  ['rotationx_5',['rotationX',['../classMoveG_1_1Rotation.html#add3a37e880b1490f7dd2294cedde0ea3',1,'MoveG::Rotation']]],
-  ['rotationy_6',['rotationY',['../classMoveG_1_1Rotation.html#a94ce3139f26dea69e85994a3408ed27b',1,'MoveG::Rotation']]],
-  ['rotationz_7',['rotationZ',['../classMoveG_1_1Rotation.html#ad469365d1d9d600381abc9a24019a379',1,'MoveG::Rotation']]]
+  ['pose_0',['pose',['../classMoveG_1_1Pose.html',1,'MoveG::Pose'],['../classMoveG_1_1Pose.html#ab2c419660b06ad9d951a127edb34e194',1,'MoveG::Pose::Pose(Pose &amp;&amp;other) noexcept'],['../classMoveG_1_1Pose.html#a42e31aa4f1b8959e422bc55d45d0a246',1,'MoveG::Pose::Pose() noexcept'],['../classMoveG_1_1Pose.html#aa2c10667d10d166704c42ae07df86c66',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Eigen::Quaterniond &amp;orientation)'],['../classMoveG_1_1Pose.html#a0f30f660ab1138172e13024b5c89659d',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Eigen::Matrix3d &amp;rotation_matrix)'],['../classMoveG_1_1Pose.html#a8479325caaa30a1957124f9caf5377ee',1,'MoveG::Pose::Pose(const Eigen::Affine3d &amp;transformation)'],['../classMoveG_1_1Pose.html#ac9b470e38f3765a0beabc310cec8e1e4',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Rotation &amp;orientation)'],['../classMoveG_1_1Pose.html#a99b2bef46f6f401d3751e3ab528fe093',1,'MoveG::Pose::Pose(const Eigen::Matrix4d &amp;homogeneousT)'],['../classMoveG_1_1Pose.html#ab6761ac4019eb5648fd36246817e1e4a',1,'MoveG::Pose::Pose(const Pose &amp;other)']]],
+  ['pose_20library_1',['Pose Library',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md5',1,'']]],
+  ['pose_5fexample_2ecpp_2',['pose_example.cpp',['../pose__example_8cpp.html',1,'']]],
+  ['pose_5flib_2ecpp_3',['pose_lib.cpp',['../pose__lib_8cpp.html',1,'']]],
+  ['pose_5flib_2eh_4',['pose_lib.h',['../pose__lib_8h.html',1,'']]],
+  ['position_5f_5',['position_',['../classMoveG_1_1Pose.html#a4245dcf47172cc0f4b284c865154351d',1,'MoveG::Pose::position_'],['../classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069',1,'MoveG::Waypoint::position_']]],
+  ['positiondistance_6',['positionDistance',['../classMoveG_1_1Pose.html#a349a94cf14401d7d534a52b6b9b214d3',1,'MoveG::Pose']]],
+  ['printeulerangles_7',['printEulerAngles',['../rotation__example_8cpp.html#a84572da9a8ef2f389b705bae09ef308b',1,'rotation_example.cpp']]],
+  ['printhomogeneousmatrix_8',['printHomogeneousMatrix',['../pose__example_8cpp.html#a014c9d6809dfa5f6b31afc5bb2ce1d37',1,'pose_example.cpp']]],
+  ['printquaternion_9',['printquaternion',['../pose__example_8cpp.html#a07315e83ceff724249f05e849d7d8b19',1,'printQuaternion(const Eigen::Quaterniond &amp;quat, const std::string &amp;description):&#160;pose_example.cpp'],['../rotation__example_8cpp.html#a07315e83ceff724249f05e849d7d8b19',1,'printQuaternion(const Eigen::Quaterniond &amp;quat, const std::string &amp;description):&#160;rotation_example.cpp']]],
+  ['printvector3d_10',['printVector3d',['../pose__example_8cpp.html#ad72945f543f1d9a11b513391ba83d060',1,'pose_example.cpp']]],
+  ['project_20structure_11',['Project Structure',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md12',1,'']]]
 ];

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['normalizeangle_0',['normalizeAngle',['../classMoveG_1_1Rotation.html#a3799c230f5792e797df704e7703e0a61',1,'MoveG::Rotation']]],
-  ['normalizeanglerange_1',['normalizeAngleRange',['../classMoveG_1_1Rotation.html#ac3df1ab4e2078e2ef24b069f4c3c0d25',1,'MoveG::Rotation']]],
-  ['normalizeeulerangles_2',['normalizeEulerAngles',['../classMoveG_1_1Rotation.html#a1ffc745bcf558ba6db09ba94dd1481af',1,'MoveG::Rotation']]]
+  ['library_0',['library',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md5',1,'Pose Library'],['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md4',1,'Rotation Library']]],
+  ['library_20coming_20soon_1',['Trajectory Library (Coming Soon)',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md6',1,'']]],
+  ['libreria_2',['Struttura Dipendenze Libreria',['../md__2home_2runner_2work_2MoveG_2MoveG_2src_2MoveG__Lib_2README.html',1,'']]],
+  ['license_3',['License',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md15',1,'']]],
+  ['localtoglobal_4',['localToGlobal',['../classMoveG_1_1Pose.html#a4dc4b3dbd154a8c9bd2815d0af9a972e',1,'MoveG::Pose']]]
 ];

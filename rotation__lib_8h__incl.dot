@@ -1,5 +1,6 @@
 digraph "/home/runner/work/MoveG/MoveG/src/MoveG_Lib/rotation_lib.h"
 {
+ // INTERACTIVE_SVG=YES
  // LATEX_PDF_SIZE
   bgcolor="transparent";
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];

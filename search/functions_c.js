@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['toangleaxis_0',['toAngleAxis',['../classMoveG_1_1Rotation.html#a635fc24f512f43bfbbfe0b3b7c808733',1,'MoveG::Rotation']]],
-  ['toeulerangles_1',['toEulerAngles',['../classMoveG_1_1Rotation.html#af38c67dba00c1b866a04c7f9db24d847',1,'MoveG::Rotation']]],
-  ['toquaternion_2',['toQuaternion',['../classMoveG_1_1Rotation.html#a4dbe94fded1102f52300898ef0c1a830',1,'MoveG::Rotation']]],
-  ['torotationmatrix_3',['toRotationMatrix',['../classMoveG_1_1Rotation.html#a4ed8b8d3a9635f1f47e3abf5f8ebb002',1,'MoveG::Rotation']]],
-  ['transformpose_4',['transformPose',['../classMoveG_1_1Pose.html#a3b07e1cbe4773a5b0ac176a740a56343',1,'MoveG::Pose']]]
+  ['rad2deg_0',['rad2deg',['../classMoveG_1_1Rotation.html#aa856276f7f00503eca7d31e0a89aa064',1,'MoveG::Rotation']]],
+  ['rotation_1',['rotation',['../classMoveG_1_1Rotation.html#a2cba1837ccd8df9b134ab37a9395f84a',1,'MoveG::Rotation::Rotation()'],['../classMoveG_1_1Rotation.html#a9d52e70ccb02eaa47c883e3adbf27cd3',1,'MoveG::Rotation::Rotation(const Rotation &amp;other)'],['../classMoveG_1_1Rotation.html#a74a7072657e0dbf4d0dbfc86eb418cf4',1,'MoveG::Rotation::Rotation(Rotation &amp;&amp;other) noexcept'],['../classMoveG_1_1Rotation.html#a1b93425896ab7b04dd44c2fedc181137',1,'MoveG::Rotation::Rotation(const Eigen::Matrix3d &amp;rotation_matrix)'],['../classMoveG_1_1Rotation.html#a9fb4c3ae460a447365aaefa3a423d2ac',1,'MoveG::Rotation::Rotation(const Eigen::Quaterniond &amp;quaternion)'],['../classMoveG_1_1Rotation.html#a9534fbf7b5ade7cfc4fc74c909854c40',1,'MoveG::Rotation::Rotation(const Eigen::AngleAxisd &amp;angle_axis)'],['../classMoveG_1_1Rotation.html#af269b72b8f156271622742371e81f1aa',1,'MoveG::Rotation::Rotation(double angle1, double angle2, double angle3, bool intrinsic=true, const std::string &amp;sequence=&quot;ZYX&quot;, bool degree=false)']]],
+  ['rotationx_2',['rotationX',['../classMoveG_1_1Rotation.html#add3a37e880b1490f7dd2294cedde0ea3',1,'MoveG::Rotation']]],
+  ['rotationy_3',['rotationY',['../classMoveG_1_1Rotation.html#a94ce3139f26dea69e85994a3408ed27b',1,'MoveG::Rotation']]],
+  ['rotationz_4',['rotationZ',['../classMoveG_1_1Rotation.html#ad469365d1d9d600381abc9a24019a379',1,'MoveG::Rotation']]]
 ];

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['pose_0',['pose',['../classMoveG_1_1Pose.html',1,'MoveG::Pose'],['../classMoveG_1_1Pose.html#a42e31aa4f1b8959e422bc55d45d0a246',1,'MoveG::Pose::Pose() noexcept'],['../classMoveG_1_1Pose.html#aa2c10667d10d166704c42ae07df86c66',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Eigen::Quaterniond &amp;orientation)'],['../classMoveG_1_1Pose.html#a0f30f660ab1138172e13024b5c89659d',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Eigen::Matrix3d &amp;rotation_matrix)'],['../classMoveG_1_1Pose.html#a8479325caaa30a1957124f9caf5377ee',1,'MoveG::Pose::Pose(const Eigen::Affine3d &amp;transformation)'],['../classMoveG_1_1Pose.html#ac9b470e38f3765a0beabc310cec8e1e4',1,'MoveG::Pose::Pose(const Eigen::Vector3d &amp;position, const Rotation &amp;orientation)'],['../classMoveG_1_1Pose.html#a99b2bef46f6f401d3751e3ab528fe093',1,'MoveG::Pose::Pose(const Eigen::Matrix4d &amp;homogeneousT)'],['../classMoveG_1_1Pose.html#ab6761ac4019eb5648fd36246817e1e4a',1,'MoveG::Pose::Pose(const Pose &amp;other)'],['../classMoveG_1_1Pose.html#ab2c419660b06ad9d951a127edb34e194',1,'MoveG::Pose::Pose(Pose &amp;&amp;other) noexcept']]],
-  ['pose_5flib_2ecpp_1',['pose_lib.cpp',['../pose__lib_8cpp.html',1,'']]],
-  ['pose_5flib_2eh_2',['pose_lib.h',['../pose__lib_8h.html',1,'']]],
-  ['positiondistance_3',['positionDistance',['../classMoveG_1_1Pose.html#a349a94cf14401d7d534a52b6b9b214d3',1,'MoveG::Pose']]]
+  ['normalizeangle_0',['normalizeAngle',['../classMoveG_1_1Rotation.html#a3799c230f5792e797df704e7703e0a61',1,'MoveG::Rotation']]],
+  ['normalizeanglerange_1',['normalizeAngleRange',['../classMoveG_1_1Rotation.html#ac3df1ab4e2078e2ef24b069f4c3c0d25',1,'MoveG::Rotation']]],
+  ['normalizeeulerangles_2',['normalizeEulerAngles',['../classMoveG_1_1Rotation.html#a1ffc745bcf558ba6db09ba94dd1481af',1,'MoveG::Rotation']]]
 ];

@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['operator_2a_0',['operator*',['../classMoveG_1_1Pose.html#ac2d8d8d34943baf3b80d83d8e4e17a6d',1,'MoveG::Pose::operator*()'],['../classMoveG_1_1Rotation.html#a061a42aa21dd629d85d4a406f11fbde1',1,'MoveG::Rotation::operator*()']]],
-  ['operator_3c_3c_1',['operator&lt;&lt;',['../namespaceMoveG.html#a1cce2eeb5baffaa30e883191e330cfb9',1,'MoveG::operator&lt;&lt;(std::ostream &amp;os, const Pose &amp;pose)'],['../namespaceMoveG.html#adf328a235d26bca46275c1173f9e409d',1,'MoveG::operator&lt;&lt;(std::ostream &amp;os, const Rotation &amp;rotation)']]],
-  ['operator_3d_2',['operator=',['../classMoveG_1_1Pose.html#a5145e83febc33105d0801af6c5f8703c',1,'MoveG::Pose::operator=(const Pose &amp;other)'],['../classMoveG_1_1Pose.html#abc32bf3e1d3a0b1a55a5d25f27b95feb',1,'MoveG::Pose::operator=(Pose &amp;&amp;other) noexcept'],['../classMoveG_1_1Rotation.html#a98c968c68b01b721d6657f1ad683bc0a',1,'MoveG::Rotation::operator=(const Rotation &amp;other)'],['../classMoveG_1_1Rotation.html#a91983145ccf033ea1352927b0ff1af48',1,'MoveG::Rotation::operator=(Rotation &amp;&amp;other) noexcept']]],
-  ['orientationdistance_3',['orientationDistance',['../classMoveG_1_1Pose.html#ac075ddbb6db39d516adafbc90ce7956d',1,'MoveG::Pose']]]
+  ['main_0',['main',['../main_8cpp.html#a2c3f6775325c30275d11c6abee2db6a0',1,'main(int, char **):&#160;main.cpp'],['../pose__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;pose_example.cpp'],['../rotation__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;rotation_example.cpp']]],
+  ['matrixr_5fdot_1',['matrixr_dot',['../classMoveG_1_1Rotation.html#ae90fc72811cff827a428e1c341b63d9f',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Matrix3d &amp;S)'],['../classMoveG_1_1Rotation.html#a15d04ac831005bfb67949d0273569e47',1,'MoveG::Rotation::matrixR_dot(const Eigen::Matrix3d &amp;R, const Eigen::Vector3d &amp;omega)']]],
+  ['matrixs_2',['matrixS',['../classMoveG_1_1Rotation.html#abac1a3adbd1f8cb06b1a53ac36392f93',1,'MoveG::Rotation']]],
+  ['matrixt_3',['matrixT',['../classMoveG_1_1Rotation.html#a3d74b60edb2125c87a00caa931e9b79f',1,'MoveG::Rotation']]],
+  ['my_5fslerp_4',['my_slerp',['../appoggio_8cpp.html#a1648c09a5962a61709c62176207efec4',1,'appoggio.cpp']]]
 ];

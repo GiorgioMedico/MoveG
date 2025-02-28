@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['fromangleaxis_0',['fromAngleAxis',['../classMoveG_1_1Rotation.html#a52d9d17e80eb3739827d3672aa28ca4b',1,'MoveG::Rotation']]],
-  ['fromeulerangles_1',['fromEulerAngles',['../classMoveG_1_1Rotation.html#a5722eae6cda2bc6f5fe5d6bb7370edb0',1,'MoveG::Rotation']]],
-  ['fromquaternion_2',['fromQuaternion',['../classMoveG_1_1Rotation.html#a7ea5db6f44fb550d28c9d5adb7d0950f',1,'MoveG::Rotation']]],
-  ['fromrotationmatrix_3',['fromRotationMatrix',['../classMoveG_1_1Rotation.html#a20642935f5501ffe8ffc6761e077fa5f',1,'MoveG::Rotation']]]
+  ['deg2rad_0',['deg2rad',['../classMoveG_1_1Rotation.html#aa760c962a3fc89567dda3614b0f79df6',1,'MoveG::Rotation']]],
+  ['dependencies_1',['Dependencies',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md13',1,'']]],
+  ['development_20tools_2',['Development Tools',['../md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md7',1,'']]],
+  ['dipendenze_20libreria_3',['Struttura Dipendenze Libreria',['../md__2home_2runner_2work_2MoveG_2MoveG_2src_2MoveG__Lib_2README.html',1,'']]]
 ];
