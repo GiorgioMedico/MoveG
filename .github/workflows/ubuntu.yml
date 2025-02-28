@@ -24,12 +24,21 @@ jobs:
     - name: Configure CMake
       run: |
         cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On -DUSE_CPM=ON
+        # Add _deps to the exclude list in codecov.yml
+        echo "ignore:" >> codecov.yml
+        echo "  - \"_deps/**/*\"" >> codecov.yml
 
     - name: Build and run tests
       run: |
-        cmake --build build --config Debug --target coverage -j4
+        cmake --build build --config Debug -j4
         cd build
         ctest -V .
+
+    - name: Generate coverage report
+      run: |
+        cd build
+        # Run gcovr with explicit exclusion of _deps directory and ignoring specific gcov errors
+        gcovr --html coverage/index.html --html-details --cobertura coverage/coverage.cobertura.xml --exclude-directories "_deps" --exclude-directories ".cpmcache" --exclude "tests/*" --gcov-ignore-errors=no_working_dir_found
 
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
