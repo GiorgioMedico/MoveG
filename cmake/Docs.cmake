@@ -1,22 +1,28 @@
 find_package(Doxygen)
 
 if(DOXYGEN_FOUND)
-    # Copy example files to docs directory for reference
-    file(GLOB EXAMPLE_FILES "${CMAKE_SOURCE_DIR}/app/*_example.cpp")
-    file(COPY ${EXAMPLE_FILES} DESTINATION "${CMAKE_SOURCE_DIR}/docs/examples")
-
-    # Configure Doxyfile with correct paths
-    configure_file(${CMAKE_SOURCE_DIR}/docs/Doxyfile ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
-
-    # Add custom command to generate documentation
-    add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/html/index.html
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp ${CMAKE_SOURCE_DIR}/src/*.h ${EXAMPLE_FILES}
-        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    # Define source files properly using file(GLOB...)
+    file(GLOB SOURCE_FILES
+        "${CMAKE_SOURCE_DIR}/src/*.cpp"
+        "${CMAKE_SOURCE_DIR}/src/*.h"
+        "${CMAKE_SOURCE_DIR}/src/*.hpp"
     )
 
-    # Add documentation target
-    add_custom_target(docs DEPENDS ${CMAKE_BINARY_DIR}/html/index.html)
+    file(GLOB EXAMPLE_FILES
+        "${CMAKE_SOURCE_DIR}/app/*_example.cpp"
+        "${CMAKE_SOURCE_DIR}/app/main.cpp"
+    )
+
+    # Set up documentation target without file dependencies in the command
+    add_custom_target(docs
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/docs/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM
+    )
+
+    # Add message to indicate successful configuration
+    message(STATUS "Doxygen found: Documentation target 'docs' configured")
+else()
+    message(STATUS "Doxygen not found: Documentation generation disabled")
 endif()
