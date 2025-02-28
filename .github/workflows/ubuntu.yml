@@ -6,11 +6,19 @@ on:
   pull_request:
     branches: [ main, master, dev ]
 
+# Aggiungi esplicitamente i permessi
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        # Usa un PAT invece del GITHUB_TOKEN predefinito
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install dependencies
       run: |
@@ -62,21 +70,20 @@ jobs:
         recreate: true
         path: code-coverage-results.md
 
-    # Nuovi passaggi per salvare il report nel repository
-    - name: Copy Coverage Report to docs
-      run: |
-        # Crea una directory docs/coverage se non esiste
-        mkdir -p docs/coverage
-        # Copia tutti i file di coverage generati
-        cp -r build/coverage/* docs/coverage/
+    # Nuovo approccio per pubblicare il file .md del report nel repository
+    - name: Save Code Coverage Report as artifact
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-report
+        path: code-coverage-results.md
 
-    - name: Commit Coverage Report
-      # Esegui solo su push ai branch principali, non su PR
-      if: github.event_name == 'push'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add docs/coverage/
-        # Il commit avrà successo anche se non ci sono modifiche (--allow-empty)
-        git commit -m "Update code coverage report" -a || echo "No changes to commit"
-        git push
+    - name: Commit coverage report using GitHub API
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Update code coverage report [skip ci]"
+        file_pattern: code-coverage-results.md
+        commit_user_name: GitHub Action
+        commit_user_email: action@github.com
+        commit_author: GitHub Action <action@github.com>
