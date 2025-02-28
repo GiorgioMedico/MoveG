@@ -37,6 +37,8 @@ jobs:
     - name: Generate coverage report
       run: |
         cd build
+        # Create coverage directory
+        mkdir -p coverage
         # Run gcovr with explicit exclusion of _deps directory and ignoring specific gcov errors
         gcovr --html coverage/index.html --html-details --cobertura coverage/coverage.cobertura.xml --exclude-directories "_deps" --exclude-directories ".cpmcache" --exclude "tests/*" --gcov-ignore-errors=no_working_dir_found
 
