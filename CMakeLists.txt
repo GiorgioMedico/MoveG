@@ -16,12 +16,6 @@ if(CCACHE_PROGRAM)
     message(STATUS "Using ccache: ${CCACHE_PROGRAM}")
 endif()
 
-# Set build type if not defined
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type" FORCE)
-    message(STATUS "No build type selected, defaulting to Release")
-endif()
-
 project(
     "MoveG"
     VERSION 1.0.0

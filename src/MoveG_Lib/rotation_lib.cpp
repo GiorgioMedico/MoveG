@@ -1,6 +1,6 @@
 /**
  * @file rotation_lib.cpp
- * @brief Classe per la rappresentazione e manipolazione di rotazioni in 3D
+ * @brief Class for representing and manipulating 3D rotations
  *
  * @author Giorgio Medico
  * @date 24/09/2024
@@ -11,9 +11,9 @@
 namespace MoveG
 {
 
-// Implementazione dei metodi della classe Rotation
+// Implementation of the Rotation class methods
 
-// Costruttore di default (rotazione identità)
+// Default constructor (identity rotation)
 Rotation::Rotation() : q(Eigen::Quaterniond::Identity())
 {
 }
@@ -23,27 +23,27 @@ Rotation::Rotation(const Rotation &other) : q(other.q)
 {
 }
 
-// Costruttore di movimento
+// Move constructor
 Rotation::Rotation(Rotation &&other) noexcept : q(std::move(other.q))
 {
 }
 
-// Costruttore da matrice di rotazione
+// Constructor from rotation matrix
 Rotation::Rotation(const Eigen::Matrix3d &rotation_matrix) : q(Eigen::Quaterniond(rotation_matrix))
 {
 }
 
-// Costruttore da quaternione
+// Constructor from quaternion
 Rotation::Rotation(const Eigen::Quaterniond &quaternion) : q(quaternion.normalized())
 {
 }
 
-// Costruttore da asse-angolo
+// Constructor from axis-angle
 Rotation::Rotation(const Eigen::AngleAxisd &angle_axis) : q(Eigen::Quaterniond(angle_axis))
 {
 }
 
-// Costruttore da angoli di Eulero utilizzando rappresentazioni asse-angolo
+// Constructor from Euler angles using axis-angle representations
 Rotation::Rotation(double angle1,
                    double angle2,
                    double angle3,
@@ -67,19 +67,19 @@ Rotation::Rotation(double angle1,
 
     if (intrinsic)
     {
-        // Per rotazioni intrinseche, moltiplica nell'ordine q3 * q2 * q1
+        // For intrinsic rotations, multiply in the order q3 * q2 * q1
         q = Eigen::Quaterniond(aa3) * Eigen::Quaterniond(aa2) * Eigen::Quaterniond(aa1);
     }
     else
     {
-        // Per rotazioni estrinseche, moltiplica nell'ordine q1 * q2 * q3
+        // For extrinsic rotations, multiply in the order q1 * q2 * q3
         q = Eigen::Quaterniond(aa1) * Eigen::Quaterniond(aa2) * Eigen::Quaterniond(aa3);
     }
 
     q.normalize();
 }
 
-// Metodi statici
+// Static methods
 Rotation Rotation::fromRotationMatrix(const Eigen::Matrix3d &rotation_matrix)
 {
     return Rotation(rotation_matrix);
@@ -105,25 +105,25 @@ Rotation Rotation::fromEulerAngles(double angle1,
     return Rotation(angle1, angle2, angle3, intrinsic, sequence, degree);
 }
 
-// Convertitore a matrice di rotazione
+// Converter to rotation matrix
 Eigen::Matrix3d Rotation::toRotationMatrix() const
 {
     return q.toRotationMatrix();
 }
 
-// Convertitore a quaternione
+// Converter to quaternion
 Eigen::Quaterniond Rotation::toQuaternion() const
 {
     return q;
 }
 
-// Convertitore ad asse-angolo
+// Converter to axis-angle
 Eigen::AngleAxisd Rotation::toAngleAxis() const
 {
     return Eigen::AngleAxisd(q);
 }
 
-// Convertitore ad angoli di Eulero
+// Converter to Euler angles
 Eigen::Vector3d Rotation::toEulerAngles(bool intrinsic, const std::string &sequence) const
 {
     checkSequence(sequence);
@@ -136,19 +136,19 @@ Eigen::Vector3d Rotation::toEulerAngles(bool intrinsic, const std::string &seque
 
     if (intrinsic)
     {
-        // Per rotazioni intrinseche, inverti l'ordine degli assi
+        // For intrinsic rotations, reverse the order of axes
         angles = q.toRotationMatrix().eulerAngles(a2, a1, a0).reverse();
     }
     else
     {
-        // Per rotazioni estrinseche, usa gli assi come sono
+        // For extrinsic rotations, use the axes as they are
         angles = q.toRotationMatrix().eulerAngles(a0, a1, a2);
     }
 
     return angles;
 }
 
-// Sovraccarico dell'operatore * (composizione di rotazioni)
+// Overloading the * operator (composition of rotations)
 Rotation Rotation::operator*(const Rotation &other) const
 {
     return Rotation(q * other.q);
@@ -169,7 +169,7 @@ Rotation &Rotation::operator=(Rotation &&other) noexcept
     return *this;
 }
 
-// Funzione ausiliaria per creare una rappresentazione asse-angolo
+// Auxiliary function to create an axis-angle representation
 Eigen::AngleAxisd Rotation::angleAxis(char axis, double angle)
 {
     switch (axis)
@@ -184,11 +184,11 @@ Eigen::AngleAxisd Rotation::angleAxis(char axis, double angle)
     case 'z':
         return Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitZ());
     default:
-        throw std::invalid_argument("Asse non valido. Gli assi validi sono 'X', 'Y' o 'Z'.");
+        throw std::invalid_argument("Invalid axis. Valid axes are 'X', 'Y', or 'Z'.");
     }
 }
 
-// Funzione ausiliaria per convertire l'asse in indice
+// Auxiliary function to convert axis to index
 int Rotation::axisToIndex(char axis)
 {
     switch (axis)
@@ -203,28 +203,28 @@ int Rotation::axisToIndex(char axis)
     case 'z':
         return 2;
     default:
-        throw std::invalid_argument("Asse non valido. Gli assi validi sono 'X', 'Y' o 'Z'.");
+        throw std::invalid_argument("Invalid axis. Valid axes are 'X', 'Y', or 'Z'.");
     }
 }
 
-// Funzione ausiliaria per controllare la sequenza di angoli di Eulero
+// Auxiliary function to check the Euler angle sequence
 int Rotation::checkSequence(const std::string &sequence)
 {
     if (sequence.length() != 3 || sequence.find_first_not_of("XYZxyz") != std::string::npos)
     {
-        throw std::invalid_argument("La sequenza di assi deve essere una stringa di tre caratteri "
-                                    "tra 'X', 'Y' e 'Z' o 'x', 'y' e 'z'.");
+        throw std::invalid_argument("The axis sequence must be a string of three characters "
+                                    "from 'X', 'Y', and 'Z' or 'x', 'y', and 'z'.");
     }
     return 1;
 }
 
-// Conversione da gradi a radianti
+// Conversion from degrees to radians
 double Rotation::deg2rad(double degree)
 {
     return degree * M_PI / 180.0;
 }
 
-// Conversione da radianti a gradi
+// Conversion from radians to degrees
 double Rotation::rad2deg(double radian)
 {
     return radian * 180.0 / M_PI;
@@ -258,7 +258,7 @@ Eigen::Quaterniond Rotation::quaternion_plus(const Eigen::Quaterniond &v1,
     return Eigen::Quaterniond(v1.w() + v0.w(), v1.x() + v0.x(), v1.y() + v0.y(), v1.z() + v0.z());
 }
 
-// Matrici di rotazione elementari
+// Elementary rotation matrices
 Eigen::Matrix3d Rotation::rotationX(double angle)
 {
     Eigen::Matrix3d rot = Eigen::Matrix3d::Identity();
@@ -280,7 +280,7 @@ Eigen::Matrix3d Rotation::rotationZ(double angle)
     return rot;
 }
 
-// Matrice S
+// Matrix S
 Eigen::Matrix3d Rotation::matrixS(const Eigen::Vector3d &omega)
 {
     Eigen::Matrix3d S = Eigen::Matrix3d::Zero();
@@ -288,7 +288,7 @@ Eigen::Matrix3d Rotation::matrixS(const Eigen::Vector3d &omega)
     return S;
 }
 
-// Matrice R_dot
+// Matrix R_dot
 Eigen::Matrix3d Rotation::matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Matrix3d &S)
 {
     return S * R;

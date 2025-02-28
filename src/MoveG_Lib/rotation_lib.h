@@ -1,6 +1,6 @@
 /**
  * @file rotation_lib.h
- * @brief Classe per la rappresentazione e manipolazione di rotazioni in 3D
+ * @brief Class for representing and manipulating 3D rotations
  *
  * @author Giorgio Medico
  * @date 24/09/2024
@@ -17,89 +17,89 @@
 #include <string>
 #include <vector>
 
-// Commenti aggiuntivi per chiarire il comportamento delle rotazioni intrinseche ed estrinseche
+// Additional comments to clarify the behavior of intrinsic and extrinsic rotations
 
 /**
- * Rotazioni estrinseche vs intrinseche.
- *
- * - Estrinseche: tutte le rotazioni si riferiscono a un sistema di coordinate fisso/globale xyz.
- *   Ogni rotazione si applica al sistema di coordinate globale.
- *
- * - Intrinseche: ogni rotazione si riferisce al sistema di coordinate ruotato precedentemente.
- *   Ad esempio, una rotazione intrinseca Yaw-Pitch'-Roll'' (z-y'-x''):
- *   1) Rotazione attorno all'asse z globale.
- *   2) Rotazione attorno al nuovo asse y'.
- *   3) Rotazione attorno al nuovo asse x''.
- *
- * La moltiplicazione delle matrici avviene in ordine di applicazione (le matrici sono le stesse per entrambi i tipi):
- * Intrinseche: R = R3 * R2 * R1
- * Estrinseche: R = R1 * R2 * R3
- */
+  * Extrinsic vs intrinsic rotations.
+  *
+  * - Extrinsic: all rotations refer to a fixed/global coordinate system xyz.
+  *   Each rotation applies to the global coordinate system.
+  *
+  * - Intrinsic: each rotation refers to the previously rotated coordinate system.
+  *   For example, an intrinsic Yaw-Pitch'-Roll'' (z-y'-x'') rotation:
+  *   1) Rotation around the global z-axis.
+  *   2) Rotation around the new y'-axis.
+  *   3) Rotation around the new x''-axis.
+  *
+  * Matrix multiplication occurs in order of application (the matrices are the same for both types):
+  * Intrinsic: R = R3 * R2 * R1
+  * Extrinsic: R = R1 * R2 * R3
+  */
 
 namespace MoveG
 {
 
 /**
- * @class Rotation
- * @brief Classe per rappresentare e gestire rotazioni nello spazio tridimensionale.
- *
- * Questa classe supporta diverse rappresentazioni di rotazioni, inclusi matrici di rotazione,
- * quaternioni, asse-angolo e angoli di Eulero. Permette inoltre la composizione di rotazioni.
- */
+  * @class Rotation
+  * @brief Class for representing and managing rotations in three-dimensional space.
+  *
+  * This class supports various rotation representations, including rotation matrices,
+  * quaternions, axis-angle, and Euler angles. It also allows composition of rotations.
+  */
 class Rotation
 {
 public:
     /**
-     * @brief Costruttore di default.
-     *
-     * Inizializza la rotazione come l'identità.
-     */
+      * @brief Default constructor.
+      *
+      * Initializes the rotation as identity.
+      */
     Rotation();
 
     /**
-     * @brief Copy constructor.
-     * @param other Altra rotazione da copiare.
-     */
+      * @brief Copy constructor.
+      * @param other Another rotation to copy.
+      */
     Rotation(const Rotation &other);
 
     /**
-     * @brief Move constructor for the Rotation class.
-     * 
-     * This constructor allows the creation of a Rotation object by transferring
-     * the resources from another Rotation object. It is marked as noexcept to 
-     * indicate that it does not throw exceptions.
-     * 
-     * @param other The Rotation object to be moved.
-     */
+      * @brief Move constructor for the Rotation class.
+      *
+      * This constructor allows the creation of a Rotation object by transferring
+      * the resources from another Rotation object. It is marked as noexcept to
+      * indicate that it does not throw exceptions.
+      *
+      * @param other The Rotation object to be moved.
+      */
     Rotation(Rotation &&other) noexcept;
 
     /**
-     * @brief Costruttore da matrice di rotazione.
-     * @param rotation_matrix Matrice di rotazione 3x3.
-     */
+      * @brief Constructor from rotation matrix.
+      * @param rotation_matrix 3x3 rotation matrix.
+      */
     Rotation(const Eigen::Matrix3d &rotation_matrix);
 
     /**
-     * @brief Costruttore da quaternione.
-     * @param quaternion Quaternione rappresentante la rotazione.
-     */
+      * @brief Constructor from quaternion.
+      * @param quaternion Quaternion representing the rotation.
+      */
     Rotation(const Eigen::Quaterniond &quaternion);
 
     /**
-     * @brief Costruttore da asse-angolo.
-     * @param angle_axis Rappresentazione asse-angolo della rotazione.
-     */
+      * @brief Constructor from axis-angle.
+      * @param angle_axis Axis-angle representation of the rotation.
+      */
     Rotation(const Eigen::AngleAxisd &angle_axis);
 
     /**
-     * @brief Costruttore da angoli di Eulero.
-     * @param angle1 Primo angolo di Eulero.
-     * @param angle2 Secondo angolo di Eulero.
-     * @param angle3 Terzo angolo di Eulero.
-     * @param intrinsic Se true, utilizza rotazioni intrinseche; altrimenti, estrinseche.
-     * @param sequence Sequenza degli assi (es. "ZYX").
-     * @param degree Se true, gli angoli sono in gradi; altrimenti, in radianti.
-     */
+      * @brief Constructor from Euler angles.
+      * @param angle1 First Euler angle.
+      * @param angle2 Second Euler angle.
+      * @param angle3 Third Euler angle.
+      * @param intrinsic If true, uses intrinsic rotations; otherwise, extrinsic.
+      * @param sequence Sequence of axes (e.g., "ZYX").
+      * @param degree If true, angles are in degrees; otherwise, in radians.
+      */
     Rotation(double angle1,
              double angle2,
              double angle3,
@@ -108,53 +108,53 @@ public:
              bool degree = false);
 
     /**
-     * @brief Distruttore di default.
-     */
+      * @brief Default destructor.
+      */
     ~Rotation() = default;
 
-    /** Metodi statiti per definire una rotazione
-     * I metodi statici permettono di creare una rotazione senza dover istanziare un oggetto.
-     *
-     * Esempio:
-     * Rotation rot = Rotation::fromEulerAngles(0, 0, 0, true, "XYZ", false);
-     * Altrimeti si sarebbe dovuto fare:
-     *
-     * Rotation rot;
-     * rot = rot.fromEulerAngles(0, 0, 0, true, "XYZ", false);
-     *
-     */
+    /** Static methods to define a rotation
+      * Static methods allow creating a rotation without having to instantiate an object.
+      *
+      * Example:
+      * Rotation rot = Rotation::fromEulerAngles(0, 0, 0, true, "XYZ", false);
+      * Otherwise you would have to do:
+      *
+      * Rotation rot;
+      * rot = rot.fromEulerAngles(0, 0, 0, true, "XYZ", false);
+      *
+      */
 
     /**
-     * @brief Crea una rotazione da una matrice di rotazione.
-     * @param rotation_matrix Matrice di rotazione 3x3.
-     * @return Oggetto Rotation.
-     */
+      * @brief Creates a rotation from a rotation matrix.
+      * @param rotation_matrix 3x3 rotation matrix.
+      * @return Rotation object.
+      */
     static Rotation fromRotationMatrix(const Eigen::Matrix3d &rotation_matrix);
 
     /**
-     * @brief Crea una rotazione da un quaternione.
-     * @param quaternion Quaternione rappresentante la rotazione.
-     * @return Oggetto Rotation.
-     */
+      * @brief Creates a rotation from a quaternion.
+      * @param quaternion Quaternion representing the rotation.
+      * @return Rotation object.
+      */
     static Rotation fromQuaternion(const Eigen::Quaterniond &quaternion);
 
     /**
-     * @brief Crea una rotazione da una rappresentazione asse-angolo.
-     * @param angle_axis Rappresentazione asse-angolo della rotazione.
-     * @return Oggetto Rotation.
-     */
+      * @brief Creates a rotation from an axis-angle representation.
+      * @param angle_axis Axis-angle representation of the rotation.
+      * @return Rotation object.
+      */
     static Rotation fromAngleAxis(const Eigen::AngleAxisd &angle_axis);
 
     /**
-     * @brief Crea una rotazione da angoli di Eulero.
-     * @param angle1 Primo angolo di Eulero.
-     * @param angle2 Secondo angolo di Eulero.
-     * @param angle3 Terzo angolo di Eulero.
-     * @param intrinsic Se true, utilizza rotazioni intrinseche; altrimenti, estrinseche.
-     * @param sequence Sequenza degli assi (es. "XYZ").
-     * @param degree Se true, gli angoli sono in gradi; altrimenti, in radianti.
-     * @return Oggetto Rotation.
-     */
+      * @brief Creates a rotation from Euler angles.
+      * @param angle1 First Euler angle.
+      * @param angle2 Second Euler angle.
+      * @param angle3 Third Euler angle.
+      * @param intrinsic If true, uses intrinsic rotations; otherwise, extrinsic.
+      * @param sequence Sequence of axes (e.g., "XYZ").
+      * @param degree If true, angles are in degrees; otherwise, in radians.
+      * @return Rotation object.
+      */
     static Rotation fromEulerAngles(double angle1,
                                     double angle2,
                                     double angle3,
@@ -162,207 +162,207 @@ public:
                                     const std::string &sequence = "XYZ",
                                     bool degree = false);
 
-    // Convertitori
+    // Converters
 
     /**
-     * @brief Converte la rotazione in una matrice di rotazione.
-     * @return Matrice di rotazione 3x3.
-     */
+      * @brief Converts the rotation to a rotation matrix.
+      * @return 3x3 rotation matrix.
+      */
     Eigen::Matrix3d toRotationMatrix() const;
 
     /**
-     * @brief Converte la rotazione in un quaternione.
-     * @return Quaternione rappresentante la rotazione.
-     */
+      * @brief Converts the rotation to a quaternion.
+      * @return Quaternion representing the rotation.
+      */
     Eigen::Quaterniond toQuaternion() const;
 
     /**
-     * @brief Converte la rotazione in una rappresentazione asse-angolo.
-     * @return Rappresentazione asse-angolo della rotazione.
-     */
+      * @brief Converts the rotation to an axis-angle representation.
+      * @return Axis-angle representation of the rotation.
+      */
     Eigen::AngleAxisd toAngleAxis() const;
 
     /**
-     * @brief Converte la rotazione in angoli di Eulero.
-     * @param intrinsic Se true, utilizza rotazioni intrinseche; altrimenti, estrinseche.
-     * @param sequence Sequenza degli assi (es. "ZYX").
-     * @return Vettore contenente i tre angoli di Eulero.
-     */
+      * @brief Converts the rotation to Euler angles.
+      * @param intrinsic If true, uses intrinsic rotations; otherwise, extrinsic.
+      * @param sequence Sequence of axes (e.g., "ZYX").
+      * @return Vector containing the three Euler angles.
+      */
     Eigen::Vector3d toEulerAngles(bool intrinsic = true, const std::string &sequence = "ZYX") const;
 
-    // Sovraccarico dell'operatore * e =
+    // Overloading of operators * and =
 
     /**
-     * @brief Composizione di due rotazioni.
-     * @param other Rotazione da comporre.
-     * @return Nuova rotazione risultante dalla composizione.
-     */
+      * @brief Composition of two rotations.
+      * @param other Rotation to compose with.
+      * @return New rotation resulting from the composition.
+      */
     Rotation operator*(const Rotation &other) const;
 
     /**
-     * @brief Operatore di assegnamento.
-     * @param other Rotazione da assegnare.
-     * @return Riferimento all'oggetto corrente.
-     */
+      * @brief Assignment operator.
+      * @param other Rotation to assign.
+      * @return Reference to the current object.
+      */
     Rotation &operator=(const Rotation &other);
 
     /**
-     * @brief Operatore di assegnamento per il movimento.
-     * @param other Rotazione da assegnare.
-     * @return Riferimento all'oggetto corrente.
-     */
+      * @brief Move assignment operator.
+      * @param other Rotation to assign.
+      * @return Reference to the current object.
+      */
     Rotation &operator=(Rotation &&other) noexcept;
 
-    // Metodi statici per le operazioni sui quaternioni
+    // Static methods for quaternion operations
     /**
-     * @brief Calcola la differenza tra due quaternioni.
-     * @param a Quaternione di riferimento.
-     * @param b Quaternione da sottrarre.
-     * @return Quaternione risultante dalla differenza.
-     */
+      * @brief Calculates the difference between two quaternions.
+      * @param a Reference quaternion.
+      * @param b Quaternion to subtract.
+      * @return Quaternion resulting from the difference.
+      */
     static Eigen::Quaterniond quaternion_difference(const Eigen::Quaterniond &a,
                                                     const Eigen::Quaterniond &b);
 
     /**
-     * @brief Neutra il quaternione.
-     * @param v Quaternione da negare.
-     * @return Quaternione negato.
-     */
+      * @brief Negates the quaternion.
+      * @param v Quaternion to negate.
+      * @return Negated quaternion.
+      */
     static Eigen::Quaterniond quaternion_negation(const Eigen::Quaterniond &v);
 
     /**
-     * @brief Calcola il prodotto scalare di un quaternione per uno scalare.
-     * @param v Quaternione da scalare.
-     * @param t Scala da moltiplicare.
-     * @return Quaternione scalato.
-     */
+      * @brief Calculates the scalar product of a quaternion by a scalar.
+      * @param v Quaternion to scale.
+      * @param t Scale to multiply by.
+      * @return Scaled quaternion.
+      */
     static Eigen::Quaterniond scalar_product(const Eigen::Quaterniond &v, double t);
 
     /**
-     * @brief Calcola la differenza tra due quaternioni (v1 - v0).
-     * @param v1 Primo quaternione.
-     * @param v0 Secondo quaternione.
-     * @return Quaternione risultante dalla sottrazione.
-     */
+      * @brief Calculates the difference between two quaternions (v1 - v0).
+      * @param v1 First quaternion.
+      * @param v0 Second quaternion.
+      * @return Quaternion resulting from the subtraction.
+      */
     static Eigen::Quaterniond quaternion_minus(const Eigen::Quaterniond &v1,
                                                const Eigen::Quaterniond &v0);
 
     /**
-     * @brief Calcola la somma di due quaternioni.
-     * @param v1 Primo quaternione.
-     * @param v0 Secondo quaternione.
-     * @return Quaternione risultante dall'addizione.
-     */
+      * @brief Calculates the sum of two quaternions.
+      * @param v1 First quaternion.
+      * @param v0 Second quaternion.
+      * @return Quaternion resulting from the addition.
+      */
     static Eigen::Quaterniond quaternion_plus(const Eigen::Quaterniond &v1,
                                               const Eigen::Quaterniond &v0);
 
     /**
-     * @brief Converte gradi in radianti.
-     * @param degree Angolo in gradi.
-     * @return Angolo in radianti.
-     */
+      * @brief Converts degrees to radians.
+      * @param degree Angle in degrees.
+      * @return Angle in radians.
+      */
     static double deg2rad(double degree);
 
     /**
-     * @brief Converte radianti in gradi.
-     * @param radian Angolo in radianti.
-     * @return Angolo in gradi.
-     */
+      * @brief Converts radians to degrees.
+      * @param radian Angle in radians.
+      * @return Angle in degrees.
+      */
     static double rad2deg(double radian);
 
     // Elementary Rotations Matrices
 
     /**
-     * @brief Matrice di rotazione per una rotazione attorno all'asse X.
-     * @param angle Angolo di rotazione in radianti.
-     * @return Matrice di rotazione 3x3.
-     */
+      * @brief Rotation matrix for a rotation around the X axis.
+      * @param angle Rotation angle in radians.
+      * @return 3x3 rotation matrix.
+      */
     static Eigen::Matrix3d rotationX(double angle);
 
     /**
-     * @brief Matrice di rotazione per una rotazione attorno all'asse Y.
-     * @param angle Angolo di rotazione in radianti.
-     * @return Matrice di rotazione 3x3.
-     */
+      * @brief Rotation matrix for a rotation around the Y axis.
+      * @param angle Rotation angle in radians.
+      * @return 3x3 rotation matrix.
+      */
 
     static Eigen::Matrix3d rotationY(double angle);
 
     /**
-     * @brief Matrice di rotazione per una rotazione attorno all'asse Z.
-     * @param angle Angolo di rotazione in radianti.
-     * @return Matrice di rotazione 3x3.
-     */
+      * @brief Rotation matrix for a rotation around the Z axis.
+      * @param angle Rotation angle in radians.
+      * @return 3x3 rotation matrix.
+      */
     static Eigen::Matrix3d rotationZ(double angle);
 
-    // Definizione di Matrice S e R_dot
+    // Definition of Matrix S and R_dot
 
     /**
-     * @brief Calcola la matrice S
-     * @param omega Vettore di velocità angolare.(Diverso da la velocità degli angoli di Eulero)
-     * @return Matrice S
-     *
-     */
+      * @brief Calculates the S matrix
+      * @param omega Angular velocity vector. (Different from Euler angle velocities)
+      * @return S matrix
+      *
+      */
     static Eigen::Matrix3d matrixS(const Eigen::Vector3d &omega);
 
     /**
-     * @brief Calcola la matrice R_dot
-     * @param R Matrice di rotazione.
-     * @param S Matrice S.
-     * @return Matrice R_dot
-     *
-     */
+      * @brief Calculates the R_dot matrix
+      * @param R Rotation matrix.
+      * @param S S matrix.
+      * @return R_dot matrix
+      *
+      */
     static Eigen::Matrix3d matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Matrix3d &S);
 
     /**
-     * @brief Calcola la matrice R_dot da un vettore di velocità angolare.
-     * @param omega Vettore di velocità angolare.
-     * @param R Matrice di rotazione.
-     * @return Matrice R
-     *
-     */
+      * @brief Calculates the R_dot matrix from an angular velocity vector.
+      * @param omega Angular velocity vector.
+      * @param R Rotation matrix.
+      * @return R matrix
+      *
+      */
     static Eigen::Matrix3d matrixR_dot(const Eigen::Matrix3d &R, const Eigen::Vector3d &omega);
 
     // Matrix T Mapping Between Body Angular Velocity Vector and the Euler Angle Rates
 
     /**
-     * @brief Calcola la matrice T
-     * @param angles Vettore di angoli di Eulero.
-     * @param sequence Sequenza degli assi (es. "ZYX", "ZYZ").
-     * @return Matrice T
-     *
-     */
+      * @brief Calculates the T matrix
+      * @param angles Euler angles vector.
+      * @param sequence Sequence of axes (e.g., "ZYX", "ZYZ").
+      * @return T matrix
+      *
+      */
     static Eigen::Matrix3d matrixT(const Eigen::Vector3d &angles, const std::string &sequence);
 
 private:
     /**
-     * @brief Rappresentazione interna della rotazione tramite quaternione.
-     */
+      * @brief Internal representation of rotation via quaternion.
+      */
     Eigen::Quaterniond q;
 
-    // Funzioni ausiliarie
+    // Auxiliary functions
 
     /**
-     * @brief Crea una rappresentazione asse-angolo.
-     * @param axis Asse di rotazione ('X', 'Y', 'Z' o minuscoli).
-     * @param angle Angolo di rotazione in radianti.
-     * @return Rappresentazione asse-angolo.
-     */
+      * @brief Creates an axis-angle representation.
+      * @param axis Rotation axis ('X', 'Y', 'Z' or lowercase).
+      * @param angle Rotation angle in radians.
+      * @return Axis-angle representation.
+      */
     static Eigen::AngleAxisd angleAxis(char axis, double angle);
 
     /**
-     * @brief Converte un carattere dell'asse in indice.
-     * @param axis Asse di rotazione ('X', 'Y', 'Z' o minuscoli).
-     * @return Indice corrispondente all'asse (0 per X, 1 per Y, 2 per Z).
-     * @throws std::invalid_argument Se l'asse non è valido.
-     */
+      * @brief Converts an axis character to index.
+      * @param axis Rotation axis ('X', 'Y', 'Z' or lowercase).
+      * @return Index corresponding to the axis (0 for X, 1 for Y, 2 for Z).
+      * @throws std::invalid_argument If the axis is not valid.
+      */
     static int axisToIndex(char axis);
 
     /**
-     * @brief Controlla la validità della sequenza di angoli di Eulero.
-     * @param sequence Sequenza degli assi (es. "XYZ").
-     * @return Valore intero (sempre 1 se valido).
-     * @throws std::invalid_argument Se la sequenza non è valida.
-     */
+      * @brief Checks the validity of the Euler angle sequence.
+      * @param sequence Sequence of axes (e.g., "XYZ").
+      * @return Integer value (always 1 if valid).
+      * @throws std::invalid_argument If the sequence is not valid.
+      */
     static int checkSequence(const std::string &sequence);
 };
 

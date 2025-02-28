@@ -9,7 +9,6 @@ set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
 
-# Link to project_options_with_warnings instead of using target_set_warnings
 # This applies all the warnings to your library code only
 target_link_libraries(${LIBRARY_NAME}
     PRIVATE
