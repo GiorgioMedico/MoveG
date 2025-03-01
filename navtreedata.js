@@ -25,26 +25,24 @@
 var NAVTREE =
 [
   [ "MoveG", "index.html", [
-    [ "Struttura Dipendenze Libreria", "md__2home_2runner_2work_2MoveG_2MoveG_2src_2MoveG__Lib_2README.html", null ],
-    [ "MoveG", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html", [
-      [ "Features", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md2", null ],
-      [ "Key Components", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md3", [
-        [ "Rotation Library", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md4", null ],
-        [ "Pose Library", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md5", null ],
-        [ "Trajectory Library (Coming Soon)", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md6", null ]
-      ] ],
-      [ "Development Tools", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md7", null ],
-      [ "Build Commands", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md8", null ],
-      [ "CMake Options", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md9", null ],
-      [ "IDE Integration", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md10", [
-        [ "Visual Studio Code", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md11", null ]
-      ] ],
-      [ "Project Structure", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md12", null ],
-      [ "Dependencies", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md13", null ],
-      [ "Software Requirements", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md14", null ],
-      [ "License", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md15", null ],
-      [ "Contributing", "md__2home_2runner_2work_2MoveG_2MoveG_2README.html#autotoc_md16", null ]
+    [ "Features", "index.html#autotoc_md2", null ],
+    [ "Key Components", "index.html#autotoc_md3", [
+      [ "Rotation Library", "index.html#autotoc_md4", null ],
+      [ "Pose Library", "index.html#autotoc_md5", null ],
+      [ "Trajectory Library (Coming Soon)", "index.html#autotoc_md6", null ]
     ] ],
+    [ "Development Tools", "index.html#autotoc_md7", null ],
+    [ "Build Commands", "index.html#autotoc_md8", null ],
+    [ "CMake Options", "index.html#autotoc_md9", null ],
+    [ "IDE Integration", "index.html#autotoc_md10", [
+      [ "Visual Studio Code", "index.html#autotoc_md11", null ]
+    ] ],
+    [ "Project Structure", "index.html#autotoc_md12", null ],
+    [ "Dependencies", "index.html#autotoc_md13", null ],
+    [ "Software Requirements", "index.html#autotoc_md14", null ],
+    [ "License", "index.html#autotoc_md15", null ],
+    [ "Contributing", "index.html#autotoc_md16", null ],
+    [ "Struttura Dipendenze Libreria", "md__2home_2runner_2work_2MoveG_2MoveG_2src_2MoveG__Lib_2README.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

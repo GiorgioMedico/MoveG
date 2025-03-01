@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MoveG: Main Page</title>
+<title>MoveG: MoveG</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -16,6 +16,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -90,16 +97,153 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">MoveG Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><a class="el" href="namespaceMoveG.html" title="Namespace for movement and manipulation of poses.">MoveG</a> </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2MoveG_2MoveG_2README"></a> <img src="https://img.shields.io/badge/C%2B%2B-20-blue" alt="C++" class="inline"/> <a href="https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml"><img src="https://github.com/GiorgioMedico/MoveG/actions/workflows/ubuntu.yml/badge.svg" alt="Ubuntu CI Test" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/badge/Code%20Coverage-95%25-success?style=flat" alt="Code Coverage" class="inline"/> <a href="https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml"><img src="https://github.com/GiorgioMedico/MoveG/actions/workflows/documentation.yml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml"><img src="https://github.com/GiorgioMedico/MoveG/actions/workflows/pre-commit.yml/badge.svg" alt="pre-commit" style="pointer-events: none;" class="inline"/></a></p>
+<p>A modern C++ library for 3D rotations, poses, and trajectories with comprehensive tooling. <a class="el" href="namespaceMoveG.html" title="Namespace for movement and manipulation of poses.">MoveG</a> is designed for robotics and computer vision applications, providing a robust foundation for spatial transformations with strong type safety and error checking.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Features</h1>
+<ul>
+<li>Robust 3D transformation handling (quaternions, rotation matrices, Euler angles)</li>
+<li>Coordinate frame transformations with error checking</li>
+<li>Modern C++20 implementation</li>
+<li>Comprehensive unit tests with Catch2</li>
+<li>Automated code quality checks</li>
+<li>Memory safety with sanitizers</li>
+<li>High-performance optimizations (LTO, parallel builds)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Key Components</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Rotation Library</h2>
+<p>Provides representation and operations for 3D rotations using quaternions, rotation matrices, Euler angles, and axis-angle representations. Supports conversion between formats, composition of rotations, and angular velocity transformations.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Pose Library</h2>
+<p>Builds on the rotation library to represent 6-DOF poses (position and orientation). Supports transformation composition, inverse operations, and coordinate frame conversions with proper error handling.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Trajectory Library (Coming Soon)</h2>
+<p>Will provide capabilities for motion planning and trajectory generation.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Development Tools</h1>
+<ul>
+<li><b><a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a></b>: Package manager for dependency handling</li>
+<li><b><a href="https://github.com/catchorg/Catch2">Catch2</a></b>: Unit testing framework</li>
+<li><b><a href="https://github.com/fmtlib/fmt">fmt</a></b>: Modern string formatting library</li>
+<li><b><a href="https://eigen.tuxfamily.org">Eigen</a></b>: Linear algebra library</li>
+<li><b>Clang Tools</b>: Format and static analysis</li>
+<li><b>Sanitizers</b>: Address, undefined behavior, and leak detection</li>
+<li><b><a href="https://doxygen.nl/">Doxygen</a></b>: Documentation generation</li>
+<li><b><a href="https://pre-commit.com/">pre-commit</a></b>: Git hooks for code quality checks</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Build Commands</h1>
+<div class="fragment"><div class="line"># Clone the repository with submodules</div>
+<div class="line">git clone --recursive https://github.com/GiorgioMedico/MoveG.git</div>
+<div class="line">cd MoveG</div>
+<div class="line"> </div>
+<div class="line"># Create build directory</div>
+<div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line"> </div>
+<div class="line"># Configure and build (Release mode)</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</div>
+<div class="line">cmake --build . --config Release</div>
+<div class="line"> </div>
+<div class="line"># Run the main executable</div>
+<div class="line">cd app</div>
+<div class="line">./main</div>
+<div class="line"> </div>
+<div class="line"># Run all tests</div>
+<div class="line">cd ..</div>
+<div class="line">ctest -C Release</div>
+<div class="line"> </div>
+<div class="line"># Generate documentation</div>
+<div class="line">cmake --build . --target docs</div>
+<div class="line"> </div>
+<div class="line"># Run code coverage analysis</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On ..</div>
+<div class="line">cmake --build . --target coverage</div>
+<div class="line"> </div>
+<div class="line"># Code formatting</div>
+<div class="line">cmake --build . --target run_clang_format</div>
+<div class="line">cmake --build . --target run_cmake_format</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+CMake Options</h1>
+<ul>
+<li><code>-DENABLE_TESTING=ON/OFF</code>: Enable/disable unit tests (default: ON)</li>
+<li><code>-DENABLE_COVERAGE=ON/OFF</code>: Enable code coverage analysis (default: ON)</li>
+<li><code>-DENABLE_CLANG_TIDY=ON/OFF</code>: Enable static analysis (default: ON)</li>
+<li><code>-DENABLE_SANITIZE_ADDR=ON/OFF</code>: Enable address sanitizer (default: ON)</li>
+<li><code>-DENABLE_SANITIZE_UNDEF=ON/OFF</code>: Enable undefined behavior sanitizer (default: ON)</li>
+<li><code>-DENABLE_SANITIZE_LEAK=ON/OFF</code>: Enable memory leak sanitizer (default: ON)</li>
+<li><code>-DENABLE_LTO=ON/OFF</code>: Enable link-time optimization (default: OFF, auto-ON for Release)</li>
+<li><code>-DENABLE_WARNINGS_AS_ERRORS=ON/OFF</code>: Treat warnings as errors (default: OFF)</li>
+<li><code>-DUSE_CPM=ON/OFF</code>: Use CPM for dependency management (default: ON)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md10"></a>
+IDE Integration</h1>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Visual Studio Code</h2>
+<p>This project includes optimized configuration for VS Code:</p><ul>
+<li>Press <code>Alt+S</code> to delete CMake cache and reconfigure</li>
+<li>Use the "CMake: Build" task for building</li>
+<li>Use the "CMake: Run Tests" button for running tests</li>
+<li>Use built-in tasks for documentation and code coverage</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md12"></a>
+Project Structure</h1>
+<ul>
+<li><code>src/MoveG_Lib/</code> - Core library implementation<ul>
+<li><code>rotation_lib.{h,cpp}</code> - 3D rotation management</li>
+<li><code>pose_lib.{h,cpp}</code> - Pose (position + orientation) handling</li>
+<li><code>traj_lib.{h,cpp}</code> - Trajectory planning (in development)</li>
+</ul>
+</li>
+<li><code>app/</code> - Example applications<ul>
+<li><code><a class="el" href="pose__example_8cpp.html" title="Example demonstrating usage of the MoveG Pose library.">pose_example.cpp</a></code> - Demonstration of pose library features</li>
+<li><code><a class="el" href="rotation__example_8cpp.html" title="Example demonstrating usage of the MoveG Rotation library.">rotation_example.cpp</a></code> - Demonstration of rotation library features</li>
+</ul>
+</li>
+<li><code>tests/</code> - Unit tests with Catch2<ul>
+<li><code>test_Pose.cpp</code> - Comprehensive tests for pose functionality</li>
+<li><code>test_Rotation.cpp</code> - Comprehensive tests for rotation functionality</li>
+</ul>
+</li>
+<li><code>cmake/</code> - Build system modules<ul>
+<li><code>CodeCoverage.cmake</code> - Code coverage configuration</li>
+<li><code>Sanitizer.cmake</code> - Memory and behavior sanitizers</li>
+<li><code>LTO.cmake</code> - Link-time optimization</li>
+</ul>
+</li>
+<li><code>docs/</code> - Documentation</li>
+<li><code>tools/</code> - Development helper scripts</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Dependencies</h1>
+<p><a class="el" href="namespaceMoveG.html" title="Namespace for movement and manipulation of poses.">MoveG</a> uses Eigen3 as its primary dependency for linear algebra and geometry operations. The required version is automatically installed via CPM during the build process.</p>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Software Requirements</h1>
+<ul>
+<li>CMake 3.21+</li>
+<li>C++20 compatible compiler (GCC 9+, Clang 9+, MSVC 2019+)</li>
+<li>Git (for cloning and development)</li>
+<li>Doxygen (for documentation generation)</li>
+<li>Python 3 (for helper scripts)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md15"></a>
+License</h1>
+<p>Apache License 2.0</p>
+<h1><a class="anchor" id="autotoc_md16"></a>
+Contributing</h1>
+<p>Contributions are welcome. Please format your code with clang-format and ensure all tests pass before submitting pull requests. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Feb 28 2025 14:24:15 for MoveG by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Mar 1 2025 09:34:03 for MoveG by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
