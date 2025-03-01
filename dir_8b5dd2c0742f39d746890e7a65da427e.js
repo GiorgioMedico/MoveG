@@ -6,5 +6,5 @@ var dir_8b5dd2c0742f39d746890e7a65da427e =
     [ "rotation_lib.cpp", "rotation__lib_8cpp.html", "rotation__lib_8cpp" ],
     [ "rotation_lib.h", "rotation__lib_8h.html", "rotation__lib_8h" ],
     [ "traj_lib.cpp", "traj__lib_8cpp.html", null ],
-    [ "traj_lib.h", "traj__lib_8h.html", "traj__lib_8h" ]
+    [ "traj_lib.h", "traj__lib_8h.html", null ]
 ];

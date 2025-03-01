@@ -123,49 +123,8 @@ $(document).ready(function(){initNavTree('traj__lib_8h_source.html',''); initRes
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMoveG.html">MoveG</a></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Workspace Representation</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// Classe Waypoint per la rappresentazione di un punto di passaggio con velocità e accelerazione</span></div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html">   28</a></span><span class="keyword">class </span><a class="code hl_class" href="classMoveG_1_1Waypoint.html">Waypoint</a></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// Costruttori</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#a86b4822e2417a9e664413b7b6a2eecc2">   32</a></span>    <a class="code hl_function" href="classMoveG_1_1Waypoint.html#a86b4822e2417a9e664413b7b6a2eecc2">Waypoint</a>();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// Distruttore</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#a9a19693ea90fbb50649c3839a8731dc3">   35</a></span>    <a class="code hl_function" href="classMoveG_1_1Waypoint.html#a9a19693ea90fbb50649c3839a8731dc3">~Waypoint</a>();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// Metodi di accesso</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069">   41</a></span>    Eigen::Vector3d <a class="code hl_variable" href="classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069">position_</a>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#a4eb9ff02536d785cdf179f2de89d4499">   42</a></span>    Eigen::Quaterniond <a class="code hl_variable" href="classMoveG_1_1Waypoint.html#a4eb9ff02536d785cdf179f2de89d4499">orientation_</a>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#a23fa09c4f724fdc484d8095e241af2fc">   43</a></span>    Eigen::Vector3d <a class="code hl_variable" href="classMoveG_1_1Waypoint.html#a23fa09c4f724fdc484d8095e241af2fc">velocity_</a>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMoveG_1_1Waypoint.html#ad07e840760d4f3daad02d75485dc2c8b">   44</a></span>    Eigen::Vector3d <a class="code hl_variable" href="classMoveG_1_1Waypoint.html#ad07e840760d4f3daad02d75485dc2c8b">acceleration_</a>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
-</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace MoveG</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// Classe Trajectory per la rappresentazione di una traiettoria nel workspace</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">// Joint Space Representation</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">// Classe JointWaypoint per la rappresentazione di un punto di passaggio nello spazio delle giunzioni</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// Classe JointTrajectory per la rappresentazione di una traiettoria nello spazio delle giunzioni</span></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html"><div class="ttname"><a href="classMoveG_1_1Waypoint.html">MoveG::Waypoint</a></div><div class="ttdef"><b>Definition</b> <a href="traj__lib_8h_source.html#l00028">traj_lib.h:29</a></div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_a23fa09c4f724fdc484d8095e241af2fc"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#a23fa09c4f724fdc484d8095e241af2fc">MoveG::Waypoint::velocity_</a></div><div class="ttdeci">Eigen::Vector3d velocity_</div><div class="ttdef"><b>Definition</b> <a href="traj__lib_8h_source.html#l00043">traj_lib.h:43</a></div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_a4eb9ff02536d785cdf179f2de89d4499"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#a4eb9ff02536d785cdf179f2de89d4499">MoveG::Waypoint::orientation_</a></div><div class="ttdeci">Eigen::Quaterniond orientation_</div><div class="ttdef"><b>Definition</b> <a href="traj__lib_8h_source.html#l00042">traj_lib.h:42</a></div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_a86b4822e2417a9e664413b7b6a2eecc2"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#a86b4822e2417a9e664413b7b6a2eecc2">MoveG::Waypoint::Waypoint</a></div><div class="ttdeci">Waypoint()</div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_a9a19693ea90fbb50649c3839a8731dc3"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#a9a19693ea90fbb50649c3839a8731dc3">MoveG::Waypoint::~Waypoint</a></div><div class="ttdeci">~Waypoint()</div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_ab25218c480f4c9c23ba0011696c75069"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069">MoveG::Waypoint::position_</a></div><div class="ttdeci">Eigen::Vector3d position_</div><div class="ttdef"><b>Definition</b> <a href="traj__lib_8h_source.html#l00041">traj_lib.h:41</a></div></div>
-<div class="ttc" id="aclassMoveG_1_1Waypoint_html_ad07e840760d4f3daad02d75485dc2c8b"><div class="ttname"><a href="classMoveG_1_1Waypoint.html#ad07e840760d4f3daad02d75485dc2c8b">MoveG::Waypoint::acceleration_</a></div><div class="ttdeci">Eigen::Vector3d acceleration_</div><div class="ttdef"><b>Definition</b> <a href="traj__lib_8h_source.html#l00044">traj_lib.h:44</a></div></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <span class="comment">// namespace MoveG</span></div>
 <div class="ttc" id="anamespaceMoveG_html"><div class="ttname"><a href="namespaceMoveG.html">MoveG</a></div><div class="ttdoc">Namespace for movement and manipulation of poses.</div><div class="ttdef"><b>Definition</b> <a href="pose__lib_8cpp_source.html#l00011">pose_lib.cpp:12</a></div></div>
 <div class="ttc" id="apose__lib_8h_html"><div class="ttname"><a href="pose__lib_8h.html">pose_lib.h</a></div><div class="ttdoc">Class for representing Poses.</div></div>
 <div class="ttc" id="arotation__lib_8h_html"><div class="ttname"><a href="rotation__lib_8h.html">rotation_lib.h</a></div><div class="ttdoc">Class for representing and manipulating 3D rotations.</div></div>
@@ -175,7 +134,7 @@ $(document).ready(function(){initNavTree('traj__lib_8h_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8b5dd2c0742f39d746890e7a65da427e.html">MoveG_Lib</a></li><li class="navelem"><a class="el" href="traj__lib_8h.html">traj_lib.h</a></li>
-    <li class="footer">Generated on Sat Mar 1 2025 09:34:03 for MoveG by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Mar 1 2025 10:34:41 for MoveG by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['position_5f_0',['position_',['../classMoveG_1_1Pose.html#a4245dcf47172cc0f4b284c865154351d',1,'MoveG::Pose::position_'],['../classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069',1,'MoveG::Waypoint::position_']]]
+  ['q_0',['q',['../classMoveG_1_1Rotation.html#a06ef807b0887ad94ea8516a6f3e7ce40',1,'MoveG::Rotation']]]
 ];

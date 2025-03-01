@@ -5,7 +5,7 @@ var searchData=
   ['pose_5fexample_2ecpp_2',['pose_example.cpp',['../pose__example_8cpp.html',1,'']]],
   ['pose_5flib_2ecpp_3',['pose_lib.cpp',['../pose__lib_8cpp.html',1,'']]],
   ['pose_5flib_2eh_4',['pose_lib.h',['../pose__lib_8h.html',1,'']]],
-  ['position_5f_5',['position_',['../classMoveG_1_1Pose.html#a4245dcf47172cc0f4b284c865154351d',1,'MoveG::Pose::position_'],['../classMoveG_1_1Waypoint.html#ab25218c480f4c9c23ba0011696c75069',1,'MoveG::Waypoint::position_']]],
+  ['position_5f_5',['position_',['../classMoveG_1_1Pose.html#a4245dcf47172cc0f4b284c865154351d',1,'MoveG::Pose']]],
   ['positiondistance_6',['positionDistance',['../classMoveG_1_1Pose.html#a349a94cf14401d7d534a52b6b9b214d3',1,'MoveG::Pose']]],
   ['printeulerangles_7',['printEulerAngles',['../rotation__example_8cpp.html#a84572da9a8ef2f389b705bae09ef308b',1,'rotation_example.cpp']]],
   ['printhomogeneousmatrix_8',['printHomogeneousMatrix',['../pose__example_8cpp.html#a014c9d6809dfa5f6b31afc5bb2ce1d37',1,'pose_example.cpp']]],
