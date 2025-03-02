@@ -8,7 +8,7 @@ set(POSE_SOURCES
 )
 
 set(TRAJECTORY_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/traj_lib.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.cpp"
@@ -31,7 +31,7 @@ set(POSE_HEADERS
 )
 
 set(TRAJECTORY_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/traj_lib.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.h"
@@ -39,7 +39,6 @@ set(TRAJECTORY_HEADERS
 
 # Combine all headers
 set(LIBRARY_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/MoveG_Lib.h"
     ${ROTATION_HEADERS}
     ${POSE_HEADERS}
     ${TRAJECTORY_HEADERS}
