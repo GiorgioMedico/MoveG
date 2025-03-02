@@ -1,6 +1,6 @@
 # Define all source files by component
 set(ROTATION_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/rotation/rotation_lib.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.cpp"
 )
 
 set(POSE_SOURCES
@@ -23,7 +23,7 @@ set(LIBRARY_SOURCES
 
 # Define header files by component
 set(ROTATION_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/rotation/rotation_lib.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.h"
 )
 
 set(POSE_HEADERS
@@ -39,6 +39,7 @@ set(TRAJECTORY_HEADERS
 
 # Combine all headers
 set(LIBRARY_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/MoveG_Lib.h"
     ${ROTATION_HEADERS}
     ${POSE_HEADERS}
     ${TRAJECTORY_HEADERS}
