@@ -1,8 +1,49 @@
-set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/rotation_lib.cpp"
-                    "${CMAKE_CURRENT_SOURCE_DIR}/pose_lib.cpp")
+# Define all source files by component
+set(ROTATION_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/rotation/rotation_lib.cpp"
+)
 
-set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/rotation_lib.h"
-                    "${CMAKE_CURRENT_SOURCE_DIR}/pose_lib.h")
+set(POSE_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.cpp"
+)
+
+set(TRAJECTORY_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/traj_lib.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.cpp"
+)
+
+# Combine all sources
+set(LIBRARY_SOURCES
+    ${ROTATION_SOURCES}
+    ${POSE_SOURCES}
+    ${TRAJECTORY_SOURCES}
+)
+
+# Define header files by component
+set(ROTATION_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/rotation/rotation_lib.h"
+)
+
+set(POSE_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.h"
+)
+
+set(TRAJECTORY_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/traj_lib.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.h"
+)
+
+# Combine all headers
+set(LIBRARY_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/MoveG_Lib.h"
+    ${ROTATION_HEADERS}
+    ${POSE_HEADERS}
+    ${TRAJECTORY_HEADERS}
+)
 
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
