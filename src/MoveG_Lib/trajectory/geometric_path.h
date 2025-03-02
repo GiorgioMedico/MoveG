@@ -28,9 +28,8 @@ enum class GeometricPathType
 {
     LINEAR,     ///< Linear path between waypoints
     CIRCULAR,   ///< Circular path or arc
-    POLYNOMIAL, ///< polynomial interpolation of order 3 or 5
-    BEZIER,
-    B_SPLINE ///< B-spline interpolation
+    POLYNOMIAL, ///< Polynomial interpolation of order 3 or 5
+    B_SPLINE    ///< B-spline interpolation
 };
 
 /**
