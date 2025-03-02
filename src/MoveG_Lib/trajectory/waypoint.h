@@ -18,8 +18,7 @@
 #include <string>
 #include <vector>
 
-#include "pose_lib.h"
-#include "rotation_lib.h"
+#include "MoveG_Lib.h"
 
 namespace MoveG
 {
