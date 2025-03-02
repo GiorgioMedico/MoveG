@@ -3,8 +3,8 @@
  * @brief Example demonstrating usage of the MoveG Pose library
  */
 
-#include "pose_lib.h"
-#include "rotation_lib.h"
+#include "pose/pose_lib.h"
+#include "pose/rotation_lib.h"
 #include <iomanip>
 #include <iostream>
 #include <vector>

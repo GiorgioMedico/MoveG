@@ -3,7 +3,7 @@
  * @brief Example demonstrating usage of the MoveG Rotation library
  */
 
-#include "rotation_lib.h"
+#include "pose/rotation_lib.h"
 #include <iomanip>
 #include <iostream>
 

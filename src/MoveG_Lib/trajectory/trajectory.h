@@ -28,6 +28,15 @@ namespace MoveG
 {
 
 /**
+ * @brief Enumeration of orientation interpolation methods
+ */
+enum class OrientationInterpolationType
+{
+    SLERP, ///< Spherical Linear Interpolation
+    SQUAD  ///< Spherical Cubic Interpolation
+};
+
+/**
    * @class Trajectory
    * @brief Class representing a trajectory
    *

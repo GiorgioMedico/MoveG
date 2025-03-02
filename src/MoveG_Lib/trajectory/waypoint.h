@@ -3,10 +3,14 @@
  * @brief Class for representing waypoints in a trajectory
  *
  * @author Giorgio Medico
- * @date 01/03/2025
+ * @date 02/03/2025
  */
 
 #pragma once
+
+// Define this macro to enable angular features
+// Comment out or undefine to disable
+#define ENABLE_ANGULAR_FEATURES 0
 
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Geometry>
@@ -18,77 +22,68 @@
 #include <string>
 #include <vector>
 
-#include "MoveG_Lib.h"
+#include "pose/pose_lib.h"
 
 namespace MoveG
 {
 
 /**
-   * @brief Enumeration of orientation interpolation methods
-   */
-enum class OrientationInterpolationType
-{
-    SLERP, ///< Spherical Linear Interpolation
-    SQUAD  ///< Spherical Cubic Interpolation
-};
-
-/**
-   * @class Waypoint
-   * @brief Class representing a waypoint in a trajectory
-   *
-   * The Waypoint class contains information about position, orientation,
-   * and derivatives (velocity, acceleration, jerk) for a point in the trajectory.
-   */
+    * @class Waypoint
+    * @brief Class representing a waypoint in a trajectory
+    *
+    * The Waypoint class contains information about position, orientation,
+    * and derivatives (velocity, acceleration, jerk) for a point in the trajectory.
+    */
 class Waypoint
 {
 public:
     /**
-       * @brief Default constructor
-       */
+        * @brief Default constructor
+        */
     Waypoint();
 
     /**
-       * @brief Constructor with position and orientation
-       * @param position 3D position of the waypoint
-       * @param orientation Orientation as quaternion
-       */
+        * @brief Constructor with position and orientation
+        * @param position 3D position of the waypoint
+        * @param orientation Orientation as quaternion
+        */
     Waypoint(const Eigen::Vector3d &position, const Eigen::Quaterniond &orientation);
 
     /**
-       * @brief Constructor with Pose
-       * @param pose Position and orientation of the waypoint
-       */
+        * @brief Constructor with Pose
+        * @param pose Position and orientation of the waypoint
+        */
     explicit Waypoint(const Pose &pose);
 
     /**
-       * @brief Copy constructor
-       * @param other Waypoint to copy
-       */
+        * @brief Copy constructor
+        * @param other Waypoint to copy
+        */
     Waypoint(const Waypoint &other);
 
     /**
-       * @brief Move constructor
-       * @param other Waypoint to move
-       */
+        * @brief Move constructor
+        * @param other Waypoint to move
+        */
     Waypoint(Waypoint &&other) noexcept;
 
     /**
-       * @brief Copy assignment operator
-       * @param other Waypoint to copy
-       * @return Reference to this Waypoint
-       */
+        * @brief Copy assignment operator
+        * @param other Waypoint to copy
+        * @return Reference to this Waypoint
+        */
     Waypoint &operator=(const Waypoint &other);
 
     /**
-       * @brief Move assignment operator
-       * @param other Waypoint to move
-       * @return Reference to this Waypoint
-       */
+        * @brief Move assignment operator
+        * @param other Waypoint to move
+        * @return Reference to this Waypoint
+        */
     Waypoint &operator=(Waypoint &&other) noexcept;
 
     /**
-       * @brief Virtual destructor
-       */
+        * @brief Virtual destructor
+        */
     virtual ~Waypoint() = default;
 
     // Getters for position and orientation
@@ -110,30 +105,39 @@ public:
     {
         return linearVelocity_;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> getAngularVelocity() const
     {
         return angularVelocity_;
     }
+#endif
 
     // Getters for acceleration
     std::optional<Eigen::Vector3d> getLinearAcceleration() const
     {
         return linearAcceleration_;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> getAngularAcceleration() const
     {
         return angularAcceleration_;
     }
+#endif
 
     // Getters for jerk
     std::optional<Eigen::Vector3d> getLinearJerk() const
     {
         return linearJerk_;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> getAngularJerk() const
     {
         return angularJerk_;
     }
+#endif
 
     // Getters for blending parameters
     double getBlendRadius() const
@@ -167,30 +171,39 @@ public:
     {
         linearVelocity_ = velocity;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     void setAngularVelocity(const Eigen::Vector3d &velocity)
     {
         angularVelocity_ = velocity;
     }
+#endif
 
     // Setters for acceleration
     void setLinearAcceleration(const Eigen::Vector3d &acceleration)
     {
         linearAcceleration_ = acceleration;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     void setAngularAcceleration(const Eigen::Vector3d &acceleration)
     {
         angularAcceleration_ = acceleration;
     }
+#endif
 
     // Setters for jerk
     void setLinearJerk(const Eigen::Vector3d &jerk)
     {
         linearJerk_ = jerk;
     }
+
+#if ENABLE_ANGULAR_FEATURES
     void setAngularJerk(const Eigen::Vector3d &jerk)
     {
         angularJerk_ = jerk;
     }
+#endif
 
     // Setters for blending parameters
     void setBlendRadius(double radius)
@@ -209,39 +222,35 @@ public:
     }
 
     /**
-       * @brief Stream operator for printing
-       * @param os Output stream
-       * @param waypoint Waypoint to print
-       * @return Reference to the output stream
-       */
+        * @brief Stream operator for printing
+        * @param os Output stream
+        * @param waypoint Waypoint to print
+        * @return Reference to the output stream
+        */
     friend std::ostream &operator<<(std::ostream &os, const Waypoint &waypoint);
 
-    /**
-       * @brief Linear interpolation between two waypoints
-       * @param start Initial waypoint
-       * @param end Final waypoint
-       * @param t Interpolation parameter (0.0 - 1.0)
-       * @param orientationType Orientation interpolation type
-       * @return Interpolated waypoint
-       */
-    static Waypoint interpolate(
-        const Waypoint &start,
-        const Waypoint &end,
-        double t,
-        OrientationInterpolationType orientationType = OrientationInterpolationType::SLERP);
 
 private:
     Eigen::Vector3d position_;       ///< 3D position of the waypoint
     Eigen::Quaterniond orientation_; ///< Orientation as quaternion
 
-    std::optional<Eigen::Vector3d> linearVelocity_;  ///< Linear velocity (optional)
+    std::optional<Eigen::Vector3d> linearVelocity_; ///< Linear velocity (optional)
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> angularVelocity_; ///< Angular velocity (optional)
+#endif
 
-    std::optional<Eigen::Vector3d> linearAcceleration_;  ///< Linear acceleration (optional)
+    std::optional<Eigen::Vector3d> linearAcceleration_; ///< Linear acceleration (optional)
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> angularAcceleration_; ///< Angular acceleration (optional)
+#endif
 
-    std::optional<Eigen::Vector3d> linearJerk_;  ///< Linear jerk (optional)
+    std::optional<Eigen::Vector3d> linearJerk_; ///< Linear jerk (optional)
+
+#if ENABLE_ANGULAR_FEATURES
     std::optional<Eigen::Vector3d> angularJerk_; ///< Angular jerk (optional)
+#endif
 
     double blendRadius_ = 0.0;      ///< Blending radius
     double blendTolerance_ = 0.001; ///< Blending tolerance

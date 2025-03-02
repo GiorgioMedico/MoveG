@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "config.hpp"
-#include "rotation_lib.h"
 
 
 int main(int /*argc*/, char ** /*argv*/) // comment to avoid warning
