@@ -14,10 +14,15 @@ set(TRAJECTORY_SOURCES
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.cpp"
 )
 
+set(INTERPOLATECPP_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.cpp"
+)
+
 # Combine all sources
 set(LIBRARY_SOURCES
     ${ROTATION_SOURCES}
     ${POSE_SOURCES}
+    ${INTERPOLATECPP_SOURCES}
     ${TRAJECTORY_SOURCES}
 )
 
@@ -37,11 +42,16 @@ set(TRAJECTORY_HEADERS
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.h"
 )
 
+set(INTERPOLATECPP_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.h"
+)
+
 # Combine all headers
 set(LIBRARY_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/MoveG_Lib.h"
     ${ROTATION_HEADERS}
     ${POSE_HEADERS}
+    ${INTERPOLATECPP_HEADERS}
     ${TRAJECTORY_HEADERS}
 )
 

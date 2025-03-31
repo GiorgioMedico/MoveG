@@ -3,7 +3,7 @@
  * @brief Implementation of the tridiagonal system solver using the Thomas algorithm
  */
 
-#include "tridiagonal_solver.h"
+#include "interpolatecpp/tridiagonal_inv.h"
 
 namespace InterpolateCpp
 {
@@ -50,9 +50,14 @@ std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
     // Back substitution
     std::vector<double> x(n, 0.0);
     x[n - 1] = d[n - 1] / b[n - 1];
-    for (int k = static_cast<int>(n) - 2; k >= 0; --k)
+    if (n > 1)
     {
-        x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
+        for (size_t i = 0; i < n - 1; ++i)
+        {
+            // Calculate k in reverse order: n-2, n-3, ..., 0
+            size_t k = n - 2 - i;
+            x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
+        }
     }
 
     return x;

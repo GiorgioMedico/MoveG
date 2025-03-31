@@ -18,9 +18,19 @@ target_link_libraries("UnitTestPose"
         project_options  # Base options without warnings, or use project_options_with_warnings
 )
 
+# Unit Test for Tridiagonal Solver
+add_executable("UnitTestTridiagonalSolver" "test_TridiagonalSolver.cpp")
+target_link_libraries("UnitTestTridiagonalSolver"
+    PRIVATE
+        ${LIBRARY_NAME}
+        Catch2::Catch2WithMain
+        project_options  # Base options without warnings, or use project_options_with_warnings
+)
+
 # Gives to CTest the ability to see the tests that are in the executable
 catch_discover_tests("UnitTestRotation")
 catch_discover_tests("UnitTestPose")
+catch_discover_tests("UnitTestTridiagonalSolver")
 
 if(ENABLE_COVERAGE)
     set(COVERAGE_MAIN "coverage")
@@ -33,7 +43,7 @@ if(ENABLE_COVERAGE)
         "${PROJECT_SOURCE_DIR}/build/*"
         "/usr/include/*")
     set(COVERAGE_EXTRA_FLAGS)
-    set(COVERAGE_DEPENDENCIES "UnitTestRotation" "UnitTestPose")
+    set(COVERAGE_DEPENDENCIES "UnitTestRotation" "UnitTestPose" "UnitTestTridiagonalSolver")
 
     setup_target_for_coverage_gcovr_html(
         NAME
