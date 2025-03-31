@@ -15,7 +15,7 @@ std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
 {
     // Check input dimensions
     const size_t n = right_hand_side.size();
-    if (main_diagonal.size() != n and lower_diagonal.size() != n and upper_diagonal.size() != n)
+    if (main_diagonal.size() != n or lower_diagonal.size() != n or upper_diagonal.size() != n)
     {
         throw std::invalid_argument("All input arrays must have the same length");
     }
@@ -26,7 +26,7 @@ std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
     auto &d = right_hand_side;
 
     // Check for zero pivot
-    if (b[0] == 0.0)
+    if (n > 0 && b[0] == 0.0)
     {
         throw std::runtime_error(
             "Pivot cannot be zero. The system cannot be solved with this method.");
@@ -35,6 +35,13 @@ std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
     // Forward elimination
     for (size_t k = 1; k < n; ++k)
     {
+        // Ensure we don't divide by zero
+        if (b[k - 1] == 0.0)
+        {
+            throw std::runtime_error("Encountered zero pivot during elimination at index " +
+                                     std::to_string(k - 1));
+        }
+
         double m = a[k] / b[k - 1];
         b[k] -= m * c[k - 1];
         d[k] -= m * d[k - 1];
@@ -49,15 +56,20 @@ std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
 
     // Back substitution
     std::vector<double> x(n, 0.0);
-    x[n - 1] = d[n - 1] / b[n - 1];
-    if (n > 1)
+
+    // Handle empty matrix case
+    if (n == 0)
     {
-        for (size_t i = 0; i < n - 1; ++i)
-        {
-            // Calculate k in reverse order: n-2, n-3, ..., 0
-            size_t k = n - 2 - i;
-            x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
-        }
+        return x;
+    }
+
+    x[n - 1] = d[n - 1] / b[n - 1];
+
+    for (size_t i = 0; i < n - 1; ++i)
+    {
+        // Calculate k in reverse order: n-2, n-3, ..., 0
+        size_t k = n - 2 - i;
+        x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
     }
 
     return x;

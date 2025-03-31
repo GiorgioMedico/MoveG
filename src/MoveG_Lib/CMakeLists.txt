@@ -8,7 +8,7 @@ set(POSE_SOURCES
 )
 
 set(TRAJECTORY_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.cpp"
+    #"${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.cpp"
@@ -36,7 +36,7 @@ set(POSE_HEADERS
 )
 
 set(TRAJECTORY_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.h"
+    #"${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.h"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/geometric_path.h"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/motion_law.h"
     # "${CMAKE_CURRENT_SOURCE_DIR}/trajectory/trajectory.h"
