@@ -1,0 +1,61 @@
+/**
+ * @file tridiagonal_solver.cpp
+ * @brief Implementation of the tridiagonal system solver using the Thomas algorithm
+ */
+
+#include "tridiagonal_solver.h"
+
+namespace InterpolateCpp
+{
+
+std::vector<double> solve_tridiagonal(std::vector<double> lower_diagonal,
+                                      std::vector<double> main_diagonal,
+                                      std::vector<double> upper_diagonal,
+                                      std::vector<double> right_hand_side)
+{
+    // Check input dimensions
+    const size_t n = right_hand_side.size();
+    if (main_diagonal.size() != n and lower_diagonal.size() != n and upper_diagonal.size() != n)
+    {
+        throw std::invalid_argument("All input arrays must have the same length");
+    }
+
+    auto &a = lower_diagonal;
+    auto &b = main_diagonal;
+    auto &c = upper_diagonal;
+    auto &d = right_hand_side;
+
+    // Check for zero pivot
+    if (b[0] == 0.0)
+    {
+        throw std::runtime_error(
+            "Pivot cannot be zero. The system cannot be solved with this method.");
+    }
+
+    // Forward elimination
+    for (size_t k = 1; k < n; ++k)
+    {
+        double m = a[k] / b[k - 1];
+        b[k] -= m * c[k - 1];
+        d[k] -= m * d[k - 1];
+
+        // Check for zero pivot during elimination
+        if (b[k] == 0.0)
+        {
+            throw std::runtime_error("Encountered zero pivot during elimination at index " +
+                                     std::to_string(k));
+        }
+    }
+
+    // Back substitution
+    std::vector<double> x(n, 0.0);
+    x[n - 1] = d[n - 1] / b[n - 1];
+    for (int k = static_cast<int>(n) - 2; k >= 0; --k)
+    {
+        x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
+    }
+
+    return x;
+}
+
+} // namespace InterpolateCpp
