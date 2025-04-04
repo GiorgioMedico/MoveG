@@ -64,7 +64,7 @@ target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
 target_link_libraries(${LIBRARY_NAME}
     PRIVATE
         fmt::fmt
-        Eigen3::Eigen
+        Eigen
         project_options_with_warnings  # Add warnings only to your library
         project_precompiled_headers    # Also link precompiled headers
 )

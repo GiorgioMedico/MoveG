@@ -1,10 +1,15 @@
+// Auto-generated configuration file
 #pragma once
 
-#include <cstdint>
-#include <string_view>
+// Project information
+#define PROJECT_NAME "@PROJECT_NAME@"
+#define PROJECT_VERSION "@PROJECT_VERSION@"
+#define PROJECT_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define PROJECT_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define PROJECT_VERSION_PATCH @PROJECT_VERSION_PATCH@
 
-static constexpr std::string_view project_name = "@PROJECT_NAME@";
-static constexpr std::string_view project_version = "@PROJECT_VERSION@";
-static constexpr std::int32_t project_version_major{ @PROJECT_VERSION_MAJOR@ };
-static constexpr std::int32_t project_version_minor{ @PROJECT_VERSION_MINOR@ };
-static constexpr std::int32_t project_version_patch{ @PROJECT_VERSION_PATCH@ };
+// Make it available as a variable for convenience
+namespace {
+const char* project_name = PROJECT_NAME;
+const char* project_version = PROJECT_VERSION;
+}

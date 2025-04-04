@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include <eigen3/Eigen/Dense>
-#include <eigen3/Eigen/Geometry>
+#include <Eigen/Dense>
+#include <Eigen/Geometry>
 
 #include <array>
 #include <cmath>

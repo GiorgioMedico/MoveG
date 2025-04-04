@@ -12,8 +12,8 @@
 // Comment out or undefine to disable
 #define ENABLE_ANGULAR_FEATURES 0
 
-#include <eigen3/Eigen/Dense>
-#include <eigen3/Eigen/Geometry>
+#include <Eigen/Dense>
+#include <Eigen/Geometry>
 
 #include <cmath>
 #include <iostream>

@@ -18,7 +18,7 @@ endif()
 
 project(
     "MoveG"
-    VERSION 1.0.0
+    VERSION 1.0.1
     LANGUAGES C CXX)
 
 # Global CMake variables
@@ -40,8 +40,8 @@ option(USE_CPM "Whether to use CPM." ON)
 option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 
-option(ENABLE_TESTING "Enable a Unit Testing build." ON)
-option(ENABLE_COVERAGE "Enable a Code Coverage build." ON)
+option(ENABLE_TESTING "Enable a Unit Testing build." OFF)
+option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
 
 # Enforce dependency: ENABLE_COVERAGE requires ENABLE_TESTING
 if(ENABLE_COVERAGE AND NOT ENABLE_TESTING)
@@ -135,26 +135,28 @@ if(USE_CPM)
     cpmaddpackage(
         NAME
         Eigen
-        GIT_REPOSITORY
-        https://gitlab.com/libeigen/eigen.git
-        GIT_TAG
-        3.4.0
-        EXCLUDE_FROM_ALL
-        YES
-        SYSTEM
-        YES
+        GIT_REPOSITORY  https://gitlab.com/libeigen/eigen.git
+        GIT_TAG 3.4.0
+        EXCLUDE_FROM_ALL YES
+        SYSTEM  YES
         OPTIONS
         "EIGEN_BUILD_DOC OFF" # Disabilita la generazione della documentazione
         "EIGEN_BUILD_TESTS OFF" # Disabilita i test di Eigen
         "EIGEN_BUILD_PKGCONFIG OFF" # Disabilita la generazione del file pkg-config
         "BUILD_TESTING OFF" # Disabilita la generazione dei test
     )
+    if(NOT TARGET Eigen)
+        add_library(Eigen INTERFACE IMPORTED)
+        target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+    endif()
+
     if(ENABLE_TESTING)
         cpmaddpackage("gh:catchorg/Catch2#v3.7.1")
         if(TARGET Catch2)
             list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
         endif()
     endif()
+
 endif()
 
 # Add precompiled headers to speed up builds
@@ -165,6 +167,7 @@ target_precompile_headers(project_precompiled_headers INTERFACE
     <memory>
     <fmt/format.h>
     <Eigen/Dense>
+    <Eigen/Geometry>
 )
 
 # SUBDIRECTORIES
@@ -172,7 +175,7 @@ add_subdirectory(configured)
 add_subdirectory(src)
 add_subdirectory(app)
 if(ENABLE_TESTING)
-    include(CTest) # include CTest module from default CMake modules
+    # include(CTest) # Just enable testing without the dashboard targets
     enable_testing()
     add_subdirectory(tests)
 endif()
@@ -183,7 +186,8 @@ install(
     TARGETS ${EXECUTABLE_NAME}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin)
+    RUNTIME DESTINATION bin
+)
 
 install(
     TARGETS ${LIBRARY_NAME}

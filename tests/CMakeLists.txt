@@ -5,6 +5,9 @@ add_executable("UnitTestRotation" "test_Rotation.cpp")
 target_link_libraries("UnitTestRotation"
     PRIVATE
         ${LIBRARY_NAME}
+        fmt::fmt
+        Eigen
+        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
         project_options  # Base options without warnings, or use project_options_with_warnings
 )
@@ -12,8 +15,11 @@ target_link_libraries("UnitTestRotation"
 # Unit Test for Pose
 add_executable("UnitTestPose" "test_Pose.cpp")
 target_link_libraries("UnitTestPose"
-    PRIVATE
+        PRIVATE
         ${LIBRARY_NAME}
+        fmt::fmt
+        Eigen
+        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
         project_options  # Base options without warnings, or use project_options_with_warnings
 )
@@ -21,8 +27,11 @@ target_link_libraries("UnitTestPose"
 # Unit Test for Tridiagonal Solver
 add_executable("UnitTestTridiagonalSolver" "test_TridiagonalSolver.cpp")
 target_link_libraries("UnitTestTridiagonalSolver"
-    PRIVATE
+        PRIVATE
         ${LIBRARY_NAME}
+        fmt::fmt
+        Eigen
+        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
         project_options  # Base options without warnings, or use project_options_with_warnings
 )

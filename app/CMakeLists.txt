@@ -11,7 +11,7 @@ target_link_libraries(
     PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
-        Eigen3::Eigen
+        Eigen
         project_options_with_warnings  # Include warnings
         project_precompiled_headers
 )
@@ -21,7 +21,7 @@ target_link_libraries(
     PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
-        Eigen3::Eigen
+        Eigen
         project_options_with_warnings  # Include warnings
         project_precompiled_headers
 )
@@ -30,7 +30,7 @@ target_link_libraries(
     PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
-        Eigen3::Eigen
+        Eigen
         project_options_with_warnings  # Include warnings
         project_precompiled_headers
 )
