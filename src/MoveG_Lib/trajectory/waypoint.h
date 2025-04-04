@@ -13,7 +13,6 @@
 #define ENABLE_ANGULAR_FEATURES 0
 
 #include <Eigen/Dense>
-#include <Eigen/Geometry>
 
 #include <cmath>
 #include <iostream>

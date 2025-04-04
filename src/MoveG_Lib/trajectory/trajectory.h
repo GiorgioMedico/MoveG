@@ -9,7 +9,6 @@
 #pragma once
 
 #include <Eigen/Dense>
-#include <Eigen/Geometry>
 
 #include <cmath>
 #include <functional>

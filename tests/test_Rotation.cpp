@@ -3,7 +3,6 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <Eigen/Dense>
-#include <Eigen/Geometry>
 
 #include <chrono>
 #include <cmath>
