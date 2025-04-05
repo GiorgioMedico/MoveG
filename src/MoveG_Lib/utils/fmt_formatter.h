@@ -4,7 +4,8 @@
 #include <fmt/core.h>
 #include <fmt/format.h>
 
-namespace MoveG
+// Implement formatters in fmt namespace
+namespace fmt
 {
 
 //------------------------------------------------------------------------------
@@ -195,4 +196,4 @@ struct formatter<Eigen::AngleAxis<Scalar>>
     }
 };
 
-} // namespace MoveG
+} // namespace fmt
