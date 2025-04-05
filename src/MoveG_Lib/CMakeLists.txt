@@ -27,6 +27,10 @@ set(LIBRARY_SOURCES
 )
 
 # Define header files by component
+set(UTILS_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/pose/fmt_formatter.h"
+)
+
 set(ROTATION_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.h"
 )
@@ -49,6 +53,7 @@ set(INTERPOLATECPP_HEADERS
 # Combine all headers
 set(LIBRARY_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/MoveG_Lib.h"
+    ${UTILS_HEADERS}
     ${ROTATION_HEADERS}
     ${POSE_HEADERS}
     ${INTERPOLATECPP_HEADERS}

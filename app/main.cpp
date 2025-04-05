@@ -1,26 +1,21 @@
 #include "config.hpp"
-#include "fmt/core.h" // For fmt version information
-#include <Eigen/Core> // For Eigen version information
+#include "fmt/core.h"
+#include <Eigen/Core>
 #include <iostream>
 #include <string>
 
 int main(int /*argc*/, char ** /*argv*/) // comment to avoid warning
 {
-    // Print the version of the project
-    std::cout << fmt::format("Project Name: {}\n", project_name);
-    std::cout << fmt::format("Version: {}\n", project_version);
-
-    // Print fmt library version
-    std::cout << fmt::format("fmt version: {}.{}.{}\n",
-                             FMT_VERSION / 10000,       // Major version
-                             (FMT_VERSION / 100) % 100, // Minor version
-                             FMT_VERSION % 100);        // Patch version
-
-    // Print Eigen library version
-    std::cout << fmt::format("Eigen version: {}.{}.{}\n",
-                             EIGEN_WORLD_VERSION,  // Major version
-                             EIGEN_MAJOR_VERSION,  // Minor version
-                             EIGEN_MINOR_VERSION); // Patch version
+    fmt::print("Project Name: {}\n", project_name);
+    fmt::print("Version: {}\n", project_version);
+    fmt::print("fmt version: {}.{}.{}\n",
+               FMT_VERSION / 10000,
+               (FMT_VERSION / 100) % 100,
+               FMT_VERSION % 100);
+    fmt::print("Eigen version: {}.{}.{}\n",
+               EIGEN_WORLD_VERSION,
+               EIGEN_MAJOR_VERSION,
+               EIGEN_MINOR_VERSION);
 
     return 0;
 }

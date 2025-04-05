@@ -131,7 +131,7 @@ if(USE_CPM)
         CACHE STRING "CPM source cache directory")
 
     include(CPM)
-    cpmaddpackage("gh:fmtlib/fmt#9.1.0")
+    cpmaddpackage("gh:fmtlib/fmt#11.1.4")
     cpmaddpackage(
         NAME
         Eigen
