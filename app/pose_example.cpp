@@ -1,70 +1,48 @@
 /**
  * @file pose_example.cpp
- * @brief Example demonstrating usage of the MoveG Pose library
+ * @brief Example demonstrating usage of the MoveG Pose library with fmt formatting
  */
 
 #include "pose/pose_lib.h"
 #include "pose/rotation_lib.h"
-#include <iomanip>
-#include <iostream>
+#include "utils/fmt_formatter.h"
+#include <fmt/core.h>
+#include <fmt/format.h>
 #include <vector>
 
 using namespace MoveG;
 
-// Utility function to print a vector
-void printVector3d(const Eigen::Vector3d &vec, const std::string &description)
-{
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << description << ": [" << vec.x() << ", " << vec.y() << ", " << vec.z() << "]"
-              << std::endl;
-}
-
-// Utility function to print a quaternion
-void printQuaternion(const Eigen::Quaterniond &quat, const std::string &description)
-{
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << description << " [w, x, y, z]: [" << quat.w() << ", " << quat.x() << ", "
-              << quat.y() << ", " << quat.z() << "]" << std::endl;
-}
-
-// Utility function to print a homogeneous transformation matrix
-void printHomogeneousMatrix(const Eigen::Matrix4d &mat, const std::string &description)
-{
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << description << ":\n" << mat << std::endl;
-}
-
 int main()
 {
-    std::cout << "==============================================" << std::endl;
-    std::cout << "MoveG Pose Library Example Usage" << std::endl;
-    std::cout << "==============================================" << std::endl;
+    fmt::print("==============================================\n");
+    fmt::print("MoveG Pose Library Example Usage\n");
+    fmt::print("==============================================\n");
 
     // Example 1: Creating poses using different constructors
-    std::cout << "\n1. Creating poses using different constructors:" << std::endl;
+    fmt::print("\n1. Creating poses using different constructors:\n");
 
     // Default constructor (identity pose at origin)
     Pose identity_pose;
-    std::cout << "Identity pose at origin:" << std::endl;
-    printVector3d(identity_pose.getPosition(), "Position");
-    printQuaternion(identity_pose.getQuaternion(), "Orientation");
+    fmt::print("Identity pose at origin:\n");
+    fmt::print("Position: {}\n", identity_pose.getPosition());
+    fmt::print("Orientation: {}\n", identity_pose.getQuaternion());
 
     // From position and quaternion
     Eigen::Vector3d position(1.0, 2.0, 3.0);
     Eigen::Quaterniond orientation(Eigen::AngleAxisd(M_PI / 4, Eigen::Vector3d::UnitZ()));
 
     Pose pose_from_quat(position, orientation);
-    std::cout << "\nPose from position and quaternion:" << std::endl;
-    printVector3d(pose_from_quat.getPosition(), "Position");
-    printQuaternion(pose_from_quat.getQuaternion(), "Orientation");
+    fmt::print("\nPose from position and quaternion:\n");
+    fmt::print("Position: {}\n", pose_from_quat.getPosition());
+    fmt::print("Orientation: {}\n", pose_from_quat.getQuaternion());
 
     // From position and rotation matrix
     Eigen::Matrix3d rot_matrix =
         Eigen::AngleAxisd(M_PI / 3, Eigen::Vector3d::UnitY()).toRotationMatrix();
     Pose pose_from_matrix(position, rot_matrix);
-    std::cout << "\nPose from position and rotation matrix:" << std::endl;
-    printVector3d(pose_from_matrix.getPosition(), "Position");
-    std::cout << "Rotation matrix:\n" << pose_from_matrix.getRotationMatrix() << std::endl;
+    fmt::print("\nPose from position and rotation matrix:\n");
+    fmt::print("Position: {}\n", pose_from_matrix.getPosition());
+    fmt::print("Rotation matrix:\n{}\n", pose_from_matrix.getRotationMatrix());
 
     // From Affine3d transformation
     Eigen::Affine3d affine = Eigen::Affine3d::Identity();
@@ -72,17 +50,17 @@ int main()
     affine.rotate(Eigen::AngleAxisd(M_PI / 2, Eigen::Vector3d::UnitX()));
 
     Pose pose_from_affine(affine);
-    std::cout << "\nPose from Affine3d transformation:" << std::endl;
-    printVector3d(pose_from_affine.getPosition(), "Position");
-    std::cout << "Rotation matrix:\n" << pose_from_affine.getRotationMatrix() << std::endl;
+    fmt::print("\nPose from Affine3d transformation:\n");
+    fmt::print("Position: {}\n", pose_from_affine.getPosition());
+    fmt::print("Rotation matrix:\n{}\n", pose_from_affine.getRotationMatrix());
 
     // From position and Rotation object
     Rotation rotation =
         Rotation::fromAngleAxis(Eigen::AngleAxisd(M_PI / 6, Eigen::Vector3d::UnitX()));
     Pose pose_from_rotation(position, rotation);
-    std::cout << "\nPose from position and Rotation object:" << std::endl;
-    printVector3d(pose_from_rotation.getPosition(), "Position");
-    printQuaternion(pose_from_rotation.getQuaternion(), "Orientation");
+    fmt::print("\nPose from position and Rotation object:\n");
+    fmt::print("Position: {}\n", pose_from_rotation.getPosition());
+    fmt::print("Orientation: {}\n", pose_from_rotation.getQuaternion());
 
     // From homogeneous transformation matrix
     Eigen::Matrix4d homogeneous = Eigen::Matrix4d::Identity();
@@ -91,46 +69,47 @@ int main()
     homogeneous.block<3, 1>(0, 3) = Eigen::Vector3d(7.0, 8.0, 9.0);
 
     Pose pose_from_homogeneous(homogeneous);
-    std::cout << "\nPose from homogeneous transformation matrix:" << std::endl;
-    printVector3d(pose_from_homogeneous.getPosition(), "Position");
-    printQuaternion(pose_from_homogeneous.getQuaternion(), "Orientation");
+    fmt::print("\nPose from homogeneous transformation matrix:\n");
+    fmt::print("Position: {}\n", pose_from_homogeneous.getPosition());
+    fmt::print("Orientation: {}\n", pose_from_homogeneous.getQuaternion());
 
     // Example 2: Getting different representations of a pose
-    std::cout << "\n2. Getting different representations of a pose:" << std::endl;
+    fmt::print("\n2. Getting different representations of a pose:\n");
 
     Pose example_pose(Eigen::Vector3d(1.0, 2.0, 3.0),
                       Eigen::Quaterniond(Eigen::AngleAxisd(M_PI / 4, Eigen::Vector3d::UnitZ())));
 
     // Get individual position components
-    std::cout << "Individual position components: x=" << example_pose.getX()
-              << ", y=" << example_pose.getY() << ", z=" << example_pose.getZ() << std::endl;
+    fmt::print("Individual position components: x={:.4f}, y={:.4f}, z={:.4f}\n",
+               example_pose.getX(),
+               example_pose.getY(),
+               example_pose.getZ());
 
     // Get individual quaternion components
-    std::cout << "Individual quaternion components: w=" << example_pose.getQw()
-              << ", x=" << example_pose.getQx() << ", y=" << example_pose.getQy()
-              << ", z=" << example_pose.getQz() << std::endl;
+    fmt::print("Individual quaternion components: w={:.4f}, x={:.4f}, y={:.4f}, z={:.4f}\n",
+               example_pose.getQw(),
+               example_pose.getQx(),
+               example_pose.getQy(),
+               example_pose.getQz());
 
     // Get as rotation matrix
-    std::cout << "Rotation matrix:\n" << example_pose.getRotationMatrix() << std::endl;
+    fmt::print("Rotation matrix:\n{}\n", example_pose.getRotationMatrix());
 
     // Get as affine transformation
     Eigen::Affine3d example_affine = example_pose.getAffineTransformation();
-    std::cout << "Affine transformation translation: [" << example_affine.translation().x() << ", "
-              << example_affine.translation().y() << ", " << example_affine.translation().z() << "]"
-              << std::endl;
-    std::cout << "Affine transformation rotation:\n" << example_affine.rotation() << std::endl;
+    fmt::print("Affine transformation:\n{}\n", example_affine);
 
     // Get as homogeneous transformation matrix
     Eigen::Matrix4d example_homogeneous = example_pose.getHomogeneousT();
-    printHomogeneousMatrix(example_homogeneous, "Homogeneous transformation matrix");
+    fmt::print("Homogeneous transformation matrix:\n{}\n", example_homogeneous);
 
     // Example 3: Modifying poses
-    std::cout << "\n3. Modifying poses:" << std::endl;
+    fmt::print("\n3. Modifying poses:\n");
 
     Pose modifiable_pose;
-    std::cout << "Initial pose:" << std::endl;
-    printVector3d(modifiable_pose.getPosition(), "Position");
-    printQuaternion(modifiable_pose.getQuaternion(), "Orientation");
+    fmt::print("Initial pose:\n");
+    fmt::print("Position: {}\n", modifiable_pose.getPosition());
+    fmt::print("Orientation: {}\n", modifiable_pose.getQuaternion());
 
     // Set position
     modifiable_pose.setPosition(Eigen::Vector3d(5.0, 6.0, 7.0));
@@ -139,18 +118,18 @@ int main()
     modifiable_pose.setOrientation(
         Eigen::Quaterniond(Eigen::AngleAxisd(M_PI / 3, Eigen::Vector3d::UnitY())));
 
-    std::cout << "\nAfter modification:" << std::endl;
-    printVector3d(modifiable_pose.getPosition(), "Position");
-    printQuaternion(modifiable_pose.getQuaternion(), "Orientation");
+    fmt::print("\nAfter modification:\n");
+    fmt::print("Position: {}\n", modifiable_pose.getPosition());
+    fmt::print("Orientation: {}\n", modifiable_pose.getQuaternion());
 
     // Set orientation with rotation matrix
     Eigen::Matrix3d new_rotation =
         Eigen::AngleAxisd(M_PI / 2, Eigen::Vector3d::UnitZ()).toRotationMatrix();
     modifiable_pose.setRotationMatrix(new_rotation);
 
-    std::cout << "\nAfter setting rotation matrix:" << std::endl;
-    printVector3d(modifiable_pose.getPosition(), "Position");
-    std::cout << "Rotation matrix:\n" << modifiable_pose.getRotationMatrix() << std::endl;
+    fmt::print("\nAfter setting rotation matrix:\n");
+    fmt::print("Position: {}\n", modifiable_pose.getPosition());
+    fmt::print("Rotation matrix:\n{}\n", modifiable_pose.getRotationMatrix());
 
     // Set with homogeneous transformation
     Eigen::Matrix4d new_homogeneous = Eigen::Matrix4d::Identity();
@@ -160,12 +139,12 @@ int main()
 
     modifiable_pose.setHomogeneousT(new_homogeneous);
 
-    std::cout << "\nAfter setting homogeneous transformation:" << std::endl;
-    printVector3d(modifiable_pose.getPosition(), "Position");
-    printQuaternion(modifiable_pose.getQuaternion(), "Orientation");
+    fmt::print("\nAfter setting homogeneous transformation:\n");
+    fmt::print("Position: {}\n", modifiable_pose.getPosition());
+    fmt::print("Orientation: {}\n", modifiable_pose.getQuaternion());
 
     // Example 4: Pose operations
-    std::cout << "\n4. Pose operations:" << std::endl;
+    fmt::print("\n4. Pose operations:\n");
 
     // Create two poses for operations
     Pose pose1(Eigen::Vector3d(1.0, 0.0, 0.0),
@@ -174,34 +153,34 @@ int main()
     Pose pose2(Eigen::Vector3d(0.0, 1.0, 0.0),
                Eigen::Quaterniond(Eigen::AngleAxisd(M_PI / 2, Eigen::Vector3d::UnitZ())));
 
-    std::cout << "Pose 1:" << std::endl;
-    printVector3d(pose1.getPosition(), "Position");
-    printQuaternion(pose1.getQuaternion(), "Orientation");
+    fmt::print("Pose 1:\n");
+    fmt::print("Position: {}\n", pose1.getPosition());
+    fmt::print("Orientation: {}\n", pose1.getQuaternion());
 
-    std::cout << "\nPose 2:" << std::endl;
-    printVector3d(pose2.getPosition(), "Position");
-    printQuaternion(pose2.getQuaternion(), "Orientation");
+    fmt::print("\nPose 2:\n");
+    fmt::print("Position: {}\n", pose2.getPosition());
+    fmt::print("Orientation: {}\n", pose2.getQuaternion());
 
     // Compose poses
     Pose composed = pose1 * pose2;
-    std::cout << "\nComposed pose (pose1 * pose2):" << std::endl;
-    printVector3d(composed.getPosition(), "Position");
-    printQuaternion(composed.getQuaternion(), "Orientation");
+    fmt::print("\nComposed pose (pose1 * pose2):\n");
+    fmt::print("Position: {}\n", composed.getPosition());
+    fmt::print("Orientation: {}\n", composed.getQuaternion());
 
     // Inverse pose
     Pose inverse = pose1.inverse();
-    std::cout << "\nInverse of pose1:" << std::endl;
-    printVector3d(inverse.getPosition(), "Position");
-    printQuaternion(inverse.getQuaternion(), "Orientation");
+    fmt::print("\nInverse of pose1:\n");
+    fmt::print("Position: {}\n", inverse.getPosition());
+    fmt::print("Orientation: {}\n", inverse.getQuaternion());
 
     // Check that pose * inverse = identity
     Pose identity_check = pose1 * inverse;
-    std::cout << "\nPose1 * Inverse (should be identity):" << std::endl;
-    printVector3d(identity_check.getPosition(), "Position");
-    printQuaternion(identity_check.getQuaternion(), "Orientation");
+    fmt::print("\nPose1 * Inverse (should be identity):\n");
+    fmt::print("Position: {}\n", identity_check.getPosition());
+    fmt::print("Orientation: {}\n", identity_check.getQuaternion());
 
     // Example 5: Distance metrics
-    std::cout << "\n5. Distance metrics:" << std::endl;
+    fmt::print("\n5. Distance metrics:\n");
 
     Pose pose_a(Eigen::Vector3d(1.0, 2.0, 3.0),
                 Eigen::Quaterniond(Eigen::AngleAxisd(0.0, Eigen::Vector3d::UnitZ())));
@@ -212,12 +191,13 @@ int main()
     double position_distance = pose_a.positionDistance(pose_b);
     double orientation_distance = pose_a.orientationDistance(pose_b);
 
-    std::cout << "Position distance: " << position_distance << " meters" << std::endl;
-    std::cout << "Orientation distance: " << orientation_distance << " radians ("
-              << Rotation::rad2deg(orientation_distance) << " degrees)" << std::endl;
+    fmt::print("Position distance: {:.4f} meters\n", position_distance);
+    fmt::print("Orientation distance: {:.4f} radians ({:.4f} degrees)\n",
+               orientation_distance,
+               Rotation::rad2deg(orientation_distance));
 
     // Example 6: Coordinate transformations
-    std::cout << "\n6. Coordinate transformations:" << std::endl;
+    fmt::print("\n6. Coordinate transformations:\n");
 
     // Create a pose representing a robot's pose in the world
     Pose robot_in_world(
@@ -231,24 +211,16 @@ int main()
     // Transform point to world coordinates
     Eigen::Vector3d point_in_world = robot_in_world.localToGlobal(point_in_robot);
 
-    std::cout << "Robot pose in world:" << std::endl;
-    printVector3d(robot_in_world.getPosition(), "Position");
-    std::cout << "Rotation: "
-              << Rotation::rad2deg(Eigen::AngleAxisd(robot_in_world.getQuaternion()).angle())
-              << "° around " << Eigen::AngleAxisd(robot_in_world.getQuaternion()).axis().transpose()
-              << std::endl;
+    fmt::print("Robot pose in world:\n");
+    fmt::print("Position: {}\n", robot_in_world.getPosition());
+    fmt::print("Rotation: {}\n", Eigen::AngleAxisd(robot_in_world.getQuaternion()));
 
-    std::cout << "\nPoint in robot's local frame: [" << point_in_robot.x() << ", "
-              << point_in_robot.y() << ", " << point_in_robot.z() << "]" << std::endl;
-
-    std::cout << "Same point in world frame: [" << point_in_world.x() << ", " << point_in_world.y()
-              << ", " << point_in_world.z() << "]" << std::endl;
+    fmt::print("\nPoint in robot's local frame: {}\n", point_in_robot);
+    fmt::print("Same point in world frame: {}\n", point_in_world);
 
     // Transform point back to robot coordinates
     Eigen::Vector3d point_back_in_robot = robot_in_world.globalToLocal(point_in_world);
-
-    std::cout << "Point transformed back to robot frame: [" << point_back_in_robot.x() << ", "
-              << point_back_in_robot.y() << ", " << point_back_in_robot.z() << "]" << std::endl;
+    fmt::print("Point transformed back to robot frame: {}\n", point_back_in_robot);
 
     // Transform between coordinate frames
     // Create a second pose representing a sensor mounted on the robot
@@ -260,15 +232,15 @@ int main()
     // Calculate sensor pose in world frame
     Pose sensor_in_world = robot_in_world.transformPose(sensor_in_robot);
 
-    std::cout << "\nSensor pose in robot frame:" << std::endl;
-    printVector3d(sensor_in_robot.getPosition(), "Position");
-    printQuaternion(sensor_in_robot.getQuaternion(), "Orientation");
+    fmt::print("\nSensor pose in robot frame:\n");
+    fmt::print("Position: {}\n", sensor_in_robot.getPosition());
+    fmt::print("Orientation: {}\n", sensor_in_robot.getQuaternion());
 
-    std::cout << "\nSensor pose in world frame:" << std::endl;
-    printVector3d(sensor_in_world.getPosition(), "Position");
-    printQuaternion(sensor_in_world.getQuaternion(), "Orientation");
+    fmt::print("\nSensor pose in world frame:\n");
+    fmt::print("Position: {}\n", sensor_in_world.getPosition());
+    fmt::print("Orientation: {}\n", sensor_in_world.getQuaternion());
 
-    std::cout << "==============================================" << std::endl;
+    fmt::print("==============================================\n");
 
     return 0;
 }

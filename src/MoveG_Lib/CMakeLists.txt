@@ -28,7 +28,7 @@ set(LIBRARY_SOURCES
 
 # Define header files by component
 set(UTILS_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/pose/fmt_formatter.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/utils/fmt_formatter.h"
 )
 
 set(ROTATION_HEADERS

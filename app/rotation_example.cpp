@@ -1,43 +1,27 @@
 /**
  * @file rotation_example.cpp
- * @brief Example demonstrating usage of the MoveG Rotation library
+ * @brief Example demonstrating usage of the MoveG Rotation library with fmt formatting
  */
 
 #include "pose/rotation_lib.h"
-#include <iomanip>
-#include <iostream>
+#include "utils/fmt_formatter.h"
+#include <fmt/core.h>
+#include <fmt/format.h>
 
 using namespace MoveG;
 
-// Utility function to print Euler angles in degrees
-void printEulerAngles(const Eigen::Vector3d &angles,
-                      const std::string &description,
-                      const std::string &sequence)
-{
-    std::cout << description << " (" << sequence << "): [" << std::fixed << std::setprecision(2)
-              << Rotation::rad2deg(angles[0]) << "°, " << Rotation::rad2deg(angles[1]) << "°, "
-              << Rotation::rad2deg(angles[2]) << "°]" << std::endl;
-}
-
-// Utility function to print quaternion
-void printQuaternion(const Eigen::Quaterniond &quat, const std::string &description)
-{
-    std::cout << description << " [w, x, y, z]: [" << std::fixed << std::setprecision(4) << quat.w()
-              << ", " << quat.x() << ", " << quat.y() << ", " << quat.z() << "]" << std::endl;
-}
-
 int main()
 {
-    std::cout << "==============================================" << std::endl;
-    std::cout << "MoveG Rotation Library Example Usage" << std::endl;
-    std::cout << "==============================================" << std::endl;
+    fmt::print("==============================================\n");
+    fmt::print("MoveG Rotation Library Example Usage\n");
+    fmt::print("==============================================\n");
 
     // Example 1: Creating rotations using different constructors
-    std::cout << "\n1. Creating rotations using different constructors:" << std::endl;
+    fmt::print("\n1. Creating rotations using different constructors:\n");
 
     // Default constructor (identity rotation)
     Rotation identity;
-    std::cout << "Identity rotation matrix:\n" << identity.toRotationMatrix() << std::endl;
+    fmt::print("Identity rotation matrix:\n{}\n", identity.toRotationMatrix());
 
     // From Euler angles (ZYX sequence, intrinsic)
     double roll = Rotation::deg2rad(30.0);  // Around X-axis
@@ -45,41 +29,35 @@ int main()
     double yaw = Rotation::deg2rad(60.0);   // Around Z-axis
 
     Rotation rot_euler(yaw, pitch, roll, true, "ZYX", false);
-    std::cout << "Rotation from Euler angles (ZYX, intrinsic):\n"
-              << rot_euler.toRotationMatrix() << std::endl;
+    fmt::print("Rotation from Euler angles (ZYX, intrinsic):\n{}\n", rot_euler.toRotationMatrix());
 
     // From rotation matrix
     Eigen::Matrix3d R = Eigen::AngleAxisd(M_PI / 4, Eigen::Vector3d::UnitZ()).toRotationMatrix();
     Rotation rot_matrix(R);
-    std::cout << "Rotation from matrix (45° around Z):\n"
-              << rot_matrix.toRotationMatrix() << std::endl;
+    fmt::print("Rotation from matrix (45° around Z):\n{}\n", rot_matrix.toRotationMatrix());
 
     // From quaternion
     Eigen::Quaterniond q =
         Eigen::Quaterniond(Eigen::AngleAxisd(M_PI / 3, Eigen::Vector3d::UnitY()));
     Rotation rot_quat(q);
-    std::cout << "Rotation from quaternion (60° around Y):\n"
-              << rot_quat.toRotationMatrix() << std::endl;
+    fmt::print("Rotation from quaternion (60° around Y):\n{}\n", rot_quat.toRotationMatrix());
 
     // From angle-axis
     Eigen::AngleAxisd aa(M_PI / 6, Eigen::Vector3d::UnitX());
     Rotation rot_aa(aa);
-    std::cout << "Rotation from angle-axis (30° around X):\n"
-              << rot_aa.toRotationMatrix() << std::endl;
+    fmt::print("Rotation from angle-axis (30° around X):\n{}\n", rot_aa.toRotationMatrix());
 
     // Example 2: Using static methods to create rotations
-    std::cout << "\n2. Using static methods to create rotations:" << std::endl;
+    fmt::print("\n2. Using static methods to create rotations:\n");
 
     Rotation rot_static_euler = Rotation::fromEulerAngles(yaw, pitch, roll, true, "ZYX", false);
-    std::cout << "Static method Euler angles rotation:\n"
-              << rot_static_euler.toRotationMatrix() << std::endl;
+    fmt::print("Static method Euler angles rotation:\n{}\n", rot_static_euler.toRotationMatrix());
 
     Rotation rot_static_quat = Rotation::fromQuaternion(q);
-    std::cout << "Static method quaternion rotation:\n"
-              << rot_static_quat.toRotationMatrix() << std::endl;
+    fmt::print("Static method quaternion rotation:\n{}\n", rot_static_quat.toRotationMatrix());
 
     // Example 3: Converting between different rotation representations
-    std::cout << "\n3. Converting between different rotation representations:" << std::endl;
+    fmt::print("\n3. Converting between different rotation representations:\n");
 
     // Create a rotation from Euler angles
     Rotation rot_convert(M_PI / 4, M_PI / 6, M_PI / 3, true, "ZYX", false);
@@ -90,21 +68,22 @@ int main()
     Eigen::AngleAxisd rot_aa_convert = rot_convert.toAngleAxis();
     Eigen::Vector3d rot_euler_angles = rot_convert.toEulerAngles(true, "ZYX");
 
-    std::cout << "Original rotation from Euler angles (ZYX):" << std::endl;
-    printEulerAngles(Eigen::Vector3d(M_PI / 4, M_PI / 6, M_PI / 3), "Input angles", "ZYX");
+    fmt::print("Original rotation from Euler angles (ZYX):\n");
+    fmt::print("Input angles (ZYX): [{:.2f}°, {:.2f}°, {:.2f}°]\n",
+               Rotation::rad2deg(M_PI / 4),
+               Rotation::rad2deg(M_PI / 6),
+               Rotation::rad2deg(M_PI / 3));
 
-    std::cout << "\nAs a rotation matrix:\n" << rot_mat << std::endl;
-
-    printQuaternion(rot_q, "As a quaternion");
-
-    std::cout << "As an angle-axis: " << Rotation::rad2deg(rot_aa_convert.angle())
-              << "° around axis [" << rot_aa_convert.axis().x() << ", " << rot_aa_convert.axis().y()
-              << ", " << rot_aa_convert.axis().z() << "]" << std::endl;
-
-    printEulerAngles(rot_euler_angles, "As Euler angles", "ZYX");
+    fmt::print("\nAs a rotation matrix:\n{}\n", rot_mat);
+    fmt::print("As a quaternion: {}\n", rot_q);
+    fmt::print("As an angle-axis: {}\n", rot_aa_convert);
+    fmt::print("As Euler angles (ZYX): [{:.2f}°, {:.2f}°, {:.2f}°]\n",
+               Rotation::rad2deg(rot_euler_angles[0]),
+               Rotation::rad2deg(rot_euler_angles[1]),
+               Rotation::rad2deg(rot_euler_angles[2]));
 
     // Example 4: Composition of rotations
-    std::cout << "\n4. Composition of rotations:" << std::endl;
+    fmt::print("\n4. Composition of rotations:\n");
 
     // Create two rotations
     Rotation rot1 = Rotation::fromEulerAngles(0, 0, M_PI / 2, true, "ZYX", false); // 90° around Z
@@ -113,62 +92,62 @@ int main()
     // Compose them
     Rotation rot_combined = rot1 * rot2;
 
-    std::cout << "Rotation 1 (90° around Z):\n" << rot1.toRotationMatrix() << std::endl;
-    std::cout << "Rotation 2 (90° around Y):\n" << rot2.toRotationMatrix() << std::endl;
-    std::cout << "Combined rotation (rot1 * rot2):\n"
-              << rot_combined.toRotationMatrix() << std::endl;
+    fmt::print("Rotation 1 (90° around Z):\n{}\n", rot1.toRotationMatrix());
+    fmt::print("Rotation 2 (90° around Y):\n{}\n", rot2.toRotationMatrix());
+    fmt::print("Combined rotation (rot1 * rot2):\n{}\n", rot_combined.toRotationMatrix());
 
     // Order matters!
     Rotation rot_combined2 = rot2 * rot1;
-    std::cout << "Different order (rot2 * rot1):\n"
-              << rot_combined2.toRotationMatrix() << std::endl;
+    fmt::print("Different order (rot2 * rot1):\n{}\n", rot_combined2.toRotationMatrix());
 
     // Example 5: Utility functions
-    std::cout << "\n5. Utility functions:" << std::endl;
+    fmt::print("\n5. Utility functions:\n");
 
     // Converting between degrees and radians
     double angle_deg = 45.0;
     double angle_rad = Rotation::deg2rad(angle_deg);
-    std::cout << angle_deg << "° = " << angle_rad << " radians" << std::endl;
-    std::cout << angle_rad << " radians = " << Rotation::rad2deg(angle_rad) << "°" << std::endl;
+    fmt::print("{:.1f}° = {:.6f} radians\n", angle_deg, angle_rad);
+    fmt::print("{:.6f} radians = {:.1f}°\n", angle_rad, Rotation::rad2deg(angle_rad));
 
     // Normalizing angles
     double big_angle = 5 * M_PI; // 5π radians (900°)
     double normalized = Rotation::normalizeAngle(big_angle);
-    std::cout << "Normalizing " << big_angle << " radians to [-π, π]: " << normalized
-              << " radians (" << Rotation::rad2deg(normalized) << "°)" << std::endl;
+    fmt::print("Normalizing {:.6f} radians to [-π, π]: {:.6f} radians ({:.2f}°)\n",
+               big_angle,
+               normalized,
+               Rotation::rad2deg(normalized));
 
     // Elementary rotation matrices
-    std::cout << "\nElementary rotation matrices:" << std::endl;
-    std::cout << "Rotation around X (30°):\n" << Rotation::rotationX(M_PI / 6) << std::endl;
-    std::cout << "Rotation around Y (45°):\n" << Rotation::rotationY(M_PI / 4) << std::endl;
-    std::cout << "Rotation around Z (60°):\n" << Rotation::rotationZ(M_PI / 3) << std::endl;
+    fmt::print("\nElementary rotation matrices:\n");
+    fmt::print("Rotation around X (30°):\n{}\n", Rotation::rotationX(M_PI / 6));
+    fmt::print("Rotation around Y (45°):\n{}\n", Rotation::rotationY(M_PI / 4));
+    fmt::print("Rotation around Z (60°):\n{}\n", Rotation::rotationZ(M_PI / 3));
 
     // Matrix S and R_dot
     Eigen::Vector3d omega(0.1, 0.2, 0.3); // Angular velocity
-    std::cout << "\nMatrix S for angular velocity [0.1, 0.2, 0.3]:\n"
-              << Rotation::matrixS(omega) << std::endl;
+    fmt::print("\nMatrix S for angular velocity {}:\n{}\n", omega, Rotation::matrixS(omega));
 
     Eigen::Matrix3d R_current = Eigen::Matrix3d::Identity();
     Eigen::Matrix3d R_dot = Rotation::matrixR_dot(R_current, omega);
-    std::cout << "Matrix R_dot:\n" << R_dot << std::endl;
+    fmt::print("Matrix R_dot:\n{}\n", R_dot);
 
     // Matrix T
     try
     {
         Eigen::Vector3d angles_for_T(M_PI / 4, M_PI / 6, M_PI / 3);
         Eigen::Matrix3d T = Rotation::matrixT(angles_for_T, "ZYX");
-        std::cout << "\nMatrix T for ZYX Euler angles [" << Rotation::rad2deg(angles_for_T[0])
-                  << "°, " << Rotation::rad2deg(angles_for_T[1]) << "°, "
-                  << Rotation::rad2deg(angles_for_T[2]) << "°]:\n"
-                  << T << std::endl;
+        fmt::print("\nMatrix T for ZYX Euler angles [{:.2f}°, {:.2f}°, {:.2f}°]:\n{}\n",
+                   Rotation::rad2deg(angles_for_T[0]),
+                   Rotation::rad2deg(angles_for_T[1]),
+                   Rotation::rad2deg(angles_for_T[2]),
+                   T);
     }
     catch (const std::exception &e)
     {
-        std::cerr << "Error calculating matrix T: " << e.what() << std::endl;
+        fmt::print(stderr, "Error calculating matrix T: {}\n", e.what());
     }
 
-    std::cout << "==============================================" << std::endl;
+    fmt::print("==============================================\n");
 
     return 0;
 }
