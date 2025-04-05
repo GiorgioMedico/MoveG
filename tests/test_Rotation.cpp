@@ -14,6 +14,10 @@
 #include <vector>
 
 #include "pose/rotation_lib.h"
+#include "utils/fmt_formatter.h"
+#include <fmt/core.h>
+#include <fmt/format.h>
+#include <fmt/ostream.h>
 
 using namespace MoveG;
 
@@ -231,23 +235,23 @@ TEST_CASE("Rotation: Print", "[rotation]")
 
     // Differenza tra q1 e q2
     Eigen::Quaterniond q_diff = Rotation::quaternion_difference(q1, q2);
-    std::cout << "Differenza Quaternion: " << q_diff.coeffs().transpose() << std::endl;
+    fmt::print("Differenza Quaternion: {}\n", q_diff);
 
     // Negazione di q2
     Eigen::Quaterniond q_neg = Rotation::quaternion_negation(q2);
-    std::cout << "Negazione Quaternion: " << q_neg.coeffs().transpose() << std::endl;
+    fmt::print("Negazione Quaternion: {}\n", q_neg);
 
     // Prodotto scalare di q2 per 2
     Eigen::Quaterniond q_scaled = Rotation::scalar_product(q2, 2.0);
-    std::cout << "Prodotto Scalari Quaternion: " << q_scaled.coeffs().transpose() << std::endl;
+    fmt::print("Prodotto Scalari Quaternion: {}\n", q_scaled);
 
     // Somma di q1 e q2
     Eigen::Quaterniond q_sum = Rotation::quaternion_plus(q1, q2);
-    std::cout << "Somma Quaternion: " << q_sum.coeffs().transpose() << std::endl;
+    fmt::print("Somma Quaternion: {}\n", q_sum);
 
     // Differenza di q1 e q2
     Eigen::Quaterniond q_sub = Rotation::quaternion_minus(q1, q2);
-    std::cout << "Sottrazione Quaternion: " << q_sub.coeffs().transpose() << std::endl;
+    fmt::print("Sottrazione Quaternion: {}\n", q_sub);
 }
 
 TEST_CASE("Rotation: Matrix T", "[rotation]")
@@ -262,8 +266,8 @@ TEST_CASE("Rotation: Matrix T", "[rotation]")
     T_manual << 0, -sin(angles[0]), cos(angles[0]) * cos(angles[1]), 0, cos(angles[0]),
         sin(angles[0]) * cos(angles[1]), 1, 0, -sin(angles[1]);
 
-    // std::cout << "T:\n" << T << std::endl;
-    // std::cout << "T_manual:\n" << T_manual << std::endl;
+    // fmt::print("T:\n{}\n", T);
+    // fmt::print("T_manual:\n{}\n", T_manual);
 
     REQUIRE(T.isApprox(T_manual));
 
@@ -740,8 +744,9 @@ TEST_CASE("Rotation: Performance Benchmarks", "[rotation][benchmark]")
     auto duration =
         std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
-    std::cout << "Quaternion multiplication performance: " << iterations << " iterations in "
-              << duration << " microseconds" << std::endl;
+    fmt::print("Quaternion multiplication performance: {} iterations in {} microseconds\n",
+               iterations,
+               duration);
 }
 
 TEST_CASE("Rotation: Matrix T Singularity", "[rotation][matrixT][singularity]")
@@ -757,7 +762,7 @@ TEST_CASE("Rotation: Matrix T Singularity", "[rotation][matrixT][singularity]")
 
     // Check that the determinant is small but not exactly zero
     double det = T.determinant();
-    std::cout << "Determinant of near-singular matrix T: " << det << std::endl;
+    fmt::print("Determinant of near-singular matrix T: {}\n", det);
     REQUIRE(std::abs(det) > 1e-10); // Should be small but non-zero
 }
 

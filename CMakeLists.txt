@@ -40,8 +40,8 @@ option(USE_CPM "Whether to use CPM." ON)
 option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 
-option(ENABLE_TESTING "Enable a Unit Testing build." OFF)
-option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
+option(ENABLE_TESTING "Enable a Unit Testing build." ON)
+option(ENABLE_COVERAGE "Enable a Code Coverage build." ON)
 
 # Enforce dependency: ENABLE_COVERAGE requires ENABLE_TESTING
 if(ENABLE_COVERAGE AND NOT ENABLE_TESTING)

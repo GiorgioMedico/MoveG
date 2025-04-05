@@ -36,10 +36,23 @@ target_link_libraries("UnitTestTridiagonalSolver"
         project_options  # Base options without warnings, or use project_options_with_warnings
 )
 
+# Unit Test for fmt formatter
+add_executable("UnitTestFormatter" "test_fmt_Formatter.cpp")
+target_link_libraries("UnitTestFormatter"
+        PRIVATE
+        ${LIBRARY_NAME}
+        fmt::fmt
+        Eigen
+        project_precompiled_headers    # Also link precompiled headers
+        Catch2::Catch2WithMain
+        project_options  # Base options without warnings, or use project_options_with_warnings
+)
+
 # Gives to CTest the ability to see the tests that are in the executable
 catch_discover_tests("UnitTestRotation")
 catch_discover_tests("UnitTestPose")
 catch_discover_tests("UnitTestTridiagonalSolver")
+catch_discover_tests("UnitTestFormatter")
 
 if(ENABLE_COVERAGE)
     set(COVERAGE_MAIN "coverage")
@@ -52,7 +65,7 @@ if(ENABLE_COVERAGE)
         "${PROJECT_SOURCE_DIR}/build/*"
         "/usr/include/*")
     set(COVERAGE_EXTRA_FLAGS)
-    set(COVERAGE_DEPENDENCIES "UnitTestRotation" "UnitTestPose" "UnitTestTridiagonalSolver")
+    set(COVERAGE_DEPENDENCIES "UnitTestRotation" "UnitTestPose" "UnitTestTridiagonalSolver" "UnitTestFormatter")
 
     setup_target_for_coverage_gcovr_html(
         NAME
