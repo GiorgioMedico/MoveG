@@ -1,6 +1,9 @@
 /**
  * @file tridiagonal_solver.h
  * @brief Tridiagonal matrix solver implementation using the Thomas algorithm
+ *
+ * @author Giorgio Medico
+ * @date April 09, 2025
  */
 
 #pragma once

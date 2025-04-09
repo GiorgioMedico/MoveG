@@ -1,6 +1,9 @@
 /**
  * @file tridiagonal_solver.cpp
  * @brief Implementation of the tridiagonal system solver using the Thomas algorithm
+  *
+ * @author Giorgio Medico
+ * @date April 09, 2025
  */
 
 #include "interpolatecpp/tridiagonal_inv.h"

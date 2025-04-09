@@ -16,6 +16,7 @@ set(TRAJECTORY_SOURCES
 
 set(INTERPOLATECPP_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.cpp"
 )
 
 # Combine all sources
@@ -48,6 +49,7 @@ set(TRAJECTORY_HEADERS
 
 set(INTERPOLATECPP_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.h"
 )
 
 # Combine all headers
