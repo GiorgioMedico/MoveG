@@ -55,27 +55,52 @@ function(set_warning_flags)
     )
 
     # Esporta le variabili come variabili globali
-    set(MSVC_WARNINGS ${MSVC_WARNINGS} PARENT_SCOPE)
-    set(CLANG_WARNINGS ${CLANG_WARNINGS} PARENT_SCOPE)
-    set(GCC_WARNINGS ${GCC_WARNINGS} PARENT_SCOPE)
+    set(MSVC_WARNINGS
+        ${MSVC_WARNINGS}
+        PARENT_SCOPE)
+    set(CLANG_WARNINGS
+        ${CLANG_WARNINGS}
+        PARENT_SCOPE)
+    set(GCC_WARNINGS
+        ${GCC_WARNINGS}
+        PARENT_SCOPE)
 endfunction()
 
 # Imposta le warning flags appropriate per il compilatore corrente
 function(configure_warning_flags)
     # Configura warning flags in base al compilatore
     if(MSVC)
-        set(WARNING_FLAGS ${MSVC_WARNINGS} PARENT_SCOPE)
-        set(WARNINGS_AS_ERRORS_FLAGS /WX PARENT_SCOPE)
+        set(WARNING_FLAGS
+            ${MSVC_WARNINGS}
+            PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS
+            /WX
+            PARENT_SCOPE)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        set(WARNING_FLAGS ${CLANG_WARNINGS} PARENT_SCOPE)
-        set(WARNINGS_AS_ERRORS_FLAGS -Werror PARENT_SCOPE)
+        set(WARNING_FLAGS
+            ${CLANG_WARNINGS}
+            PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS
+            -Werror
+            PARENT_SCOPE)
     elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        set(WARNING_FLAGS ${GCC_WARNINGS} PARENT_SCOPE)
-        set(WARNINGS_AS_ERRORS_FLAGS -Werror PARENT_SCOPE)
+        set(WARNING_FLAGS
+            ${GCC_WARNINGS}
+            PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS
+            -Werror
+            PARENT_SCOPE)
     else()
-        message(WARNING "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set")
-        set(WARNING_FLAGS "" PARENT_SCOPE)
-        set(WARNINGS_AS_ERRORS_FLAGS "" PARENT_SCOPE)
+        message(
+            WARNING
+                "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set"
+        )
+        set(WARNING_FLAGS
+            ""
+            PARENT_SCOPE)
+        set(WARNINGS_AS_ERRORS_FLAGS
+            ""
+            PARENT_SCOPE)
     endif()
 endfunction()
 
@@ -95,22 +120,31 @@ function(target_set_warnings)
     if(TARGET_SET_WARNINGS_ENABLE)
         # Seleziona i warnings in base al compilatore
         if(MSVC)
-            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${MSVC_WARNINGS})
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                   PRIVATE ${MSVC_WARNINGS})
             if(TARGET_SET_WARNINGS_AS_ERRORS)
-                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE /WX)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                       PRIVATE /WX)
             endif()
         elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${CLANG_WARNINGS})
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                   PRIVATE ${CLANG_WARNINGS})
             if(TARGET_SET_WARNINGS_AS_ERRORS)
-                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE -Werror)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                       PRIVATE -Werror)
             endif()
         elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-            target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE ${GCC_WARNINGS})
+            target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                   PRIVATE ${GCC_WARNINGS})
             if(TARGET_SET_WARNINGS_AS_ERRORS)
-                target_compile_options(${TARGET_SET_WARNINGS_TARGET} PRIVATE -Werror)
+                target_compile_options(${TARGET_SET_WARNINGS_TARGET}
+                                       PRIVATE -Werror)
             endif()
         else()
-            message(WARNING "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set for ${TARGET_SET_WARNINGS_TARGET}")
+            message(
+                WARNING
+                    "Unknown compiler '${CMAKE_CXX_COMPILER_ID}': no warning flags set for ${TARGET_SET_WARNINGS_TARGET}"
+            )
         endif()
     endif()
 endfunction()

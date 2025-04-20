@@ -5,34 +5,27 @@ add_executable(${EXECUTABLE_NAME} ${APP_SOURCES})
 add_executable(rotation "${CMAKE_CURRENT_SOURCE_DIR}/rotation_example.cpp")
 add_executable(pose "${CMAKE_CURRENT_SOURCE_DIR}/pose_example.cpp")
 
-
 target_link_libraries(
     ${EXECUTABLE_NAME}
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt::fmt
-        Eigen
-        project_options_with_warnings  # Include warnings
-        project_precompiled_headers
+    PRIVATE ${LIBRARY_NAME}
+            fmt::fmt
+            Eigen
+            project_options_with_warnings # Include warnings
 )
 
 target_link_libraries(
     rotation
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt::fmt
-        Eigen
-        project_options_with_warnings  # Include warnings
-        project_precompiled_headers
+    PRIVATE ${LIBRARY_NAME}
+            fmt::fmt
+            Eigen
+            project_options_with_warnings # Include warnings
 )
 target_link_libraries(
     pose
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt::fmt
-        Eigen
-        project_options_with_warnings  # Include warnings
-        project_precompiled_headers
+    PRIVATE ${LIBRARY_NAME}
+            fmt::fmt
+            Eigen
+            project_options_with_warnings # Include warnings
 )
 
 if(${ENABLE_LTO})

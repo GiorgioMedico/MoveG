@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.22)
 include(ProcessorCount)
 ProcessorCount(CPU_CORES)
 if(CPU_CORES EQUAL 0)
-  set(CPU_CORES 8)
+    set(CPU_CORES 8)
 endif()
 set(CMAKE_BUILD_PARALLEL_LEVEL ${CPU_CORES})
 
@@ -31,7 +31,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -march=native")
     # Enable LTO by default for Release builds
-    set(ENABLE_LTO ON CACHE BOOL "Enable LTO in Release mode" FORCE)
+    set(ENABLE_LTO
+        ON
+        CACHE BOOL "Enable LTO in Release mode" FORCE)
 endif()
 
 # Options
@@ -45,8 +47,12 @@ option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
 
 # Enforce dependency: ENABLE_COVERAGE requires ENABLE_TESTING
 if(ENABLE_COVERAGE AND NOT ENABLE_TESTING)
-    message(WARNING "ENABLE_COVERAGE=ON requires ENABLE_TESTING=ON, enabling testing")
-    set(ENABLE_TESTING ON CACHE BOOL "Enable a Unit Testing build." FORCE)
+    message(
+        WARNING
+            "ENABLE_COVERAGE=ON requires ENABLE_TESTING=ON, enabling testing")
+    set(ENABLE_TESTING
+        ON
+        CACHE BOOL "Enable a Unit Testing build." FORCE)
 endif()
 
 option(ENABLE_CLANG_TIDY "Enable to add clang tidy." ON)
@@ -85,17 +91,19 @@ if(ENABLE_WARNINGS)
     # Only add warnings to project_options_with_warnings
     if(WARNING_FLAGS)
         message(STATUS "Warning flags: ${WARNING_FLAGS}")
-        target_compile_options(project_options_with_warnings INTERFACE ${WARNING_FLAGS})
+        target_compile_options(project_options_with_warnings
+                               INTERFACE ${WARNING_FLAGS})
 
         if(ENABLE_WARNINGS_AS_ERRORS AND WARNINGS_AS_ERRORS_FLAGS)
-            message(STATUS "Warnings as errors flags: ${WARNINGS_AS_ERRORS_FLAGS}")
-            target_compile_options(project_options_with_warnings INTERFACE ${WARNINGS_AS_ERRORS_FLAGS})
+            message(
+                STATUS "Warnings as errors flags: ${WARNINGS_AS_ERRORS_FLAGS}")
+            target_compile_options(project_options_with_warnings
+                                   INTERFACE ${WARNINGS_AS_ERRORS_FLAGS})
         endif()
     else()
         message(WARNING "No warning flags were set for the current compiler")
     endif()
 endif()
-
 
 add_cmake_format_target()
 add_clang_format_target()
@@ -134,11 +142,26 @@ if(USE_CPM)
     cpmaddpackage("gh:fmtlib/fmt#11.1.4")
     cpmaddpackage(
         NAME
+        sciplot
+        GITHUB_REPOSITORY
+        sciplot/sciplot
+        VERSION
+        0.3.1
+        OPTIONS
+        "SCIPLOT_BUILD_DOCS OFF"
+        "SCIPLOT_BUILD_EXAMPLES OFF"
+        "SCIPLOT_BUILD_TESTS OFF")
+    cpmaddpackage(
+        NAME
         Eigen
-        GIT_REPOSITORY  https://gitlab.com/libeigen/eigen.git
-        GIT_TAG 3.4.0
-        EXCLUDE_FROM_ALL YES
-        SYSTEM  YES
+        GIT_REPOSITORY
+        https://gitlab.com/libeigen/eigen.git
+        GIT_TAG
+        3.4.0
+        EXCLUDE_FROM_ALL
+        YES
+        SYSTEM
+        YES
         OPTIONS
         "EIGEN_BUILD_DOC OFF" # Disabilita la generazione della documentazione
         "EIGEN_BUILD_TESTS OFF" # Disabilita i test di Eigen
@@ -159,16 +182,6 @@ if(USE_CPM)
 
 endif()
 
-# Add precompiled headers to speed up builds
-add_library(project_precompiled_headers INTERFACE)
-target_precompile_headers(project_precompiled_headers INTERFACE
-    <vector>
-    <string>
-    <memory>
-    <fmt/format.h>
-    <Eigen/Dense>
-)
-
 # SUBDIRECTORIES
 add_subdirectory(configured)
 add_subdirectory(src)
@@ -185,14 +198,12 @@ install(
     TARGETS ${EXECUTABLE_NAME}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-)
+    RUNTIME DESTINATION bin)
 
 install(
     TARGETS ${LIBRARY_NAME}
     ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-)
+    LIBRARY DESTINATION lib)
 
 # Display build configuration summary
 message(STATUS "========== Build Configuration Summary ==========")
@@ -202,5 +213,8 @@ message(STATUS "Testing enabled: ${ENABLE_TESTING}")
 message(STATUS "Coverage enabled: ${ENABLE_COVERAGE}")
 message(STATUS "LTO enabled: ${ENABLE_LTO}")
 message(STATUS "Warnings enabled: ${ENABLE_WARNINGS} (only for library code)")
-message(STATUS "Sanitizers: ADDR=${ENABLE_SANITIZE_ADDR}, UNDEF=${ENABLE_SANITIZE_UNDEF}, LEAK=${ENABLE_SANITIZE_LEAK}")
+message(
+    STATUS
+        "Sanitizers: ADDR=${ENABLE_SANITIZE_ADDR}, UNDEF=${ENABLE_SANITIZE_UNDEF}, LEAK=${ENABLE_SANITIZE_LEAK}"
+)
 message(STATUS "================================================")

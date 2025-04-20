@@ -1,11 +1,7 @@
 # Define all source files by component
-set(ROTATION_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.cpp"
-)
+set(ROTATION_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.cpp")
 
-set(POSE_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.cpp"
-)
+set(POSE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.cpp")
 
 set(TRAJECTORY_SOURCES
     #"${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.cpp"
@@ -15,30 +11,23 @@ set(TRAJECTORY_SOURCES
 )
 
 set(INTERPOLATECPP_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/plotter.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.cpp"
-)
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.cpp")
 
 # Combine all sources
 set(LIBRARY_SOURCES
     ${ROTATION_SOURCES}
     ${POSE_SOURCES}
     ${INTERPOLATECPP_SOURCES}
-    ${TRAJECTORY_SOURCES}
-)
+    ${TRAJECTORY_SOURCES})
 
 # Define header files by component
-set(UTILS_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/utils/fmt_formatter.h"
-)
+set(UTILS_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/utils/fmt_formatter.h")
 
-set(ROTATION_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.h"
-)
+set(ROTATION_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/pose/rotation_lib.h")
 
-set(POSE_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.h"
-)
+set(POSE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/pose/pose_lib.h")
 
 set(TRAJECTORY_HEADERS
     #"${CMAKE_CURRENT_SOURCE_DIR}/trajectory/waypoint.h"
@@ -48,9 +37,9 @@ set(TRAJECTORY_HEADERS
 )
 
 set(INTERPOLATECPP_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/plotter.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/tridiagonal_inv.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.h"
-)
+    "${CMAKE_CURRENT_SOURCE_DIR}/interpolatecpp/trapezoidal.h")
 
 # Combine all headers
 set(LIBRARY_HEADERS
@@ -59,8 +48,7 @@ set(LIBRARY_HEADERS
     ${ROTATION_HEADERS}
     ${POSE_HEADERS}
     ${INTERPOLATECPP_HEADERS}
-    ${TRAJECTORY_HEADERS}
-)
+    ${TRAJECTORY_HEADERS})
 
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
@@ -68,13 +56,12 @@ add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
 
 # This applies all the warnings to your library code only
-target_link_libraries(${LIBRARY_NAME}
-    PRIVATE
-        fmt::fmt
-        Eigen
-        project_options_with_warnings  # Add warnings only to your library
-        project_precompiled_headers    # Also link precompiled headers
-)
+target_link_libraries(
+    ${LIBRARY_NAME}
+    PRIVATE fmt::fmt
+            Eigen
+            sciplot
+            project_options_with_warnings)
 
 if(${ENABLE_LTO})
     target_enable_lto(

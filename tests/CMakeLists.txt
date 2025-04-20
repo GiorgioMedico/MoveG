@@ -2,50 +2,50 @@ include(Catch)
 
 # Unit Test for Rotation
 add_executable("UnitTestRotation" "test_Rotation.cpp")
-target_link_libraries("UnitTestRotation"
+target_link_libraries(
+    "UnitTestRotation"
     PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
         Eigen
-        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
-        project_options  # Base options without warnings, or use project_options_with_warnings
+        project_options # Base options without warnings, or use project_options_with_warnings
 )
 
 # Unit Test for Pose
 add_executable("UnitTestPose" "test_Pose.cpp")
-target_link_libraries("UnitTestPose"
-        PRIVATE
+target_link_libraries(
+    "UnitTestPose"
+    PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
         Eigen
-        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
-        project_options  # Base options without warnings, or use project_options_with_warnings
+        project_options # Base options without warnings, or use project_options_with_warnings
 )
 
 # Unit Test for Tridiagonal Solver
 add_executable("UnitTestTridiagonalSolver" "test_TridiagonalSolver.cpp")
-target_link_libraries("UnitTestTridiagonalSolver"
-        PRIVATE
+target_link_libraries(
+    "UnitTestTridiagonalSolver"
+    PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
         Eigen
-        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
-        project_options  # Base options without warnings, or use project_options_with_warnings
+        project_options # Base options without warnings, or use project_options_with_warnings
 )
 
 # Unit Test for fmt formatter
 add_executable("UnitTestFormatter" "test_fmt_Formatter.cpp")
-target_link_libraries("UnitTestFormatter"
-        PRIVATE
+target_link_libraries(
+    "UnitTestFormatter"
+    PRIVATE
         ${LIBRARY_NAME}
         fmt::fmt
         Eigen
-        project_precompiled_headers    # Also link precompiled headers
         Catch2::Catch2WithMain
-        project_options  # Base options without warnings, or use project_options_with_warnings
+        project_options # Base options without warnings, or use project_options_with_warnings
 )
 
 # Gives to CTest the ability to see the tests that are in the executable
@@ -65,7 +65,11 @@ if(ENABLE_COVERAGE)
         "${PROJECT_SOURCE_DIR}/build/*"
         "/usr/include/*")
     set(COVERAGE_EXTRA_FLAGS)
-    set(COVERAGE_DEPENDENCIES "UnitTestRotation" "UnitTestPose" "UnitTestTridiagonalSolver" "UnitTestFormatter")
+    set(COVERAGE_DEPENDENCIES
+        "UnitTestRotation"
+        "UnitTestPose"
+        "UnitTestTridiagonalSolver"
+        "UnitTestFormatter")
 
     setup_target_for_coverage_gcovr_html(
         NAME
