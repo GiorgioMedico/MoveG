@@ -10,32 +10,36 @@ target_link_libraries(
     PRIVATE ${LIBRARY_NAME}
             fmt
             Eigen
-            project_options_with_warnings # Include warnings
-)
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 target_link_libraries(
     rotation
     PRIVATE ${LIBRARY_NAME}
             fmt
             Eigen
-            project_options_with_warnings # Include warnings
-)
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 target_link_libraries(
     pose
     PRIVATE ${LIBRARY_NAME}
             fmt
             Eigen
-            project_options_with_warnings # Include warnings
-)
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 if(${ENABLE_LTO})
     target_enable_lto(
         TARGET
         ${EXECUTABLE_NAME}
+        rotation
+        pose
         ENABLE
         ON)
 endif()
 
 if(${ENABLE_CLANG_TIDY})
     add_clang_tidy_to_target(${EXECUTABLE_NAME})
+    add_clang_tidy_to_target(rotation)
+    add_clang_tidy_to_target(pose)
 endif()

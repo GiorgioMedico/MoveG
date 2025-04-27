@@ -4,49 +4,45 @@ include(Catch)
 add_executable("UnitTestRotation" "test_Rotation.cpp")
 target_link_libraries(
     "UnitTestRotation"
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt
-        Eigen
-        Catch2::Catch2WithMain
-        project_options # Base options without warnings, or use project_options_with_warnings
-)
+    PRIVATE ${LIBRARY_NAME}
+            fmt
+            Eigen
+            Catch2::Catch2WithMain
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 # Unit Test for Pose
 add_executable("UnitTestPose" "test_Pose.cpp")
 target_link_libraries(
     "UnitTestPose"
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt
-        Eigen
-        Catch2::Catch2WithMain
-        project_options # Base options without warnings, or use project_options_with_warnings
-)
+    PRIVATE ${LIBRARY_NAME}
+            fmt
+            Eigen
+            Catch2::Catch2WithMain
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 # Unit Test for Tridiagonal Solver
 add_executable("UnitTestTridiagonalSolver" "test_TridiagonalSolver.cpp")
 target_link_libraries(
     "UnitTestTridiagonalSolver"
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt
-        Eigen
-        Catch2::Catch2WithMain
-        project_options # Base options without warnings, or use project_options_with_warnings
-)
+    PRIVATE ${LIBRARY_NAME}
+            fmt
+            Eigen
+            Catch2::Catch2WithMain
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 # Unit Test for fmt formatter
 add_executable("UnitTestFormatter" "test_fmt_Formatter.cpp")
 target_link_libraries(
     "UnitTestFormatter"
-    PRIVATE
-        ${LIBRARY_NAME}
-        fmt
-        Eigen
-        Catch2::Catch2WithMain
-        project_options # Base options without warnings, or use project_options_with_warnings
-)
+    PRIVATE ${LIBRARY_NAME}
+            fmt
+            Eigen
+            Catch2::Catch2WithMain
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 # Gives to CTest the ability to see the tests that are in the executable
 catch_discover_tests("UnitTestRotation")

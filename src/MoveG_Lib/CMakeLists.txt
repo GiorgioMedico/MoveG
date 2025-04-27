@@ -61,7 +61,8 @@ target_link_libraries(
     PRIVATE fmt
             Eigen
             sciplot
-            project_options_with_warnings)
+            ${WARNING_FLAGS}
+            ${WARNINGS_AS_ERRORS_FLAGS})
 
 if(${ENABLE_LTO})
     target_enable_lto(

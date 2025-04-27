@@ -18,7 +18,7 @@ endif()
 
 project(
     "MoveG"
-    VERSION 1.0.1
+    VERSION 1.1.0
     LANGUAGES C CXX)
 
 # Global CMake variables
@@ -42,7 +42,7 @@ option(USE_CPM "Whether to use CPM." ON)
 option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 
-option(ENABLE_TESTING "Enable a Unit Testing build." OFF)
+option(ENABLE_TESTING "Enable a Unit Testing build." ON)
 option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
 
 # Enforce dependency: ENABLE_COVERAGE requires ENABLE_TESTING
@@ -71,15 +71,6 @@ option(ENABLE_LTO "Enable to add Link Time Optimization." OFF)
 set(EXECUTABLE_NAME "main")
 set(LIBRARY_NAME "MoveG_Lib")
 
-# CREATE INTERFACE LIBRARIES FOR PROJECT OPTIONS
-# Base options without warnings - for all targets
-add_library(project_options INTERFACE)
-target_compile_features(project_options INTERFACE cxx_std_20)
-
-# Library-specific options with warnings - only for our library code
-add_library(project_options_with_warnings INTERFACE)
-target_link_libraries(project_options_with_warnings INTERFACE project_options)
-
 # CMAKE MODULES
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(ConfigSafeGuards)
@@ -88,17 +79,12 @@ include(Tools)
 
 if(ENABLE_WARNINGS)
     include(Warnings)
-    # Only add warnings to project_options_with_warnings
     if(WARNING_FLAGS)
         message(STATUS "Warning flags: ${WARNING_FLAGS}")
-        target_compile_options(project_options_with_warnings
-                               INTERFACE ${WARNING_FLAGS})
 
         if(ENABLE_WARNINGS_AS_ERRORS AND WARNINGS_AS_ERRORS_FLAGS)
             message(
                 STATUS "Warnings as errors flags: ${WARNINGS_AS_ERRORS_FLAGS}")
-            target_compile_options(project_options_with_warnings
-                                   INTERFACE ${WARNINGS_AS_ERRORS_FLAGS})
         endif()
     else()
         message(WARNING "No warning flags were set for the current compiler")
@@ -114,8 +100,6 @@ if(ENABLE_SANITIZE_ADDR
    OR ENABLE_SANITIZE_THREAD)
     include(Sanitizer)
     add_sanitizer_flags()
-    target_compile_options(project_options INTERFACE ${SANITIZER_FLAGS})
-    target_link_options(project_options INTERFACE ${SANITIZER_FLAGS})
 endif()
 
 if(ENABLE_TESTING AND ENABLE_COVERAGE)
@@ -125,9 +109,6 @@ endif()
 
 if(ENABLE_LTO)
     include(LTO)
-    # Apply LTO settings to project_options
-    target_compile_options(project_options INTERFACE ${LTO_FLAGS})
-    target_link_options(project_options INTERFACE ${LTO_LINK_FLAGS})
 endif()
 
 # Use CPM for package management
@@ -140,10 +121,14 @@ if(USE_CPM)
 
     include(CPM)
     cpmaddpackage(
-        NAME fmt
-        GITHUB_REPOSITORY fmtlib/fmt
-        VERSION 11.1.4
-        SYSTEM YES  # Add this line
+        NAME
+        fmt
+        GITHUB_REPOSITORY
+        fmtlib/fmt
+        VERSION
+        11.1.4
+        SYSTEM
+        YES
     )
     cpmaddpackage(
         NAME
