@@ -6,7 +6,7 @@ target_link_libraries(
     "UnitTestRotation"
     PRIVATE
         ${LIBRARY_NAME}
-        fmt::fmt
+        fmt
         Eigen
         Catch2::Catch2WithMain
         project_options # Base options without warnings, or use project_options_with_warnings
@@ -18,7 +18,7 @@ target_link_libraries(
     "UnitTestPose"
     PRIVATE
         ${LIBRARY_NAME}
-        fmt::fmt
+        fmt
         Eigen
         Catch2::Catch2WithMain
         project_options # Base options without warnings, or use project_options_with_warnings
@@ -30,7 +30,7 @@ target_link_libraries(
     "UnitTestTridiagonalSolver"
     PRIVATE
         ${LIBRARY_NAME}
-        fmt::fmt
+        fmt
         Eigen
         Catch2::Catch2WithMain
         project_options # Base options without warnings, or use project_options_with_warnings
@@ -42,7 +42,7 @@ target_link_libraries(
     "UnitTestFormatter"
     PRIVATE
         ${LIBRARY_NAME}
-        fmt::fmt
+        fmt
         Eigen
         Catch2::Catch2WithMain
         project_options # Base options without warnings, or use project_options_with_warnings

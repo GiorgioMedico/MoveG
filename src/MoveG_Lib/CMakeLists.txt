@@ -58,7 +58,7 @@ target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
 # This applies all the warnings to your library code only
 target_link_libraries(
     ${LIBRARY_NAME}
-    PRIVATE fmt::fmt
+    PRIVATE fmt
             Eigen
             sciplot
             project_options_with_warnings)

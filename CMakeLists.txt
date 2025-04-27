@@ -139,7 +139,12 @@ if(USE_CPM)
         CACHE STRING "CPM source cache directory")
 
     include(CPM)
-    cpmaddpackage("gh:fmtlib/fmt#11.1.4")
+    cpmaddpackage(
+        NAME fmt
+        GITHUB_REPOSITORY fmtlib/fmt
+        VERSION 11.1.4
+        SYSTEM YES  # Add this line
+    )
     cpmaddpackage(
         NAME
         sciplot
@@ -147,6 +152,8 @@ if(USE_CPM)
         sciplot/sciplot
         VERSION
         0.3.1
+        SYSTEM
+        YES
         OPTIONS
         "SCIPLOT_BUILD_DOCS OFF"
         "SCIPLOT_BUILD_EXAMPLES OFF"
